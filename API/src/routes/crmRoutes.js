@@ -1,5 +1,6 @@
 import {
   addNewCar,
+  getCars,
   // getContacts, 
   // getContactWithID, 
   // updateContact,
@@ -27,6 +28,16 @@ const routes = (app) => {
 
   // // delete request
   // .delete(deleteContact);
+
+
+  /* retrieve all cars */
+  app.route('/cars')
+    .get(( req , res, next ) => {
+      //middleware
+      console.log(`Request from ${req.originalUrl}`)
+      console.log(`Request type ${req.method}`)
+      next();
+    }, getCars)
 }
 
 export default routes;

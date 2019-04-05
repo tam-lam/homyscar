@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import CurrentLocation from "./map";
 const mapStyles = {
@@ -9,11 +10,26 @@ class MapContainer extends Component {
   state = {
     showingInfoWindow: true,
     activeMarker: {},
-    selectedPlace: {}
+    selectedPlace: {},
+    cars: {}
   };
+
+
+  componentWillMount() {
+    axios.get('http://localhost:3001/cars').then(res => {
+
+        let products = res.data;
+        this.setState({cars: products});    
+      })  
+  }
+
+  componentDidMount(){
+    
+  }
 
   render() {
     return (
+
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         <Marker
           position={{ lat: -37.8, lng: 144.96332 }}

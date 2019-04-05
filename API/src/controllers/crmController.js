@@ -14,6 +14,27 @@ export const addNewCar = (req, res) => {
   });
 };
 
+export const getCars = (req , res) => {
+  Car.find({} , (err , car) =>{
+    if (err){
+      res.send(err);
+    }
+    
+    res.json(car)
+  });
+
+}
+
+// export const getCars = (req , res) => {
+//   Car.find({} , (err , car) =>{
+//     if (err){
+//       res.send(err);
+//     }
+//     res.json(car)
+//   });
+
+// }
+
 // export const getContacts = (req, res) => {
 //   Contact.find({}, (err, contact) => {
 //     if (err) {
