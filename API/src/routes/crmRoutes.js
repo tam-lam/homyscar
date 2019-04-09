@@ -1,14 +1,16 @@
 import {
   addNewCar,
-  getCars,
+//  getCars,
   // getContacts, 
   // getContactWithID, 
   // updateContact,
   // deleteContact,
 } from "../controllers/crmController";
 
+import { getCars ,setUserLocation , getNearestCars} from "../controllers/mapController";
+
 const routes = (app) => {
-  app.route('/contact')
+  app.route('/car')
     // .get(( req , res, next ) => {
     //   //middleware
     //   console.log(`Request from ${req.originalUrl}`)
@@ -19,6 +21,8 @@ const routes = (app) => {
     // POST endpoint
     .post(addNewCar);
 
+    app.route('/setlocation')
+    .post(setUserLocation);
   // app.route('/contact/:contactId')
   // // get specific contact
   // .get(getContactWithID)
@@ -29,6 +33,8 @@ const routes = (app) => {
   // // delete request
   // .delete(deleteContact);
 
+  app.route('/getnearestcars')
+  .get(getNearestCars);
 
   /* retrieve all cars */
   app.route('/cars')

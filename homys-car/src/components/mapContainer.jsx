@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import CurrentLocation from "./map";
+
 const mapStyles = {
   width: "100%",
   height: "100%"
@@ -21,17 +22,25 @@ class MapContainer extends Component {
         let products = res.data;
         this.setState({cars: products});    
       })  
-  }
 
-  componentDidMount(){
-    
   }
 
   render() {
+
+    var markers = [];
+    for ( var i = 0 ; i < this.state.cars.length ; i++){
+        markers.push(
+          <Marker
+          position={{ lat: this.state.cars[i].lat , lng: this.state.cars[i].lng }}
+          onClick={this.onMarkerClick}
+          name={"Example marker for car 1"}
+        />
+        )
+    }
     return (
 
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
-        <Marker
+        {/* <Marker
           position={{ lat: -37.8, lng: 144.96332 }}
           onClick={this.onMarkerClick}
           name={"Example marker for car 1"}
@@ -40,7 +49,11 @@ class MapContainer extends Component {
           position={{ lat: -37.814, lng: 144.9 }}
           onClick={this.onMarkerClick}
           name={"Example marker for car 2"}
-        />
+        /> */}
+
+        
+        {markers}
+     
         <Marker onClick={this.onMarkerClick} name={"current location"} />
         <InfoWindow
           marker={this.state.activeMarker}

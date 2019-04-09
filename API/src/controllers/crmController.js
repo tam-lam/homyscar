@@ -20,7 +20,24 @@ export const getCars = (req , res) => {
       res.send(err);
     }
     
-    res.json(car)
+    var tempCar;
+    
+    var carArray = [];
+
+    for(var i = 0 ; i < car.length ; i++){
+
+     
+      var temp = { name : "hello" , distance : "wello" };
+
+      console.log(car[i].rego);
+      carArray.push(temp);
+
+
+
+    }
+    res.json(carArray)
+
+
   });
 
 }
