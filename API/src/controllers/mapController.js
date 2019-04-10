@@ -49,6 +49,11 @@ export const setUserLocation = (req , res) => {
 }
 
 
+// async const getCars = (req , res) => {
+
+
+// }
+
 export const getCars = (req , res) => {
 
 
@@ -69,38 +74,61 @@ export const getCars = (req , res) => {
 
 
 
-
-    // for(var i = 0 ; i < car.length ; i++){
-
-      
-    //   console.log(car[i].location);
-    //   var distanceValue = getDistance(car[i].location);
-    //   console.log("distance value" + distanceValue);
-    //   var temp = { name : "hello" , distance : distanceValue };
+    for(var i = 0 ; i < car.length ; i++){
 
       
-    // }
+      console.log(car[i].location);
+      var distanceValue = getDistance(car[i].location);
+      console.log("distance value" + distanceValue);
+      var temp = { name : "hello" , distance : distanceValue };
 
-    res.json(carArray)
+      console.log("calling distance" +  distanceValue )
+
+      
+    }
+
+  res.json(carArray)
   });
-
-
-
-
-
-
 }
 
+export async function getCars2(req , res ){
+
+  var retrievedCars = [];
+  
+  await Car.find({} , (err , car) =>{
+    if (err){
+      res.send(err);
+    }
+
+
+    retrievedCars.push(car);
+  });
+
+  
+  
+  var op = getDistance("12 Collins Street , Melbourne, AU");
+  console.log("getting cars");
+  console.log(retrievedCars);
+  console.log("op value" + op);
+
+  op.then(function(result){
+    console.log(result);
+  });
+ 
+  res.json(retrievedCars);
+
+
+} 
+
 // calc distance for a car
-const getDistance = (location) => {
+async function getDistance(location){
 var destinations = [location];
 
-var array = [];
+var tempArray = [];
 var temp;
+var distanceValue;
 
-distance.matrix(origins, destinations,  function (err, distances) {
-  
-
+let jj  = distance.matrix(origins, destinations,  function (err, distances) {
     if (err) {
         return console.log(err);
     }
@@ -110,16 +138,23 @@ distance.matrix(origins, destinations,  function (err, distances) {
     if (distances.status == 'OK') {
       if (distances.rows[0].elements[0].status == 'OK') {
         
-         var distance = distances.rows[0].elements[0].distance;
-         
+        distanceValue = distances.rows[0].elements[0].distance;
+         console.log(distanceValue);
+         tempArray.push(distanceValue);
         
       }    
-}
-    
-});
+      
+      console.log("temp array inside func " + tempArray.length);
+      
+    }
+
+    console.log("finished distance matrix");
+    return distanceValue;
+
+} );
 
 
-console.log(temp)
+return await jj;
 
 }
 

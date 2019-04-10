@@ -7,7 +7,8 @@ import {
   // deleteContact,
 } from "../controllers/crmController";
 
-import { getCars ,setUserLocation , getNearestCars} from "../controllers/mapController";
+import { setUserLocation , getNearestCars} from "../controllers/mapController";
+import { getCars2} from "../controllers/mController";
 
 const routes = (app) => {
   app.route('/car')
@@ -43,7 +44,7 @@ const routes = (app) => {
       console.log(`Request from ${req.originalUrl}`)
       console.log(`Request type ${req.method}`)
       next();
-    }, getCars)
+    }, getCars2)
 }
 
 export default routes;
