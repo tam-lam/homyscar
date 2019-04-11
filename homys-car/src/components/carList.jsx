@@ -4,23 +4,30 @@ import CarItem from "./carItem";
 import axios from 'axios';
 class CarList extends Component {
   state = {
-    cars: {}
+    cars: []
   };
 
 
   componentDidMount() {
     axios.get('http://localhost:3001/cars').then(res => {
+      var tempArray = [];
+      for (var i = 0 ; i < res.data.length ; i++){
+        tempArray.push(res.data[i]);
+      }
 
-        let products = res.data;
-        this.setState({cars: products});    
-      })  
+      this.setState((state) => {
+        return { cars: tempArray}
+      })
+         
+      }); 
+
   }
   render() {
 
     var carItems = [];
     for ( var i = 0 ; i < this.state.cars.length ; i++){
       carItems.push(
-          <CarItem car={this.state.cars[i].car} rego={this.state.cars[i].rego} />
+          <CarItem car={this.state.cars[i].car.make} rego={this.state.cars[i].car.rego} />
         )
     }
 

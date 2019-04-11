@@ -31,9 +31,6 @@ export const getCars = (req , res) => {
 
       console.log(car[i].rego);
       carArray.push(temp);
-
-
-
     }
     res.json(carArray)
 
