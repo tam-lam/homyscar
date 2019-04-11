@@ -16,8 +16,11 @@ var retrievedCars = [];
 var retrievedDistances = [];
 
 export const setUserLocation = (req , res) => {
-  // origins = req.body
-  // console.log("origin value is" + origins);
+  var userLocation = req.body.lat + ' , ' + req.body.lng;
+  origins.pop();
+  origins.push(userLocation);
+  //origins = userLocation;
+  console.log("origin value is" + userLocation);
 }
 
 export async function getCars(req , res ){
@@ -57,6 +60,7 @@ export async function getCars(req , res ){
             if (distances.rows[0].elements[i].status == 'OK') {
                 var distance = distances.rows[0].elements[i].distance;
                 var carAndDist = {car: carsArray[i] , distance: distance};
+                console.log("new dist value" + distance.text)
                 returnArray.push(carAndDist)
             } 
         }       
