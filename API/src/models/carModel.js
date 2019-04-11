@@ -61,5 +61,9 @@ export const CarSchema = new Schema({
       created_at: "created_at",
       updated_at: "updated_at"
     }
+<<<<<<< HEAD:API/src/models/carModel.js
 })
   
+=======
+})
+>>>>>>> c853286e93e00ad3a21a6017d0f91c11ad5d965f:API/src/models/crmModel.js
