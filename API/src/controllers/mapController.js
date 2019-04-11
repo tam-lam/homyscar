@@ -1,4 +1,4 @@
-import { CarSchema } from '../models/crmModel';
+import { CarSchema } from '../models/carModel';
 import mongoose from 'mongoose';
 const Car = mongoose.model('Car', CarSchema);
 var { promisify } = require('util');
@@ -7,7 +7,6 @@ var { promisify } = require('util');
 var distance = require('google-distance-matrix'); 
 distance.key('AIzaSyCVT0ufJbPLrh4hbunIDrF3TYDAolrNOlg');
 distance.units('metric');
-var { promisify} = require('util');
 
 //var matrix = promisify(distance.matrix);
 var origins = ['Melbourne , AU'];
@@ -23,7 +22,7 @@ export const setUserLocation = (req , res) => {
   console.log("origin value is" + userLocation);
 }
 
-export async function getCars(req , res ){
+export async function getCarsWithDistance(req , res ){
   var carAndDistanceArray = [];
 
     var carsArray = [];  

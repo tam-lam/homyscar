@@ -17,7 +17,7 @@ class MapContainer extends Component {
 
 
   componentWillMount() {
-    axios.get('http://localhost:3001/cars').then(res => {
+    axios.get('http://localhost:3001/getcarswithdistance').then(res => {
       var tempArray = [];
       for (var i = 0 ; i < res.data.length ; i++){
         tempArray.push(res.data[i]);
