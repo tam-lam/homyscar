@@ -6,12 +6,9 @@ var cors = require('cors')
 
 const app = express();
 const PORT = 3001;
-<<<<<<< HEAD
-=======
 
 
 app.use(cors())
->>>>>>> c853286e93e00ad3a21a6017d0f91c11ad5d965f
 
 // mongoose connection 
 try {
