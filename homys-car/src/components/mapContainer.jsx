@@ -12,26 +12,34 @@ class MapContainer extends Component {
     showingInfoWindow: true,
     activeMarker: {},
     selectedPlace: {},
-    cars: {}
+    cars: []
   };
 
 
   componentWillMount() {
     axios.get('http://localhost:3001/cars').then(res => {
+      var tempArray = [];
+      for (var i = 0 ; i < res.data.length ; i++){
+        tempArray.push(res.data[i]);
+      }
 
-        let products = res.data;
-        this.setState({cars: products});    
-      })  
+      this.setState((state) => {
+        return { cars: tempArray}
+      })
+         
+      }); 
 
   }
 
   render() {
 
     var markers = [];
+    console.log("car" + this.state.cars);
     for ( var i = 0 ; i < this.state.cars.length ; i++){
         markers.push(
+          console.log("car value" + this.state.cars[i].car.lat ),
           <Marker
-          position={{ lat: this.state.cars[i].lat , lng: this.state.cars[i].lng }}
+          position={{ lat: this.state.cars[i].car.lat , lng: this.state.cars[i].car.lng}}
           onClick={this.onMarkerClick}
           name={"Example marker for car 1"}
         />

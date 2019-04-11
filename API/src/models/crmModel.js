@@ -39,7 +39,7 @@ export const CarSchema = new Schema({
     type: Boolean,
     required: true
   },
-  location: {
+  address: {
     type: String,
     required: true
   },
@@ -47,9 +47,18 @@ export const CarSchema = new Schema({
     type: Number,
     required: true
   },
-  created_date: {
-    type: Date,
-    default: Date.now
+  lat: {
+    type: Number,
+    required: true
+  },
+  lng: {
+    type: Number,
+    required: true
   }
-
+},
+{
+    timestamps: {
+      created_at: "created_at",
+      updated_at: "updated_at"
+    }
 })
