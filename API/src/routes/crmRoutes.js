@@ -10,7 +10,7 @@ import {
 
 
 
-import { setUserLocation , getCars } from "../controllers/mapController";
+import { setUserLocation , getCarsWithDistance } from "../controllers/mapController";
 
 
 const routes = (app) => {
@@ -22,7 +22,8 @@ const routes = (app) => {
   .post(setUserLocation); 
     
 
-
+  app.route('/getcarswithdistance')
+  .get(getCarsWithDistance)
     
     
   app.route('/rental')
