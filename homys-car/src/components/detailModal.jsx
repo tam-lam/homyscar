@@ -5,8 +5,13 @@ import "./detailModal.css";
 import icon from "../images/icon-black.png";
 
 class DetailModal extends Component {
-  state = {};
+  state = {
+    // make: this.props.car.make
+  };
   render() {
+    console.log("MODAL props:" + this.props.make);
+    console.log("MODAL make:" + this.state.make);
+
     return (
       <React.Fragment>
         <Modal
@@ -21,12 +26,16 @@ class DetailModal extends Component {
             <div className="container">
               <div className=" detailContainer text-center ">
                 <img src={icon} className=" car-img shadow rounded-circle " />
-                <h4>ModalString MakeString Year</h4>
+                <h4>
+                  {this.props.make} {this.props.model} {this.props.body}{" "}
+                  {this.props.year}
+                </h4>
                 <p>
-                  No Streeet Address Suburd VIC 0000
+                  {this.props.address}
                   <br />
-                  Rego: ABCD123
-                  <br /> 1km away, price$/day
+                  Rego: {this.props.rego}
+                  {/* {this.state.car.make} */}
+                  <br /> {this.props.distance} away, {this.props.price}$/h
                 </p>
               </div>
             </div>

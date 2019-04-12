@@ -29,7 +29,19 @@ class CarItem extends Component {
           <button
             type="button"
             className="btn btn-outline-light shadow-lg float-right"
-            onClick={this.props.onShowDetail}
+            onClick={() =>
+              this.props.onShowDetail(
+                this.state.make,
+                this.state.model,
+                this.state.year,
+                this.state.rego,
+                this.state.body,
+                this.props.car.tranmission,
+                this.props.car.address,
+                this.state.price,
+                this.state.distance
+              )
+            }
           >
             Details
           </button>

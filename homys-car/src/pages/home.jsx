@@ -6,29 +6,43 @@ import MapContainer from "../components/mapContainer";
 import DetailModal from "../components/detailModal";
 import "./home.css";
 import CarList from "../components/carList";
-import axios from "axios";
 
 class Home extends Component {
-  state = {
-    modalShow: false,
-    cars: []
-  };
-  // componentDidMount() {
-  //   axios.get("http://localhost:3001/getcarswithdistance").then(res => {
-  //     var tempArray = [];
-  //     for (var i = 0; i < res.data.length; i++) {
-  //       tempArray.push(res.data[i]);
-  //     }
-
-  //     this.setState(state => {
-  //       return { cars: tempArray };
-  //     });
-  //   });
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalShow: false,
+      car: null
+    };
+  }
 
   render() {
     let modalClose = () => this.setState({ modalShow: false });
-    let modalShow = () => this.setState({ modalShow: true });
+    let modalShow = (
+      make,
+      model,
+      year,
+      rego,
+      body,
+      tranmission,
+      address,
+      price,
+      distance
+    ) => {
+      this.setState({
+        modalShow: true,
+        make: make,
+        model: model,
+        year: year,
+        rego: rego,
+        body: body,
+        tranmission: tranmission,
+        address: address,
+        price: price,
+        distance: distance
+      });
+    };
+
     return (
       <React.Fragment>
         <NavBar />
@@ -36,7 +50,19 @@ class Home extends Component {
           title="Rent now"
           subtitle='Homy&apos;s car is one of the easiest and fastest car rental service in the world. Simply click on "Get my location"  and select a vehicle near by and start renting '
         />
-        <DetailModal show={this.state.modalShow} onHide={modalClose} />
+        <DetailModal
+          show={this.state.modalShow}
+          onHide={modalClose}
+          make={this.state.make}
+          model={this.state.model}
+          year={this.state.year}
+          rego={this.state.rego}
+          body={this.state.body}
+          tranmission={this.state.tranmission}
+          address={this.state.address}
+          price={this.state.price}
+          distance={this.state.distance}
+        />
         <div className="container-fluid bg-dark">
           <div className="row">
             <div className="col-lg-7 nopadding my-col order-lg-2 mapContainer">
