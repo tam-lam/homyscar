@@ -1,34 +1,33 @@
 import React, { Component } from "react";
 import "./carList.css";
 import CarItem from "./carItem";
-import axios from 'axios';
+import axios from "axios";
 class CarList extends Component {
   state = {
     cars: []
   };
 
-
   componentDidMount() {
-    axios.get('http://localhost:3001/getcarswithdistance').then(res => {
+    axios.get("http://localhost:3001/getcarswithdistance").then(res => {
       var tempArray = [];
-      for (var i = 0 ; i < res.data.length ; i++){
+      for (var i = 0; i < res.data.length; i++) {
         tempArray.push(res.data[i]);
       }
 
-      this.setState((state) => {
-        return { cars: tempArray}
-      })
-         
-      }); 
-
+      this.setState(state => {
+        return { cars: tempArray };
+      });
+    });
   }
   render() {
-
     var carItems = [];
-    for ( var i = 0 ; i < this.state.cars.length ; i++){
+    for (var i = 0; i < this.state.cars.length; i++) {
       carItems.push(
-          <CarItem car={this.state.cars[i].car.make} rego={this.state.cars[i].car.rego} />
-        )
+        <CarItem
+          car={this.state.cars[i].car}
+          distance={this.state.cars[i].distance}
+        />
+      );
     }
 
     return (
