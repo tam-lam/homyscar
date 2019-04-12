@@ -1,16 +1,23 @@
 import React, { Component } from "react";
 import NavBar from "../components/navbar";
-import "./admin.css";
+import Jumbotron from "../components/jumbotron";
 import Footer from "../components/footer";
-class Admin extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <NavBar />
-        <div>Admin page content goes here</div>{" "}
-      </React.Fragment>
-    );
-  }
-}
+import "./admin.css";
+import data from"../data/log.json";
+import Table from "../components/table";
+// class Admin extends Component{
+export default function Admin(){
+  return (
+    <React.Fragment>
+      <NavBar />
+      <Jumbotron title="Admin" subtitle="WELCOME TO ADMIN PAGE!" />
+      <div className="Admin"> 
+      <div className="item">
+    <Table data={data}/>
+</div>
+</div>
+     <Footer />
 
-export default Admin;
+     </React.Fragment>
+  )
+}
