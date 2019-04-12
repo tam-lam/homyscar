@@ -26,6 +26,7 @@ class CarList extends Component {
         <CarItem
           car={this.state.cars[i].car}
           distance={this.state.cars[i].distance}
+          onShowDetail={this.props.onShowDetail}
         />
       );
     }
@@ -33,8 +34,6 @@ class CarList extends Component {
     return (
       <React.Fragment>
         <ul class="list-group  my-list-group bg-dark list-group-flush ">
-          {/* <CarItem />
-          <CarItem /> */}
           {carItems}
         </ul>
       </React.Fragment>

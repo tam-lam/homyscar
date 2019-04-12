@@ -29,10 +29,12 @@ class CarItem extends Component {
           <button
             type="button"
             className="btn btn-outline-light shadow-lg float-right"
+            onClick={this.props.onShowDetail}
           >
             Details
           </button>
           <br /> {this.state.distance} ${this.state.price}/h
+          <br />
           <br />
         </li>
       </React.Fragment>
