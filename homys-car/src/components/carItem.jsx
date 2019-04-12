@@ -2,37 +2,38 @@ import React, { Component } from "react";
 import caricon from "../images/car-icon.png";
 
 class CarItem extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      car: this.props.car,
-      rego: props.rego,
+      make: this.props.car.make,
+      rego: props.car.rego,
+      model: this.props.car.model,
+      year: this.props.car.year,
+      body: this.props.car.body,
+      price: this.props.car.price,
       lat: props.lat,
-      lng: props.lng
-
+      lng: props.lng,
+      distance: this.props.distance.text
     };
-
   }
-
-
 
   render() {
     return (
       <React.Fragment>
         <li class="list-group-item bg-dark text-white">
           <img src={caricon} className="img-thumbnail float-left rounded" />
-          ModelString Year MakeString BodyString
+          {this.state.make} {this.state.model} {this.state.body}{" "}
+          {this.state.year}
           <br />
-         <p> Rego: {this.state.rego} </p>
-          car: {this.state.car}
+          Rego: {this.state.rego}
           <button
             type="button"
             className="btn btn-outline-light shadow-lg float-right"
           >
-            Detail
+            Details
           </button>
-          <br /> 1km $price
+          <br /> {this.state.distance} ${this.state.price}/h
+          <br />
         </li>
       </React.Fragment>
     );
