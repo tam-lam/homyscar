@@ -11,43 +11,33 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalShow: false,
-      car: null
+      modalShow: false
     };
   }
 
   render() {
     let modalClose = () => this.setState({ modalShow: false });
-    let modalShow = (
-      make,
-      model,
-      year,
-      rego,
-      body,
-      tranmission,
-      address,
-      price,
-      distance
-    ) => {
+
+    let modalShow = (car, distance) => {
       this.setState({
         modalShow: true,
-        make: make,
-        model: model,
-        year: year,
-        rego: rego,
-        body: body,
-        tranmission: tranmission,
-        address: address,
-        price: price,
+        make: car.make,
+        model: car.model,
+        year: car.year,
+        rego: car.rego,
+        body: car.body,
+        tranmission: car.tranmission,
+        address: car.address,
+        price: car.price,
         distance: distance
       });
     };
-
     return (
       <React.Fragment>
         <NavBar />
         <Jumbotron
           title="Rent now"
+          ishomepage={true}
           subtitle='Homy&apos;s car is one of the easiest and fastest car rental service in the world. Simply click on "Get my location"  and select a vehicle near by and start renting '
         />
         <DetailModal
