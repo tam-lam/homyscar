@@ -18,20 +18,38 @@ class DetailModal extends Component {
             <Modal.Title className="modal-title">Details</Modal.Title>
           </Modal.Header>
           <Modal.Body closeButton>
-            <div className="container">
+            <div className="container ">
               <div className=" detailContainer text-center ">
                 <img src={icon} className=" car-img shadow rounded-circle " />
-                <h4>
-                  {this.props.make} {this.props.model} {this.props.body}{" "}
-                  {this.props.year}
-                </h4>
+                <h3 className="font-weight-bold text-capitalize">
+                  {this.props.make} {this.props.model} {this.props.year}
+                </h3>
                 <p>
                   {this.props.address}
-                  <br />
-                  Rego: {this.props.rego}
-                  {/* {this.state.car.make} */}
-                  <br /> {this.props.distance} away, {this.props.price}$/h
+                  <br /> {this.props.distance} away
                 </p>
+                <div className="more-details-container text-left ">
+                  <div className="row detail-row">
+                    <div className="col-md-7 detail-col text-capitalize">
+                      <h4>Body Type</h4>
+                      {this.props.body}
+                    </div>
+                    <div className="col-md-5 detail-col text-capitalize">
+                      <h4>Tranmission</h4>
+                      {this.props.transmission}
+                    </div>
+                  </div>
+                  <div className="row detail-row ">
+                    <div className="col-md-7 detail-col text-capitalizel">
+                      <h4>Rego No:</h4>
+                      {this.props.rego}
+                    </div>
+                    <div className="col-md-5 detail-col bg-light text-success rounded ">
+                      <h4>Pricing:</h4>
+                      {this.props.price}$/h
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </Modal.Body>

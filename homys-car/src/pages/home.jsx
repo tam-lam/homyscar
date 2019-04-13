@@ -26,7 +26,7 @@ class Home extends Component {
         year: car.year,
         rego: car.rego,
         body: car.body,
-        tranmission: car.tranmission,
+        transmission: car.transmission,
         address: car.address,
         price: car.price,
         distance: distance
@@ -48,7 +48,7 @@ class Home extends Component {
           year={this.state.year}
           rego={this.state.rego}
           body={this.state.body}
-          tranmission={this.state.tranmission}
+          transmission={this.state.transmission}
           address={this.state.address}
           price={this.state.price}
           distance={this.state.distance}
