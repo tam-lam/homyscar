@@ -17,6 +17,7 @@ class DetailModal extends Component {
     );
   };
   render() {
+    var carImgURL = "/images/" + this.props.rego + ".jpg";
     return (
       <React.Fragment>
         <Modal
@@ -30,7 +31,10 @@ class DetailModal extends Component {
           <Modal.Body closeButton>
             <div className="container ">
               <div className=" detailContainer text-center ">
-                <img src={icon} className=" car-img shadow rounded-circle " />
+                <img
+                  src={carImgURL}
+                  className=" car-img bg-dark shadow rounded-circle "
+                />
                 <h3 className="font-weight-bold text-capitalize">
                   {this.props.make} {this.props.model} {this.props.year}
                 </h3>
