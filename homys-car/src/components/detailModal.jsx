@@ -6,6 +6,16 @@ import icon from "../images/icon-black.png";
 
 class DetailModal extends Component {
   state = {};
+  showDetail = (label, detail, width, isImportant) => {
+    var className = "col-md-" + width + " detail-col text-capitalize";
+    if (isImportant) className += "  bg-light text-success rounded";
+    return (
+      <div className={className}>
+        <h4>{label}</h4>
+        {detail}
+      </div>
+    );
+  };
   render() {
     return (
       <React.Fragment>
@@ -30,24 +40,17 @@ class DetailModal extends Component {
                 </p>
                 <div className="more-details-container text-left ">
                   <div className="row detail-row">
-                    <div className="col-md-7 detail-col text-capitalize">
-                      <h4>Body Type</h4>
-                      {this.props.body}
-                    </div>
-                    <div className="col-md-5 detail-col text-capitalize">
-                      <h4>Tranmission</h4>
-                      {this.props.transmission}
-                    </div>
+                    {this.showDetail("Body Type", this.props.body, 7)}
+                    {this.showDetail("Tranmission", this.props.transmission, 5)}
                   </div>
                   <div className="row detail-row ">
-                    <div className="col-md-7 detail-col text-capitalizel">
-                      <h4>Rego No:</h4>
-                      {this.props.rego}
-                    </div>
-                    <div className="col-md-5 detail-col bg-light text-success rounded ">
-                      <h4>Pricing:</h4>
-                      {this.props.price}$/h
-                    </div>
+                    {this.showDetail("Rego No:", this.props.rego, 7)}
+                    {this.showDetail(
+                      "Pricing",
+                      this.props.price + "$/h",
+                      5,
+                      true
+                    )}
                   </div>
                 </div>
               </div>
@@ -66,5 +69,4 @@ class DetailModal extends Component {
     );
   }
 }
-
 export default DetailModal;
