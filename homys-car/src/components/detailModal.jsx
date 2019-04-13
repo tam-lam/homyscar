@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import "./detailModal.css";
-import icon from "../images/icon-black.png";
 
 class DetailModal extends Component {
   state = {};
@@ -63,7 +62,21 @@ class DetailModal extends Component {
           <Modal.Footer className="bg-success modal-footer shadow-lg">
             <Link
               className="btn btn-block rent-btn bg-success text-light shadow-lg"
-              to="/rent"
+              to={{
+                pathname: "/rent",
+                state: {
+                  make: this.props.make,
+                  model: this.props.model,
+                  year: this.props.year,
+                  rego: this.props.rego,
+                  body: this.props.body,
+                  transmission: this.props.transmission,
+                  address: this.props.address,
+                  price: this.props.price,
+                  distance: this.props.distance,
+                  carImgURL: carImgURL
+                }
+              }}
             >
               Rent now
             </Link>

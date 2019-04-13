@@ -3,7 +3,9 @@ import NavBar from "../components/navbar";
 import "./rent.css";
 import Footer from "../components/footer";
 class Rent extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+  }
   showDetail = (label, detail, width, isImportant) => {
     var className = "col-sm-" + width + " detail-col text-capitalize";
     if (isImportant) className += " text-success  font-weight-bold";
@@ -15,6 +17,18 @@ class Rent extends Component {
     );
   };
   render() {
+    const {
+      make,
+      model,
+      year,
+      rego,
+      body,
+      transmission,
+      address,
+      price,
+      distance,
+      carImgURL
+    } = this.props.location.state;
     return (
       <React.Fragment className="text-center">
         <NavBar />
@@ -34,7 +48,7 @@ class Rent extends Component {
         <div className="container checkout-container shadow-lg bg-white rounded">
           <div className="row">
             <div className="price-container col-md-5 bg-dark rounded-left text-center text-light">
-              <h1 className="deposit-amount">124$</h1>
+              <h1 className="deposit-amount">100$</h1>
               <h3 className="deposit-label ">Deposit</h3>
               We are taking a deposit to make sure you don't take our car on a
               "one way trip"
@@ -47,27 +61,26 @@ class Rent extends Component {
             </div>
             <div className="detail-container col-md-7 rounded-right shadow ">
               {/* <div className="img-container"> */}
-              <img
-                src="/images/ZDI713.jpg"
-                className="thumbnail-img shadow-lg"
-              />
+              <img src={carImgURL} className="thumbnail-img shadow-lg" />
               <div className=" container-fuild summary-container bg-light rounded-right ">
                 <h1 className="font-weight-bold">Summary</h1>
-                <h2> Mazda 3 2015</h2>
+                <h2>
+                  {make} {model} {year}
+                </h2>
                 <p>
-                  254 Domain Rd , Melbourne , AU
+                  {address}
                   <br />
-                  5.5 km away
+                  {distance} away
                 </p>
                 <p />
                 <div className="more-details-container text-left">
                   <div className="row detail-row">
-                    {this.showDetail("Body Type", "sedan", 7)}
-                    {this.showDetail("Tranmission", "Auto", 5)}
+                    {this.showDetail("Body Type", body, 7)}
+                    {this.showDetail("Tranmission", transmission, 5)}
                   </div>
                   <div className="row detail-row ">
-                    {this.showDetail("Rego No:", "AFS123", 7)}
-                    {this.showDetail("Pricing", "123$/h", 5, true)}
+                    {this.showDetail("Rego No:", rego, 7)}
+                    {this.showDetail("Pricing", price + "$/h", 5, true)}
                   </div>
                 </div>
               </div>
