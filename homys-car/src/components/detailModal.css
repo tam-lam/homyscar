@@ -14,12 +14,7 @@
   font-size: 35px;
   font-weight: bold;
 }
-.formContainer {
-  border-left: 1px dotted lightgray;
-}
-.detailContainer {
-  margin-bottom: 30px;
-}
+
 .car-img {
   min-width: 200px !important;
   min-height: 200px !important;
@@ -27,4 +22,16 @@
   max-height: 250px !important;
   max-width: 250px !important;
   border: none !important;
+}
+.detail-row {
+  margin-bottom: 0px;
+}
+
+.detail-col {
+  border-left: 1px solid lightgray;
+  margin-bottom: 20px;
+}
+.more-details-container {
+  margin: 30px;
+  margin-bottom: 0px !important;
 }
