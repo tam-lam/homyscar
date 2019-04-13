@@ -29,7 +29,8 @@ class Home extends Component {
         transmission: car.transmission,
         address: car.address,
         price: car.price,
-        distance: distance
+        distance: distance,
+        car: car
       });
     };
     return (
