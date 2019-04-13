@@ -7,8 +7,8 @@ import icon from "../images/icon-black.png";
 class DetailModal extends Component {
   state = {};
   showDetail = (label, detail, width, isImportant) => {
-    var className = "col-md-" + width + " detail-col text-capitalize";
-    if (isImportant) className += "  bg-light text-success rounded";
+    var className = "col-sm-" + width + " detail-col text-capitalize";
+    if (isImportant) className += " text-success  font-weight-bold";
     return (
       <div className={className}>
         <h4>{label}</h4>
