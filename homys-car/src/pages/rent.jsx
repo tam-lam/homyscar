@@ -18,8 +18,9 @@ class Rent extends Component {
     return (
       <React.Fragment className="text-center">
         <NavBar />
-        <div className="title-container text-center">
+        <div className="title-container text-center text-light">
           <h1 className="text-light display-3 checkout-label"> Checkout </h1>
+          <p className="display-4 ">Pay a deposit and be on your way!</p>
         </div>
 
         <div className="container login-container rounded text-center">
@@ -32,16 +33,14 @@ class Rent extends Component {
         </div>
         <div className="container checkout-container shadow-lg bg-white rounded">
           <div className="row">
-            <div className="price-container col-md-5 bg-light rounded-left text-center text-light">
+            <div className="price-container col-md-5 bg-dark rounded-left text-center text-light">
               <h1 className="deposit-amount">124$</h1>
               <h3 className="deposit-label ">Deposit</h3>
               We are taking a deposit to make sure you don't take our car on a
               "one way trip"
               <br />
               Booking time: 13th April 2019 8:00pm
-              <br />
-              <br />
-              <button className="btn btn-primary btn-lg shadow-lg">
+              <button className="btn btn-primary btn-lg shadow-lg checkout-btn">
                 {" "}
                 Check out with PayPal
               </button>
@@ -52,7 +51,7 @@ class Rent extends Component {
                 src="/images/ZDI713.jpg"
                 className="thumbnail-img shadow-lg"
               />
-              <div className=" container-fuild summary-container bg-light ">
+              <div className=" container-fuild summary-container bg-light rounded-right ">
                 <h1 className="font-weight-bold">Summary</h1>
                 <h2> Mazda 3 2015</h2>
                 <p>
