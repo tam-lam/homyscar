@@ -5,13 +5,8 @@ import "./detailModal.css";
 import icon from "../images/icon-black.png";
 
 class DetailModal extends Component {
-  state = {
-    // make: this.props.car.make
-  };
+  state = {};
   render() {
-    console.log("MODAL props:" + this.props.make);
-    console.log("MODAL make:" + this.state.make);
-
     return (
       <React.Fragment>
         <Modal

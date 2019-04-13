@@ -32,7 +32,7 @@ class MapContainer extends Component {
     var markers = [];
     // console.log("car" + this.state.cars);
     for (var i = 0; i < this.state.cars.length; i++) {
-      const carItem = this.state.cars[i].car;
+      const car = this.state.cars[i].car;
       const distance = this.state.cars[i].distance.text;
       markers.push(
         // console.log("car value" + this.state.cars[i].car.lat),
@@ -42,19 +42,7 @@ class MapContainer extends Component {
             lat: this.state.cars[i].car.lat,
             lng: this.state.cars[i].car.lng
           }}
-          onClick={() =>
-            this.props.onShowDetail(
-              carItem.make,
-              carItem.model,
-              carItem.year,
-              carItem.rego,
-              carItem.body,
-              carItem.tranmission,
-              carItem.address,
-              carItem.price,
-              distance
-            )
-          }
+          onClick={() => this.props.onShowDetail(car, distance)}
         />
       );
     }
