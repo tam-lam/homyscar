@@ -22,7 +22,7 @@
   max-height: 250px !important;
   max-width: 250px !important;
   border: none !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
 }
 .detail-row {
   margin-bottom: 0px;
