@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly Footer Component 1`] = `
+<footer
+  className="footer"
+>
+  <div
+    className="container"
+  >
+    <span
+      className="text-muted"
+    >
+      <a
+        href="https://github.com/Abdosalah/ProgProject2019Sem2"
+      >
+         
+        Team 0
+      </a>
+       
+      © 
+      2019
+       - RMIT Project 1 2019
+    </span>
+  </div>
+</footer>
+`;
+
+exports[`render correctly Jumbotron component 1`] = `
+<div
+  className="jumbotron jumbotron-fuild shadow-lg"
+>
+  <div
+    className="container"
+  >
+    <h1
+      className="display-3 shadow-lg"
+    />
+    <p
+      className="lead"
+    />
+    <button
+      class="btn btn-success shadow-lg"
+      type="button"
+    >
+      Get my location
+    </button>
+  </div>
+</div>
+`;
