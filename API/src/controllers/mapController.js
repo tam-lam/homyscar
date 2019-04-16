@@ -25,19 +25,11 @@ export const setUserLocation = (req , res) => {
 export async function getCarsWithDistance(req , res ){
   var carAndDistanceArray = [];
 
-    var carsArray = [];  
+  var carsFromDB = [];
     //   var h;
     var distancePromise  = new Promise( async function (resolve , reject) {    
-     var carsFromDB = await Car.find({} , (err , car) =>{   
-        if (err){
-          res.send(err);
-        }
-        for ( var i = 0 ; i < car.length ; i++){
-          carsArray.push(car[i]);
-        }        
-        return carsArray;
-      });  
-      
+     carsFromDB = await getCarsFromDB(); 
+ 
       var destinations = getDestinations(carsFromDB);
       distance.matrix(origins, destinations,  function (err, distances) {
         if (err) {
@@ -54,20 +46,26 @@ export async function getCarsWithDistance(req , res ){
         resolve(distances);
     } );
     } ).then( function(distances){
-     var returnArray= [];
-        for (var i = 0; i < carsArray.length; i++) {
-            if (distances.rows[0].elements[i].status == 'OK') {
-                var distance = distances.rows[0].elements[i].distance;
-                var carAndDist = {car: carsArray[i] , distance: distance};
-                console.log("new dist value" + distance.text)
-                returnArray.push(carAndDist)
-            } 
-        }       
-        res.json(returnArray);
+      var carDistArray = calcDistBetweenCarsAndUser(carsFromDB , distances);     
+        res.json(carDistArray);
     })
 } 
 
-function getDestinations(databaseCars) {
+export async function getCarsFromDB(){
+  var carsArray = [];
+  await Car.find({} , (err , car) =>{   
+    if (err){
+      res.send(err);
+    }
+    for ( var i = 0 ; i < car.length ; i++){
+      carsArray.push(car[i]);
+    }        
+    
+  });  
+  return carsArray;
+}
+
+export function getDestinations(databaseCars) {
   var destinationsArray = [];
   for ( var i = 0 ; i < databaseCars.length ; i++){
     var currentCar = databaseCars[i];
@@ -77,3 +75,15 @@ function getDestinations(databaseCars) {
   return destinationsArray;
 }
 
+export function calcDistBetweenCarsAndUser(carsFromDB , distances){
+  var carAndDistArray= [];
+  for (var i = 0; i < carsFromDB.length; i++) {
+    if (distances.rows[0].elements[i].status == 'OK') {
+        var distance = distances.rows[0].elements[i].distance;
+        var carAndDist = {car: carsFromDB[i] , distance: distance};
+        console.log("new dist value" + distance.text)
+        carAndDistArray.push(carAndDist)
+    } 
+} 
+return carAndDistArray;
+}
