@@ -11,6 +11,8 @@ class CarItem extends Component {
       year: this.props.car.year,
       body: this.props.car.body,
       price: this.props.car.price,
+      address: this.props.car.address,
+
       lat: props.lat,
       lng: props.lng,
       distance: this.props.distance.text
@@ -22,17 +24,20 @@ class CarItem extends Component {
       <React.Fragment>
         <li class="list-group-item bg-dark text-white">
           <img src={caricon} className="img-thumbnail float-left rounded" />
-          {this.state.make} {this.state.model} {this.state.body}{" "}
-          {this.state.year}
+          {this.state.make} {this.state.model} {this.state.year}
           <br />
-          Rego: {this.state.rego}
+          {this.state.address}
           <button
             type="button"
             className="btn btn-outline-light shadow-lg float-right"
+            onClick={() =>
+              this.props.onShowDetail(this.props.car, this.state.distance)
+            }
           >
             Details
           </button>
-          <br /> {this.state.distance} ${this.state.price}/h
+          <br /> {this.state.distance} away | ${this.state.price}/h
+          <br />
           <br />
         </li>
       </React.Fragment>
