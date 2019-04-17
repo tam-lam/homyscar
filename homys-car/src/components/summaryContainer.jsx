@@ -17,7 +17,7 @@ class SummaryContainer extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="detail-container col-md-7 rounded-right shadow ">
+        <div className="detail-container col-lg-7 rounded-right shadow ">
           <img
             src={this.state.car.carImgURL}
             className="thumbnail-img shadow-lg"
