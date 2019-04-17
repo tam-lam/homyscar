@@ -45,7 +45,7 @@ class Checkout extends Component {
       return (
         <div className="container checkout-container shadow-lg rounded">
           <div className="row">
-            <div className="price-container col-md-5 bg-dark rounded-left text-center text-light">
+            <div className="price-container col-lg-5 bg-dark rounded-left text-center text-light">
               <h1 className="deposit-amount">PayPal</h1>
               <h3 className="deposit-label ">Deposit</h3>
               <br />
