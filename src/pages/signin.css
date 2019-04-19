@@ -1,0 +1,22 @@
+.form-input {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  margin-bottom: 40px;
+  outline-color: transparent;
+  outline-style: none;
+}
+
+.form-input:focus {
+  background-color: rgba(0, 0, 0, 0) !important;
+  outline-color: transparent;
+  outline-style: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.form-container {
+  max-width: 500px;
+  padding: 20px;
+  margin: auto;
+}
