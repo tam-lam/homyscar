@@ -1,15 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-homys-car/node_modules
-homys-car/.pnp
-homys-car/.pnp.js
-API/node_modules
-API/yarn.lock
+yarn.lock
 node_modules
+package-lock.json
 
-# testing
-homys-car/coverage
+
 
 # production
 /build
