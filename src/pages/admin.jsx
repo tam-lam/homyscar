@@ -1,97 +1,93 @@
 import React, { Component } from "react";
 import NavBar from "../components/navbar";
-import Jumbotron from "../components/jumbotron";
 import Footer from "../components/footer";
-import "./admin.css";
-import data from "../data/log.json";
-import Table from "../components/table";
-// class Admin extends Component{
-export default function Admin() {
-  return (
-    <React.Fragment>
+import Tab from 'react-bootstrap/Tab'
+import ListGroup from 'react-bootstrap/ListGroup'
+import TabContent from 'react-bootstrap/TabContent'
+import TabPane from 'react-bootstrap/TabPane'
+import TabContainer from 'react-bootstrap/TabContainer'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Container from 'react-bootstrap/Container'
+import TTable from "../components/table";
+import data from"../data/log.json";
+export default function Admin(){
+ 
+    return (
+<React.Fragment>
       <NavBar />
-      <Jumbotron title="Admin" subtitle="WELCOME TO ADMIN PAGE!" />
-      <div className="Admin">
-        <div className="item">
-          <Table data={data} />
-        </div>
-      </div>
-      <Footer />
-    </React.Fragment>
-  );
-}
+      <Jumbotron fluid>
+  <Container>
+    <h1>Welcome to Admin page!</h1>
+    <p>
+   ADMIN ADMIN ADMIN
+    </p>
+  </Container>
+</Jumbotron>
 
-// export default Admin;
+<Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+  <Row>
+    <Col sm={3}>
+      <ListGroup>
+        <ListGroup.Item action variant="dark" action href="#link1">
+          Car List
+        </ListGroup.Item>
+        <ListGroup.Item action variant="dark" action href="#link2">
+          Log Management
+        </ListGroup.Item>
+        <ListGroup.Item action variant="dark" action href="#link3">
+          User Management
+        </ListGroup.Item>
+        <ListGroup.Item action variant="dark" action href="#link4">
+          Link 4
+        </ListGroup.Item>
+        <ListGroup.Item action variant="dark" action href="#link5">
+          Link 5
+        </ListGroup.Item>
+        <ListGroup.Item action variant="dark" action href="#link6">
+          Link 6
+        </ListGroup.Item>
 
-// import React, { Component } from "react";
-// import NavBar from "../components/navbar";
-// import Jumbotron from "../components/jumbotron";
-// import Footer from "../components/footer";
-// import "./admin.css";
 
-// class Admin extends Component{
-// constructor() {
-//   super()
-//   this.state = {
-//     data: [],
-//   }
-// }
-// componentDidMount() {
-//   return fetch('https://facebook.github.io/react-native/movies.json')
-//     .then((response) => response.json())
-//     .then((responseJson) => {
 
-//       this.setState({
-//         data:responseJson.movies  //数组的名字
-//       })
-//       console.log(this.state.data)
-//     })
-//   }
 
-// render() {
-//   return (
-//     <React.Fragment>
-//       <NavBar />
-//       <Jumbotron title="Admin" subtitle="WELCOME TO ADMIN PAGE!" />
-//       <div className="Admin">
-//       <div className="item">
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>TITLE</th>
-//             <th>YEAR</th>
-//             <th>id</th>
-//             </tr>
-//           </thead>
-//     <div>
-//       <tbody>
-//       {
-//         this.state.data.map( (dynamicData,key)=>
-//         <div>
-//        <tr>
-//          <td>
-//             {dynamicData.title}
-//           </td>
-//           <td>
-//              {dynamicData.releaseYear}
-//           </td>
-//           <td>
 
-//             </td>
-//           </tr>
-//           </div>
+      </ListGroup>
+    </Col>
 
-//         )
-//       }
-// </tbody>
-//     </div></table>
-// </div>
-// </div>
-//      <Footer />
+    <Col sm={8}>
+      <Tab.Content>
+        <Tab.Pane eventKey="#link1">
+        
+        </Tab.Pane>
+       
+        <Tab.Pane eventKey="#link2">
+        
+        <TTable data={data}/>
+        </Tab.Pane>
 
-//      </React.Fragment>
-//   )
-// }
-// }
+        <Tab.Pane eventKey="#link3">
+        </Tab.Pane>
+        
+        <Tab.Pane eventKey="#link4"> 
+        </Tab.Pane>
+        
+        <Tab.Pane eventKey="#link5">       
+        </Tab.Pane>
 
-// export default Admin;
+        <Tab.Pane eventKey="#link6">       
+        </Tab.Pane>
+
+      </Tab.Content>
+    </Col>
+  </Row>
+</Tab.Container> 
+
+ <Footer />
+
+</React.Fragment>
+
+    );
+  }
+
