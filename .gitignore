@@ -5,7 +5,7 @@ homys-car/node_modules
 homys-car/.pnp
 homys-car/.pnp.js
 API/node_modules
-API/yarn.lock
+yarn.lock
 node_modules
 
 # testing
