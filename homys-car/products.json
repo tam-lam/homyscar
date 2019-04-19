@@ -1,5 +1,0 @@
-[
-    {"id": 1, "make": "bwm", "model" : "2008" , "location": "12 Collins Street , Melbourne, AU" , "price": 500.01, "inventory": 2},
-    {"id": 2, "make": "mazda", "model" : "2007" , "location": "80 Swansont Street , Melbourne , AU" , "price": 500.01, "inventory": 1},
-    {"id": 3, "make": "nissan", "model" : "2013" , "location": "340 Flinders Street , Melbourne , AU" , "price": 500.01, "inventory": 4}
-]
