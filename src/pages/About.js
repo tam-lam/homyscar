@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import NavBar from "../components/navbar";
-import Jumbotron from "../components/jumbotron";
-import Footer from "../components/footer";
+import NavBar from "../components/Navbar";
+import Jumbotron from "../components/Jumbotron";
+import Footer from "../components/Footer";
 class About extends Component {
   render() {
     return (

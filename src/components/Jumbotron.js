@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./jumbotron.css";
+
 class Jumbotron extends Component {
   renderLocationBtn = () => {
     if (this.props.ishomepage) {
