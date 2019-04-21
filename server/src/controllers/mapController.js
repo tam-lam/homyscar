@@ -49,6 +49,10 @@ export async function getCarsWithDistance(req , res ){
       var carDistArray = calcDistBetweenCarsAndUser(carsFromDB , distances);     
         res.json(carDistArray);
     })
+    .catch(err => {
+      console.log(err.message);
+      return;
+    })
 } 
 
 export async function getCarsFromDB(){

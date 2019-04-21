@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchCarsWithDist } from '../store/actions/carActions'
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import CurrentLocation from "./Map";
 
-const mapStyles = {
-  width: "100%",
-  height: "100%"
-};
+
 class MapContainer extends Component {
   state = {
     showingInfoWindow: true,
@@ -16,36 +15,22 @@ class MapContainer extends Component {
   };
 
   componentWillMount() {
-    axios.get("http://localhost:3001/getcarswithdistance").then(res => {
-      var tempArray = [];
-      for (var i = 0; i < res.data.length; i++) {
-        tempArray.push(res.data[i]);
-      }
-
-      this.setState(state => {
-        return { cars: tempArray };
-      });
-    });
+    this.props.fetchCarsWithDist();
   }
 
   render() {
-    var markers = [];
-    // console.log("car" + this.state.cars);
-    for (var i = 0; i < this.state.cars.length; i++) {
-      const car = this.state.cars[i].car;
-      const distance = this.state.cars[i].distance.text;
-      markers.push(
-        // console.log("car value" + this.state.cars[i].car.lat),
 
-        <Marker
-          position={{
-            lat: this.state.cars[i].car.lat,
-            lng: this.state.cars[i].car.lng
-          }}
-          onClick={() => this.props.onShowDetail(car, distance)}
-        />
-      );
-    }
+    const markers = this.props.cars.map(item => (
+      <Marker
+        position={{
+          lat: item.car.lat,
+          lng: item.car.lng
+        }}
+        onClick={() => this.props.onShowDetail(item.car, item.distance)}
+      />
+    ))
+
+
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         {markers}
@@ -81,6 +66,15 @@ class MapContainer extends Component {
   };
 }
 
-export default GoogleApiWrapper({
+MapContainer.propTypes = {
+  fetchCarsWithDist: PropTypes.func.isRequired,
+  cars: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+  cars: state.cars.items
+})
+
+export default connect(mapStateToProps, { fetchCarsWithDist })(GoogleApiWrapper({
   apiKey: "AIzaSyDEFtWHf9PNwDPk74kYTMLpYzDg8WB7n7Y"
-})(MapContainer);
+})(MapContainer));

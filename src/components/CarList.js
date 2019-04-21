@@ -1,34 +1,26 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {fetchCarsWithDist} from '../store/actions/carActions'
 import CarItem from "./CarItem";
-import axios from "axios";
+
+
 class CarList extends Component {
-  state = {
-    cars: []
-  };
 
-  componentDidMount() {
-    axios.get("http://localhost:3001/getcarswithdistance").then(res => {
-      var tempArray = [];
-      for (var i = 0; i < res.data.length; i++) {
-        tempArray.push(res.data[i]);
-      }
-
-      this.setState(state => {
-        return { cars: tempArray };
-      });
-    });
+  componentWillMount() {
+    this.props.fetchCarsWithDist();
   }
+
   render() {
-    var carItems = [];
-    for (var i = 0; i < this.state.cars.length; i++) {
-      carItems.push(
-        <CarItem
-          car={this.state.cars[i].car}
-          distance={this.state.cars[i].distance}
-          onShowDetail={this.props.onShowDetail}
-        />
-      );
-    }
+
+
+    const carItems = this.props.cars.map(item => (
+      <CarItem
+        car={item.car}
+        distance={item.distance}
+        onShowDetail={this.props.onShowDetail}
+      />
+    ))
 
     return (
       <React.Fragment>
@@ -40,4 +32,13 @@ class CarList extends Component {
   }
 }
 
-export default CarList;
+CarList.propTypes = {
+  fetchCarsWithDist: PropTypes.func.isRequired,
+  cars: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+  cars: state.cars.items
+})
+
+export default connect(mapStateToProps, { fetchCarsWithDist } )(CarList);
