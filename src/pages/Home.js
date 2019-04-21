@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import NavBar from "../components/navbar";
-import Footer from "../components/footer";
-import Jumbotron from "../components/jumbotron";
-import MapContainer from "../components/mapContainer";
-import DetailModal from "../components/detailModal";
-import "./home.css";
-import CarList from "../components/carList";
+import NavBar from "../components/Navbar";
+import Footer from "../components/Footer";
+import Jumbotron from "../components/Jumbotron";
+import MapContainer from "../components/MapContainer";
+import DetailModal from "../components/DetailModal";
+import CarList from "../components/CarList";
 
 class Home extends Component {
   constructor(props) {

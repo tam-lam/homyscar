@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import NavBar from "../components/navbar";
-import "./rent.css";
-import Footer from "../components/footer";
-import SummaryContainer from "../components/summaryContainer";
-import SimplePageTitle from "../components/simplePageTitle";
+import NavBar from "../components/Navbar";
+import Footer from "../components/Footer";
+import SummaryContainer from "../components/SummaryContainer";
+import SimplePageTitle from "../components/SimplePageTitle";
 class Checkout extends Component {
   state = {
     car: this.props.location.state,

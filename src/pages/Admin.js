@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import NavBar from "../components/navbar";
-import Jumbotron from "../components/jumbotron";
-import Footer from "../components/footer";
-import "./admin.css";
+import NavBar from "../components/Navbar";
+import Jumbotron from "../components/Jumbotron";
+import Footer from "../components/Footer";
 import data from "../data/log.json";
-import Table from "../components/table";
+import Table from "../components/Table";
 // class Admin extends Component{
 export default function Admin() {
   return (

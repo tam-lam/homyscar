@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import "./carList.css";
-import CarItem from "./carItem";
+import CarItem from "./CarItem";
 import axios from "axios";
 class CarList extends Component {
   state = {

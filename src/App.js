@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./pages/home.jsx";
-import Admin from "./pages/admin";
-import About from "./pages/about";
-import Signin from "./pages/signin";
-import Checkout from "./pages/checkout";
+import Home from "./pages/Home";
+import Admin from "./pages/Admin";
+import About from "./pages/About";
+import Signin from "./pages/Signin";
+import Checkout from "./pages/Checkout";
+
+
 class App extends Component {
   render() {
     return (
