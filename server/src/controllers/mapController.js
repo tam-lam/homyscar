@@ -48,6 +48,8 @@ export async function getCarsWithDistance(req , res ){
     } ).then( function(distances){
       var carDistArray = calcDistBetweenCarsAndUser(carsFromDB , distances);     
         res.json(carDistArray);
+    }).catch(err => {
+        console.log("error in recieving distances from API " + err.message);
     })
 } 
 
