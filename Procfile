@@ -1,2 +1,2 @@
-web: nodemon server/index.js --exec babel-node -e js
-web: react-scripts start
+web: npm run server
+web: npm start
