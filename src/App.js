@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider } from "react-redux";
+import store from "./store";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import About from "./pages/About";
 import Signin from "./pages/Signin";
 import Checkout from "./pages/Checkout";
-
+import Signup from "./pages/Signup";
 
 class App extends Component {
   render() {
@@ -21,6 +21,7 @@ class App extends Component {
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/signup" component={Signup} />
           </div>
         </Router>
       </Provider>
