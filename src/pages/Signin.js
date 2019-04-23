@@ -3,51 +3,46 @@ import NavBar from "../components/Navbar";
 import Jumbotron from "../components/Jumbotron";
 import Footer from "../components/Footer";
 import SimplePageTitle from "../components/SimplePageTitle";
+import FormGroup from "../components/FormGroup";
+import { userInfo } from "os";
 class Signin extends Component {
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log("on submit");
+    let form = event.target;
+    console.log("Email VALUE: " + form.elements.email.value);
+    console.log("Password VALUE: " + form.elements.password.value);
+  };
   render() {
     return (
       <React.Fragment>
         <NavBar />
-        <SimplePageTitle title="Homy's car" doShowIcon={true} />
-
-        <div className="container text-light">
-          <div className="form-container">
-            <div class="form-group">
-              <label
-                for="emailInput"
-                className="font-weight-bold text-light form-label"
-              >
-                Email
-              </label>
-
-              <input
-                type="email"
-                class="form-control form-input text-light form-control-lg"
-                id="emailInput"
-                aria-describedby="emailHelp"
-                placeholder="Enter your email address"
+        <SimplePageTitle
+          title="Homy's car"
+          subtitle="Sign in"
+          doShowIcon={true}
+        />
+        <form onSubmit={this.handleSubmit}>
+          <div className="container text-light">
+            <div className="form-container">
+              <FormGroup
+                inputType="email"
+                label="Email"
+                name="email"
+                placeholder="Enter your email"
               />
-            </div>
-            <div class="form-group">
-              <label
-                for="passwordInput"
-                className="font-weight-bold text-light form-label"
-              >
-                Password
-              </label>
-
-              <input
-                type="password"
-                class="form-control form-input text-light form-control-lg"
-                id="passwordInput"
+              <FormGroup
+                inputType="password"
+                label="Password"
+                name="password"
                 placeholder="Enter your password"
               />
-            </div>
-            <div className="container text-center simplebox">
-              <button type="submit" class="btn form-btn " />
+              <div className="container text-center simplebox">
+                <button type="submit" class="btn form-btn " />
+              </div>
             </div>
           </div>
-        </div>
+        </form>
 
         <Footer />
       </React.Fragment>
