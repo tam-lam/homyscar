@@ -6,7 +6,7 @@
   margin-bottom: 40px;
   outline-color: transparent;
   outline-style: none;
-  border-color: lightgrey;
+  border-color: gray;
 }
 
 .form-input:focus {
@@ -18,7 +18,31 @@
   border-color: white;
 }
 .form-container {
-  max-width: 500px;
+  max-width: 400px;
   padding: 20px;
   margin: auto;
+}
+.form-label {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.form-btn {
+  background-image: url("../images/right-arrow-2.png");
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  border: none;
+  width: 70px;
+  height: 70px;
+}
+.form-btn:focus {
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.form-btn:hover {
+  width: 72px;
+  height: 72px;
 }
