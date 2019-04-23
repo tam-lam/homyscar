@@ -2,7 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import routes from './src/routes/crmRoutes';
-var cors = require('cors')
+const path = require('path');
+var cors = require('cors');
 
 const app = express();
 const PORT = 3001;
@@ -30,6 +31,16 @@ routes(app);
 app.get('/', (req, res) =>
   res.send(`Node and express server is runnig on port ${PORT}`)
 );
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  });
+}
 
 app.listen(PORT, () =>
   console.log(`your server is running on port ${PORT}`)
