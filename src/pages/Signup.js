@@ -23,6 +23,7 @@ class Signup extends Component {
     return (
       <React.Fragment>
         <NavBar />
+
         <SimplePageTitle
           title="Homy's car"
           subtitle="Sign up"
