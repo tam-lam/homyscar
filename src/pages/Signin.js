@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import SimplePageTitle from "../components/SimplePageTitle";
 import FormGroup from "../components/FormGroup";
 import { userInfo } from "os";
+import RightArrowBtn from "../components/RightArrowBtn";
 class Signin extends Component {
   handleSubmit = event => {
     event.preventDefault();
@@ -24,7 +25,7 @@ class Signin extends Component {
         />
         <form onSubmit={this.handleSubmit}>
           <div className="container text-light">
-            <div className="form-container">
+            <div className="signin-form-container">
               <FormGroup
                 inputType="email"
                 label="Email"
@@ -37,9 +38,7 @@ class Signin extends Component {
                 name="password"
                 placeholder="Enter your password"
               />
-              <div className="container text-center simplebox">
-                <button type="submit" class="btn form-btn " />
-              </div>
+              <RightArrowBtn />
             </div>
           </div>
         </form>
