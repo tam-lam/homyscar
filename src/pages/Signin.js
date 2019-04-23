@@ -9,29 +9,32 @@ import RightArrowBtn from "../components/RightArrowBtn";
 import Alert from "../components/Alert";
 class Signin extends Component {
   state = {
-    error: false,
+    doesErrorExist: false,
     errorMessage: "",
-    password: "",
-    email: ""
+    user: {
+      password: "",
+      email: ""
+    }
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("on submit");
     let form = event.target;
     this.setState({
-      email: form.elements.email.value,
-      password: form.elements.password.value
+      user: {
+        email: form.elements.email.value,
+        password: form.elements.password.value
+      }
     });
     this.checkForError();
   };
   checkForError = () => {
-    this.state.email == "" || this.state.password == ""
+    Alert.isThereEmptyField(this.state.user)
       ? this.setState({
-          error: true,
+          doesErrorExist: true,
           errorMessage: Alert.emptyFieldMessage
         })
-      : this.setState({ error: false });
+      : this.setState({ doesErrorExist: false });
   };
   render() {
     return (
@@ -45,7 +48,7 @@ class Signin extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="container text-light">
             <div className="signin-form-container">
-              {this.state.error ? (
+              {this.state.doesErrorExist ? (
                 <Alert errorMessage={this.state.errorMessage} />
               ) : null}
               <FormGroup
