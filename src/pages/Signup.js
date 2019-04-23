@@ -5,7 +5,10 @@ import SimplePageTitle from "../components/SimplePageTitle";
 import FormGroup from "../components/FormGroup";
 import RightArrowBtn from "../components/RightArrowBtn";
 import Alert from "../components/Alert";
-
+import {
+  isThereEmptyField,
+  emptyFieldMessage
+} from "../util/validationHelpers";
 class Signup extends Component {
   state = {
     doesErrorExist: false,
@@ -37,10 +40,10 @@ class Signup extends Component {
     this.checkForError();
   };
   checkForError = () => {
-    Alert.isThereEmptyField(this.state.user)
+    isThereEmptyField(this.state.user)
       ? this.setState({
           doesErrorExist: true,
-          errorMessage: Alert.emptyFieldMessage
+          errorMessage: emptyFieldMessage
         })
       : this.setState({ doesErrorExist: false });
   };
