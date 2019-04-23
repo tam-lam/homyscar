@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
+
 import SummaryContainer from "../components/SummaryContainer";
 import SimplePageTitle from "../components/SimplePageTitle";
 class Checkout extends Component {
@@ -8,9 +10,9 @@ class Checkout extends Component {
     car: this.props.location.state,
     isUserSignedIn: false
   };
-  signinOnClick = () => {
-    this.setState({ isUserSignedIn: true });
-  };
+  // signinOnClick = () => {
+  //   this.setState({ isUserSignedIn: true });
+  // };
   displayTitle = () => {
     var subtitle =
       this.state.car == null
@@ -25,15 +27,18 @@ class Checkout extends Component {
       return (
         <React.Fragment>
           <div className="container login-container rounded text-center">
-            <button
+            <Link
               className="btn btn-outline-light btn-lg auth-btn"
-              onClick={this.signinOnClick}
+              to={{ pathname: "/signin" }}
             >
-              Sign in
-            </button>{" "}
-            <button className="btn btn-outline-light btn-lg auth-btn">
+              Sign In
+            </Link>
+            <Link
+              className="btn btn-outline-light btn-lg auth-btn"
+              to={{ pathname: "/signup" }}
+            >
               Sign up
-            </button>
+            </Link>
           </div>
         </React.Fragment>
       );
