@@ -18,12 +18,8 @@
   border-color: white;
 }
 
-.signup-auth-form {
-  /* padding-right: 80px; */
-  /* border-right: 1px solid gray; */
-}
 .signup-form-container {
-  max-width: 900px;
+  max-width: 800px;
   padding: 20px;
   margin: auto;
 }

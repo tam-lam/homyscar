@@ -6,13 +6,32 @@ import SimplePageTitle from "../components/SimplePageTitle";
 import FormGroup from "../components/FormGroup";
 import { userInfo } from "os";
 import RightArrowBtn from "../components/RightArrowBtn";
+import Alert from "../components/Alert";
 class Signin extends Component {
+  state = {
+    error: false,
+    errorMessage: "",
+    password: "",
+    email: ""
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     console.log("on submit");
     let form = event.target;
-    console.log("Email VALUE: " + form.elements.email.value);
-    console.log("Password VALUE: " + form.elements.password.value);
+    this.setState({
+      email: form.elements.email.value,
+      password: form.elements.password.value
+    });
+    this.checkForError();
+  };
+  checkForError = () => {
+    this.state.email == "" || this.state.password == ""
+      ? this.setState({
+          error: true,
+          errorMessage: Alert.emptyFieldMessage
+        })
+      : this.setState({ error: false });
   };
   render() {
     return (
@@ -26,6 +45,9 @@ class Signin extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="container text-light">
             <div className="signin-form-container">
+              {this.state.error ? (
+                <Alert errorMessage={this.state.errorMessage} />
+              ) : null}
               <FormGroup
                 inputType="email"
                 label="Email"
