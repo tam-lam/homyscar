@@ -35,13 +35,13 @@
     "babel-preset-stage-0": "^6.24.1"
   },
   "scripts": {
-    "client-install": "npm install --prefix src",
+    "client-install": "npm install",
     "start": "react-scripts start",
     "server": "nodemon server/index.js --exec babel-node -e js",
-    "client": "npm start --prefix src",
+    "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "react-scripts test",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix src && npm run build --prefix src"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
