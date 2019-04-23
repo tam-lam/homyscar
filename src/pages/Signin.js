@@ -8,19 +8,34 @@ class Signin extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        <SimplePageTitle title="Sign In" subtitle="" />
+        <SimplePageTitle title="Homy's car" doShowIcon={true} />
+
         <div className="container text-light">
           <div className="form-container">
             <div class="form-group">
+              <label
+                for="emailInput"
+                className="font-weight-bold text-light form-label"
+              >
+                Email
+              </label>
+
               <input
                 type="email"
                 class="form-control form-input text-light form-control-lg"
                 id="emailInput"
                 aria-describedby="emailHelp"
-                placeholder="Enter your email"
+                placeholder="Enter your email address"
               />
             </div>
             <div class="form-group">
+              <label
+                for="passwordInput"
+                className="font-weight-bold text-light form-label"
+              >
+                Password
+              </label>
+
               <input
                 type="password"
                 class="form-control form-input text-light form-control-lg"
@@ -28,13 +43,8 @@ class Signin extends Component {
                 placeholder="Enter your password"
               />
             </div>
-            <div className="container text-center">
-              <button
-                type="submit"
-                class="btn btn-outline-light btn-lg auth-btn"
-              >
-                Login
-              </button>
+            <div className="container text-center simplebox">
+              <button type="submit" class="btn form-btn " />
             </div>
           </div>
         </div>
