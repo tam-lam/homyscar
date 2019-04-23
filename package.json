@@ -36,10 +36,10 @@
   },
   "scripts": {
     "client-install": "npm install",
-    "start": "nodemon server/index.js --exec babel-node -e js",
+    "start-front": "react-scripts start",
     "server": "nodemon server/index.js --exec babel-node -e js",
     "client": "npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run start-front\" \"npm run server\"",
     "test": "react-scripts test",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
