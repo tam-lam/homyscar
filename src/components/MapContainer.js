@@ -16,14 +16,6 @@ class MapContainer extends Component {
   componentWillMount() {
     this.props.fetchCarsWithDist();
   }
-
-  onShowDetail = (car, distance) => {
-    car = JSON.stringify(car);
-    distance = JSON.stringify(distance);
-    var distance = JSON.parse(distance);
-    var car = JSON.parse(car);
-    this.props.onShowDetail(car, distance.text);
-  };
   render() {
     const markers = this.props.cars.map(item => (
       <Marker
@@ -31,7 +23,12 @@ class MapContainer extends Component {
           lat: item.car.lat,
           lng: item.car.lng
         }}
-        onClick={() => this.onShowDetail(item.car, item.distance)}
+        onClick={() =>
+          this.props.onShowDetail(
+            JSON.parse(JSON.stringify(item.car)),
+            JSON.parse(JSON.stringify(item.distance)).text
+          )
+        }
       />
     ));
 
