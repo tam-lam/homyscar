@@ -5,7 +5,7 @@ const User = mongoose.model('User', UserSchema);
 
 export const addNewUser = (req, res) => {
     let newUser = new User(req.body);
-
+    req.session.visits = req.session.visits ? req.session.visits + 1 : 1;
     newUser.save((err, User) => {
         if (err) {
             res.send(err);
