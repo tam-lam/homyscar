@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import NavBar from "../components/Navbar";
-import Jumbotron from "../components/Jumbotron";
 import Footer from "../components/Footer";
 import SimplePageTitle from "../components/SimplePageTitle";
 import FormGroup from "../components/FormGroup";
-import { userInfo } from "os";
 import RightArrowBtn from "../components/RightArrowBtn";
 import Alert from "../components/Alert";
 import {

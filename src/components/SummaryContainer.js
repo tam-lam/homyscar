@@ -18,7 +18,11 @@ class SummaryContainer extends Component {
     return (
       <React.Fragment>
         <div className="detail-container col-lg-7 rounded-right shadow ">
-          <img src={carImgURL} className="thumbnail-img shadow-lg" />
+          <img
+            src={carImgURL}
+            className="thumbnail-img shadow-lg"
+            alt="car thumbnail"
+          />
           <div className=" container-fuild summary-container bg-light rounded-right ">
             <h1 className="font-weight-bold">Summary</h1>
             <h2>

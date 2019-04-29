@@ -20,7 +20,7 @@ class CarList extends Component {
 
     return (
       <React.Fragment>
-        <ul class="list-group  my-list-group bg-dark list-group-flush ">
+        <ul className="list-group  my-list-group bg-dark list-group-flush ">
           {carItems}
         </ul>
       </React.Fragment>

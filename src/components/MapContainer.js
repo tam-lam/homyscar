@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchCarsWithDist } from "../store/actions/carActions";
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import { GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import CurrentLocation from "./Map";
 import {
   saveSelectedCarDistanceInStore,
