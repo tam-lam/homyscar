@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import { fetchCarsWithDist } from "../store/actions/carActions";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import CurrentLocation from "./Map";
+import {
+  saveSelectedCarDistanceInStore,
+  saveSelectedCarInStore
+} from "../store/actions/carActions";
 
 class MapContainer extends Component {
   state = {
@@ -23,12 +27,15 @@ class MapContainer extends Component {
           lat: item.car.lat,
           lng: item.car.lng
         }}
-        onClick={() =>
-          this.props.onShowDetail(
-            JSON.parse(JSON.stringify(item.car)),
+        onClick={() => {
+          this.props.saveSelectedCarInStore(
+            JSON.parse(JSON.stringify(item.car))
+          );
+          this.props.saveSelectedCarDistanceInStore(
             JSON.parse(JSON.stringify(item.distance)).text
-          )
-        }
+          );
+          this.props.onShowDetail();
+        }}
       />
     ));
 
@@ -78,7 +85,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchCarsWithDist }
+  { fetchCarsWithDist, saveSelectedCarDistanceInStore, saveSelectedCarInStore }
 )(
   GoogleApiWrapper({
     apiKey: "AIzaSyDEFtWHf9PNwDPk74kYTMLpYzDg8WB7n7Y"

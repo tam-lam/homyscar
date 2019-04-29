@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class DetailModal extends Component {
-  state = {};
   showDetail = (label, detail, width, isImportant) => {
     var className = "col-sm-" + width + " detail-col text-capitalize";
     if (isImportant) className += " text-success  font-weight-bold";
@@ -15,7 +15,7 @@ class DetailModal extends Component {
     );
   };
   render() {
-    var carImgURL = "/images/" + this.props.rego + ".jpg";
+    var carImgURL = "/images/" + this.props.car.rego + ".jpg";
     return (
       <React.Fragment>
         <Modal
@@ -34,22 +34,27 @@ class DetailModal extends Component {
                   className=" car-img bg-dark shadow rounded-circle "
                 />
                 <h3 className="font-weight-bold text-capitalize">
-                  {this.props.make} {this.props.model} {this.props.year}
+                  {this.props.car.make} {this.props.car.model}{" "}
+                  {this.props.car.year}
                 </h3>
                 <p>
-                  {this.props.address}
+                  {this.props.car.address}
                   <br /> {this.props.distance} away
                 </p>
                 <div className="more-details-container text-left ">
                   <div className="row detail-row">
-                    {this.showDetail("Body Type", this.props.body, 7)}
-                    {this.showDetail("Tranmission", this.props.transmission, 5)}
+                    {this.showDetail("Body Type", this.props.car.body, 7)}
+                    {this.showDetail(
+                      "Tranmission",
+                      this.props.car.transmission,
+                      5
+                    )}
                   </div>
                   <div className="row detail-row ">
-                    {this.showDetail("Rego No:", this.props.rego, 7)}
+                    {this.showDetail("Rego No:", this.props.car.rego, 7)}
                     {this.showDetail(
                       "Pricing",
-                      this.props.price + "$/h",
+                      this.props.car.price + "$/h",
                       5,
                       true
                     )}
@@ -62,19 +67,7 @@ class DetailModal extends Component {
             <Link
               className="btn btn-block rent-btn bg-success text-light shadow-lg"
               to={{
-                pathname: "/checkout",
-                state: {
-                  make: this.props.make,
-                  model: this.props.model,
-                  year: this.props.year,
-                  rego: this.props.rego,
-                  body: this.props.body,
-                  transmission: this.props.transmission,
-                  address: this.props.address,
-                  price: this.props.price,
-                  distance: this.props.distance,
-                  carImgURL: carImgURL
-                }
+                pathname: "/checkout"
               }}
             >
               Rent now
@@ -85,4 +78,11 @@ class DetailModal extends Component {
     );
   }
 }
-export default DetailModal;
+const mapStateToProps = state => ({
+  car: state.cars.selectedCar,
+  distance: state.cars.selectedCarDistance
+});
+export default connect(
+  mapStateToProps,
+  {}
+)(DetailModal);
