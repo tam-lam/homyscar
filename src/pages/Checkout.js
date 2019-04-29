@@ -7,23 +7,20 @@ import { isEmpty } from "../util/validationHelpers";
 import SummaryContainer from "../components/SummaryContainer";
 import SimplePageTitle from "../components/SimplePageTitle";
 class Checkout extends Component {
-  state = {
-    isUserSignedIn: false
-  };
   // signinOnClick = () => {
   //   this.setState({ isUserSignedIn: true });
   // };
   displayTitle = () => {
     var subtitle = isEmpty(this.props.car)
       ? "Please select a vehicle before checkout."
-      : !this.state.isUserSignedIn
+      : !this.props.isUserSignedIn
       ? "Please authenticate before checkout."
       : "Simply checkout and be on your way!";
     return <SimplePageTitle title="Checkout" subtitle={subtitle} />;
   };
   displayAuthenticationBtns = () => {
     if (
-      !this.state.isUserSignedIn &&
+      !this.props.isUserSignedIn &&
       this.props.car != null &&
       !isEmpty(this.props.car)
     ) {
@@ -68,7 +65,7 @@ class Checkout extends Component {
     }
   };
   displayPayPalBtn = () => {
-    if (this.state.isUserSignedIn) {
+    if (this.props.isUserSignedIn) {
       return (
         <button className="btn btn-primary btn-lg shadow-lg checkout-btn">
           Check out with PayPal
@@ -90,7 +87,8 @@ class Checkout extends Component {
 }
 const mapStateToProps = state => ({
   car: state.cars.selectedCar,
-  distance: state.cars.selectedCarDistance
+  distance: state.cars.selectedCarDistance,
+  isUserSignedIn: false
 });
 export default connect(
   mapStateToProps,

@@ -27,7 +27,11 @@ class CarItem extends Component {
     return (
       <React.Fragment>
         <li class="list-group-item bg-dark text-white">
-          <img src={caricon} className="img-thumbnail float-left rounded" />
+          <img
+            src={caricon}
+            className="img-thumbnail float-left rounded"
+            alt="car icon"
+          />
           {this.state.make} {this.state.model} {this.state.year}
           <br />
           {this.state.address}

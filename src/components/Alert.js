@@ -6,7 +6,11 @@ class Alert extends Component {
       <div className="alert alert-light text-dark shadow-lg" role="alert">
         <div className="row">
           <div className="col-1 text-center">
-            <img className="warning-icon " src={warningIcon} />
+            <img
+              className="warning-icon "
+              src={warningIcon}
+              alt="warning icon"
+            />
           </div>
           <div className="col-10">{this.props.errorMessage}</div>
         </div>

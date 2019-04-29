@@ -32,6 +32,7 @@ class DetailModal extends Component {
                 <img
                   src={carImgURL}
                   className=" car-img bg-dark shadow rounded-circle "
+                  alt="carimage"
                 />
                 <h3 className="font-weight-bold text-capitalize">
                   {this.props.car.make} {this.props.car.model}{" "}

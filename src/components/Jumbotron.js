@@ -3,9 +3,8 @@ import React, { Component } from "react";
 class Jumbotron extends Component {
   renderLocationBtn = () => {
     if (this.props.ishomepage) {
-      console.log("IS HOMEPAGE:" + this.props.ishomepage);
       return (
-        <button type="button" class="btn btn-success shadow-lg">
+        <button type="button" className="btn btn-success shadow-lg">
           Get my location
         </button>
       );

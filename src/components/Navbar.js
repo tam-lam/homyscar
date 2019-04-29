@@ -9,6 +9,7 @@ class NavBar extends Component {
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img
+              alt="icon"
               src={icon}
               className="d-inline-block align-top"
               width="30"
