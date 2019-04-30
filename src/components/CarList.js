@@ -14,7 +14,7 @@ class CarList extends Component {
     this.props.fetchCarsWithDist();
   }
   componentDidUpdate() {
-    if (isEmpty(this.props.cars) && this.props.doErrorExist == false) {
+    if (isEmpty(this.props.cars) && this.props.doErrorExist === false) {
       console.log("Cars is empty,refetch");
       this.props.fetchCarsWithDist();
     }
