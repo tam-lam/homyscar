@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Signin from "./pages/Signin";
 import Checkout from "./pages/Checkout";
 import Signup from "./pages/Signup";
+import Return from "./pages/Return";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/return" component={Return} />
           </div>
         </Router>
       </Provider>

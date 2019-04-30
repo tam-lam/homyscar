@@ -12,3 +12,37 @@
 ::-webkit-scrollbar {
   display: none;
 }
+.loading-spinner {
+  width: 100px !important;
+  height: 100px !important;
+  margin-bottom: 30px;
+}
+.spinner-container {
+  user-select: none;
+  padding-top: 100px;
+  height: 600px;
+  margin: auto;
+}
+.loading-list-container {
+  margin: auto;
+  padding-left: 40px;
+  max-width: 300px;
+}
+.slow-spin {
+  -webkit-animation: fa-spin 6s infinite linear;
+  animation: fa-spin 6s infinite linear;
+}
+.fa-spin {
+  -webkit-animation: fa-spin 6s infinite linear;
+  animation: fa-spin 6s infinite linear;
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}

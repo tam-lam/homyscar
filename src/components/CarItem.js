@@ -26,7 +26,7 @@ class CarItem extends Component {
   render() {
     return (
       <React.Fragment>
-        <li class="list-group-item bg-dark text-white">
+        <li className="list-group-item bg-dark text-white">
           <img
             src={caricon}
             className="img-thumbnail float-left rounded"
