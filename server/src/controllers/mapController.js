@@ -27,6 +27,7 @@ export async function getCarsWithDistance(req, res) {
 
   var carsFromDB = [];
   //   var h;
+
   var distancePromise = new Promise(async function(resolve, reject) {
     carsFromDB = await getCarsFromDB();
 
@@ -41,14 +42,19 @@ export async function getCarsWithDistance(req, res) {
       if (distances.status == "OK") {
         if (distances.rows[0].elements[0].status == "OK") {
           var distanceValue = distances.rows[0].elements[0].distance;
+          resolve(distances);
         }
       }
-      resolve(distances);
     });
   })
     .then(function(distances) {
-      var carDistArray = calcDistBetweenCarsAndUser(carsFromDB, distances);
-      res.json(carDistArray);
+      try {
+        if (distances.status != "OK") throw "Distances is empty";
+        var carDistArray = calcDistBetweenCarsAndUser(carsFromDB, distances);
+        res.json(carDistArray);
+      } catch (err) {
+        console.log(err);
+      }
     })
     .catch(err => {
       console.log(err.message);
@@ -80,13 +86,18 @@ export function getDestinations(databaseCars) {
 }
 
 export function calcDistBetweenCarsAndUser(carsFromDB, distances) {
+  console.log(distances);
   var carAndDistArray = [];
   for (var i = 0; i < carsFromDB.length; i++) {
-    if (distances.rows[0].elements[i].status == "OK") {
-      var distance = distances.rows[0].elements[i].distance;
-      var carAndDist = { car: carsFromDB[i], distance: distance };
-      console.log("new dist value" + distance.text);
-      carAndDistArray.push(carAndDist);
+    if (distances.status == "OK") {
+      if (distances.rows[0].elements[i]) {
+        if (distances.rows[0].elements[i].status == "OK") {
+          var distance = distances.rows[0].elements[i].distance;
+          var carAndDist = { car: carsFromDB[i], distance: distance };
+          console.log("new dist value" + distance.text);
+          carAndDistArray.push(carAndDist);
+        }
+      }
     }
   }
   return carAndDistArray;

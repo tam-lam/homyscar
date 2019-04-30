@@ -1,8 +1,12 @@
 import {
   FETCH_CARS_WITH_DIST,
   SAVE_SELECTED_CAR_IN_STORE,
-  SAVE_SELECTED_CAR_DISTANCE_IN_STORE
+  SAVE_SELECTED_CAR_DISTANCE_IN_STORE,
+  FETCH_ERROR_OCCUR
 } from "./types";
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 export const fetchCarsWithDist = () => dispatch => {
   console.log("from action");
@@ -13,7 +17,12 @@ export const fetchCarsWithDist = () => dispatch => {
         type: FETCH_CARS_WITH_DIST,
         payload: cars
       })
-    );
+    )
+    .catch(function(error) {
+      console.log("ERROR:" + error);
+      var doErrorExist = true;
+      dispatch({ type: FETCH_ERROR_OCCUR, payload: error });
+    });
 };
 export const saveSelectedCarInStore = selectedCar => dispatch => {
   selectedCar = JSON.parse(JSON.stringify(selectedCar));
