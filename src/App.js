@@ -7,9 +7,12 @@ import About from "./pages/about";
 import Signin from "./pages/signin";
 import Checkout from "./pages/checkout";
 import User from "./pages/user";
+
+
 class App extends Component {
   render() {
     return (
+      
       <Router>
         <div>
           <Route exact path="/" component={Home} />
@@ -18,6 +21,8 @@ class App extends Component {
           <Route exact path="/admin" component={Admin} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/user" component={User} /> 
+        
+          
         </div>
       </Router>
     );
