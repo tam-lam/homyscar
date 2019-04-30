@@ -13,20 +13,43 @@ class CarList extends Component {
   componentWillMount() {
     this.props.fetchCarsWithDist();
   }
+  componentDidUpdate() {
+    if (isEmpty(this.props.cars) && this.props.doErrorExist == false) {
+      console.log("Cars is empty,refetch");
+      this.props.fetchCarsWithDist();
+    }
+  }
+  myTimer = () => {
+    if (isEmpty(this.props.cars)) {
+      this.forceUpdate();
+    }
+  };
+  componentDidMount() {
+    var reloadIntervalId = setInterval(this.myTimer, 5000);
+    this.setState({ reloadIntervalId: reloadIntervalId });
+    if (!isEmpty(this.props.cars)) {
+      clearInterval(this.state.reloadIntervalId);
+    }
+  }
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.doErrorExist !== this.props.doErrorExist &&
-      this.state.refreshCount < 50
+      this.state.refreshCount < 20
     ) {
       this.setState({ refreshCount: this.state.refreshCount + 1 });
       console.log("REFRESHING COUNT:" + this.state.refreshCount);
       this.props.fetchCarsWithDist();
+    } else {
+      this.setState({
+        refreshCount: this.state.refreshCount + 1,
+        error: false
+      });
     }
   }
+
   displayFetchingFeedBack = () => {
     if (isEmpty(this.props.cars)) {
-      console.log(this.state.refreshCount);
-      if (this.state.refreshCount == 50) {
+      if (this.state.refreshCount >= 20) {
         return (
           <div className="spinner-container text-center text-muted">
             <h1 className="display-1">!</h1>
@@ -35,7 +58,6 @@ class CarList extends Component {
           </div>
         );
       }
-      console.log("CAR IS EMPTY");
       return (
         <div className="spinner-container text-center text-muted">
           <Spinner
