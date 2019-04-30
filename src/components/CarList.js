@@ -16,14 +16,25 @@ class CarList extends Component {
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.doErrorExist !== this.props.doErrorExist &&
-      this.state.refreshCount <= 50
+      this.state.refreshCount < 50
     ) {
       this.setState({ refreshCount: this.state.refreshCount + 1 });
+      console.log("REFRESHING COUNT:" + this.state.refreshCount);
       this.props.fetchCarsWithDist();
     }
   }
-  displayLoading = () => {
+  displayFetchingFeedBack = () => {
     if (isEmpty(this.props.cars)) {
+      console.log(this.state.refreshCount);
+      if (this.state.refreshCount == 50) {
+        return (
+          <div className="spinner-container text-center text-muted">
+            <h1 className="display-1">!</h1>
+            <h2 className="font-weight-light ">Network error</h2>
+            <p>Please try again</p>
+          </div>
+        );
+      }
       console.log("CAR IS EMPTY");
       return (
         <div className="spinner-container text-center text-muted">
@@ -58,7 +69,7 @@ class CarList extends Component {
 
     return (
       <React.Fragment>
-        {this.displayLoading()}
+        {this.displayFetchingFeedBack()}
         <ul className="list-group  my-list-group bg-dark list-group-flush ">
           {carItems}
         </ul>
