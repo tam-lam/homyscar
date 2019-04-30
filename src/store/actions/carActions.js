@@ -4,9 +4,6 @@ import {
   SAVE_SELECTED_CAR_DISTANCE_IN_STORE,
   FETCH_ERROR_OCCUR
 } from "./types";
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 export const fetchCarsWithDist = () => dispatch => {
   console.log("from action");
@@ -20,7 +17,6 @@ export const fetchCarsWithDist = () => dispatch => {
     )
     .catch(function(error) {
       console.log("ERROR:" + error);
-      var doErrorExist = true;
       dispatch({ type: FETCH_ERROR_OCCUR, payload: error });
     });
 };
