@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import routes from './src/routes/crmRoutes';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import auth from './src/auth'
+import auth from './src/auth';
 
 
 
