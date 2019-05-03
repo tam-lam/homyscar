@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import caricon from "../images/car-icon.png";
-
+import {
+  saveSelectedCarInStore,
+  saveSelectedCarDistanceInStore
+} from "../store/actions/carActions";
+import { connect } from "react-redux";
 class CarItem extends Component {
   constructor(props) {
     super(props);
@@ -22,17 +26,23 @@ class CarItem extends Component {
   render() {
     return (
       <React.Fragment>
-        <li class="list-group-item bg-dark text-white">
-          <img src={caricon} className="img-thumbnail float-left rounded" />
+        <li className="list-group-item bg-dark text-white">
+          <img
+            src={caricon}
+            className="img-thumbnail float-left rounded"
+            alt="car icon"
+          />
           {this.state.make} {this.state.model} {this.state.year}
           <br />
           {this.state.address}
           <button
             type="button"
             className="btn btn-outline-light shadow-lg float-right"
-            onClick={() =>
-              this.props.onShowDetail(this.props.car, this.state.distance)
-            }
+            onClick={() => {
+              this.props.saveSelectedCarInStore(this.props.car);
+              this.props.saveSelectedCarDistanceInStore(this.state.distance);
+              this.props.onShowDetail();
+            }}
           >
             Details
           </button>
@@ -45,4 +55,7 @@ class CarItem extends Component {
   }
 }
 
-export default CarItem;
+export default connect(
+  null,
+  { saveSelectedCarInStore, saveSelectedCarDistanceInStore }
+)(CarItem);
