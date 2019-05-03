@@ -23,6 +23,9 @@
   padding: 20px;
   margin: auto;
 }
+.signup-auth-form {
+  margin-bottom: 40px !important;
+}
 .signin-form-container {
   max-width: 400px;
   padding: 20px;

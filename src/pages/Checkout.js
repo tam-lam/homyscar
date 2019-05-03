@@ -2,28 +2,28 @@ import React, { Component } from "react";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-
+import { connect } from "react-redux";
+import { isEmpty } from "../util/validationHelpers";
 import SummaryContainer from "../components/SummaryContainer";
 import SimplePageTitle from "../components/SimplePageTitle";
 class Checkout extends Component {
-  state = {
-    car: this.props.location.state,
-    isUserSignedIn: false
-  };
   // signinOnClick = () => {
   //   this.setState({ isUserSignedIn: true });
   // };
   displayTitle = () => {
-    var subtitle =
-      this.state.car == null
-        ? "Please select a vehicle before checkout."
-        : !this.state.isUserSignedIn
-        ? "Please authenticate before checkout."
-        : "Simply checkout and be on your way!";
+    var subtitle = isEmpty(this.props.car)
+      ? "Please select a vehicle before checkout."
+      : !this.props.isUserSignedIn
+      ? "Please authenticate before checkout."
+      : "Simply checkout and be on your way!";
     return <SimplePageTitle title="Checkout" subtitle={subtitle} />;
   };
   displayAuthenticationBtns = () => {
-    if (!this.state.isUserSignedIn && this.state.car != null) {
+    if (
+      !this.props.isUserSignedIn &&
+      this.props.car != null &&
+      !isEmpty(this.props.car)
+    ) {
       return (
         <React.Fragment>
           <div className="container login-container rounded text-center">
@@ -45,7 +45,7 @@ class Checkout extends Component {
     }
   };
   displayCheckout = () => {
-    if (this.state.car != null) {
+    if (this.props.car != null && !isEmpty(this.props.car)) {
       return (
         <div className="container checkout-container shadow-lg rounded">
           <div className="row">
@@ -56,18 +56,16 @@ class Checkout extends Component {
               We hold on to payment information to prevent "one way trips".
               Please Signin to checkout
               <br />
-              {/* Hard coded time , need to make it real */}
-              {/* Please signin to book */}
               {this.displayPayPalBtn()}
             </div>
-            <SummaryContainer car={this.state.car} />
+            <SummaryContainer />
           </div>
         </div>
       );
     }
   };
   displayPayPalBtn = () => {
-    if (this.state.isUserSignedIn) {
+    if (this.props.isUserSignedIn) {
       return (
         <button className="btn btn-primary btn-lg shadow-lg checkout-btn">
           Check out with PayPal
@@ -87,5 +85,12 @@ class Checkout extends Component {
     );
   }
 }
-
-export default Checkout;
+const mapStateToProps = state => ({
+  car: state.cars.selectedCar,
+  distance: state.cars.selectedCarDistance,
+  isUserSignedIn: false
+});
+export default connect(
+  mapStateToProps,
+  {}
+)(Checkout);

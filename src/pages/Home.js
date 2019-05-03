@@ -17,19 +17,9 @@ class Home extends Component {
   render() {
     let modalClose = () => this.setState({ modalShow: false });
 
-    let modalShow = (car, distance) => {
+    let modalShow = () => {
       this.setState({
-        modalShow: true,
-        make: car.make,
-        model: car.model,
-        year: car.year,
-        rego: car.rego,
-        body: car.body,
-        transmission: car.transmission,
-        address: car.address,
-        price: car.price,
-        distance: distance,
-        car: car
+        modalShow: true
       });
     };
     return (
@@ -40,19 +30,7 @@ class Home extends Component {
           ishomepage={true}
           subtitle='Homy&apos;s car is one of the easiest and fastest car rental service in the world. Simply click on "Get my location"  and select a vehicle near by and start renting '
         />
-        <DetailModal
-          show={this.state.modalShow}
-          onHide={modalClose}
-          make={this.state.make}
-          model={this.state.model}
-          year={this.state.year}
-          rego={this.state.rego}
-          body={this.state.body}
-          transmission={this.state.transmission}
-          address={this.state.address}
-          price={this.state.price}
-          distance={this.state.distance}
-        />
+        <DetailModal show={this.state.modalShow} onHide={modalClose} />
         <div className="container-fluid bg-dark">
           <div className="row">
             <div className="col-lg-7 nopadding my-col order-lg-2 mapContainer">
