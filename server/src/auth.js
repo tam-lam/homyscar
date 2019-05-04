@@ -1,41 +1,22 @@
-import passport from 'passport';
+const config = require('config');
+const jwt = require('jsonwebtoken');
 
-const LocalStrategy = require('passport-local').Strategy;
+function auth(req, res, next) {
+    const token = req.header('x-auth-token');
 
-passport.use(new LocalStrategy({ usernameField: 'email'}, async(username, password, done) => {
+    // Check for token
+    if (!token)
+        return res.status(401).json({ msg: 'No token, authorizaton denied' });
+
     try {
-        const user = await UserModel.findOne({email: username}).exec();
-        if (!user) {
-            return done(null, false, {message : 'Invalid username or password'});
-        }
-        const passwordOK = await user.comparePassword(password);
-        if (!passwordOK) {
-            return done(null, false, { message: 'Invalid username or password' });
-        }
-        return done(null, user);
-    } catch(err) {
-        return done(err);
+        // Verify token
+        const decoded = jwt.verify(token, config.get('jwtSecret'));
+        // Add user from payload
+        req.user = decoded;
+        next();
+    } catch (e) {
+        res.status(400).json({ msg: 'Token is not valid' });
     }
-}));
+}
 
-passport.serializeUser((user, done) => {
-    return done(null, user._id);
-});
-
-passport.deserializeUser(async (id, done) => {
-    try {
-        const user = await UserModel.findById(id).exec();
-        return done (null, user);
-    } catch (err) {
-        return done(err);
-    }
-})
-
-module.exports = {
-    initialize: passport.initialize(),
-    session: passport.session(),
-    setUser: (req, res, next) => {
-        res.locals.user = req.user;
-        return next();
-    },
-};
+module.exports = auth;
