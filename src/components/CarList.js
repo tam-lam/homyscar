@@ -41,8 +41,7 @@ class CarList extends Component {
       this.props.fetchCarsWithDist();
     } else {
       this.setState({
-        refreshCount: this.state.refreshCount + 1,
-        error: false
+        refreshCount: this.state.refreshCount + 1
       });
     }
   }
