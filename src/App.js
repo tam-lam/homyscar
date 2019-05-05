@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
+import { loadUser } from './store/actions/authActions'
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import About from "./pages/About";
@@ -12,6 +13,9 @@ import Signup from "./pages/Signup";
 import Return from "./pages/Return";
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
   render() {
     return (
       <Provider store={store}>
