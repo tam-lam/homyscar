@@ -1,43 +1,70 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SimplePageTitle from "../components/SimplePageTitle";
-import FormGroup from "../components/FormGroup";
 import RightArrowBtn from "../components/RightArrowBtn";
 import Alert from "../components/Alert";
-import {
-  isThereEmptyField,
-  emptyFieldMessage
-} from "../util/validationHelpers";
+import PropTypes from 'prop-types';
+import { login } from '../store/actions/authActions';
+import { clearErrors } from '../store/actions/errorActions';
+
 class Signin extends Component {
   state = {
-    doesErrorExist: false,
-    errorMessage: "",
-    user: {
-      password: "",
-      email: ""
-    }
+    email: '',
+    password: '',
+    msg: null
   };
 
-  handleSubmit = event => {
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+    error: PropTypes.object.isRequired,
+    login: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
+  };
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = event => {
     event.preventDefault();
-    let form = event.target;
-    this.setState({
-      user: {
-        email: form.elements.email.value,
-        password: form.elements.password.value
+    
+    const { email, password } = this.state;
+
+    const user = {
+      email,
+      password
+    }
+
+    // Attemp to login
+    this.props.login(user)
+
+  };
+
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { error, isAuthenticated } = this.props;
+
+    if (error !== prevProps.error) {
+      if (error.id === 'LOGIN_FAIL') {
+        this.setState({ msg: error.msg.msg })
+      } else {
+        this.setState({ msg: null })
       }
-    });
-    this.checkForError();
-  };
-  checkForError = () => {
-    isThereEmptyField(this.state.user)
-      ? this.setState({
-          doesErrorExist: true,
-          errorMessage: emptyFieldMessage
-        })
-      : this.setState({ doesErrorExist: false });
-  };
+    }
+
+    // Checking is user is authenticated
+    if (isAuthenticated) {
+      this.props.history.push('/')
+    }
+
+  }
+
+
   render() {
     return (
       <React.Fragment>
@@ -47,23 +74,35 @@ class Signin extends Component {
           subtitle="Sign in"
           doShowIcon={true}
         />
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.onSubmit}>
           <div className="container text-light">
             <div className="signin-form-container">
-              {this.state.doesErrorExist ? (
-                <Alert errorMessage={this.state.errorMessage} />
+              {this.props.error.id === 'LOGIN_FAIL' ? (
+                <Alert errorMessage={this.props.error.msg.msg} />
               ) : null}
-              <FormGroup
-                inputType="email"
-                label="Email"
-                name="email"
-                placeholder="Enter your email"
+              <label className="font-weight-bold text-light form-label shadow-lg">
+                Email
+              </label>
+              <input
+                type='email'
+                name='email'
+                id='email'
+                placeholder='Email'
+                className='mb-3'
+                onChange={this.onChange}
+                class="form-control form-input text-light form-control-lg"
               />
-              <FormGroup
-                inputType="password"
-                label="Password"
-                name="password"
-                placeholder="Enter your password"
+              <label className="font-weight-bold text-light form-label shadow-lg">
+                Password
+              </label>
+              <input
+                type='password'
+                name='password'
+                id='password'
+                placeholder='Password'
+                className='mb-3'
+                onChange={this.onChange}
+                class="form-control form-input text-light form-control-lg"
               />
               <RightArrowBtn />
             </div>
@@ -76,4 +115,12 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.error
+})
+
+export default connect(
+  mapStateToProps, 
+  { login, clearErrors }
+)(Signin);

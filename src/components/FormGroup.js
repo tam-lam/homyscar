@@ -9,9 +9,10 @@ class FormGroup extends Component {
         <input
           type={this.props.inputType}
           name={this.props.name}
-          ref={this.props.name}
-          class="form-control form-input text-light form-control-lg"
+          id={this.props.id}
           placeholder={this.props.placeholder}
+          class="form-control form-input text-light form-control-lg"
+          
         />
       </div>
     );
