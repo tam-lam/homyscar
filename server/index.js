@@ -44,7 +44,7 @@ app.use(session({
   store: new MongoStore({mongooseConnection: mongoose.connection}),
 }));
 
-app.use('/authUser', require('./src/routes/login'));
+app.use('/getUser', require('./src/routes/getUserDetails'));
 
 routes(app);
 
