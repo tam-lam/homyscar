@@ -10,9 +10,6 @@ class CarList extends Component {
   state = {
     refreshCount: 0
   };
-  componentWillMount() {
-    this.props.fetchCarsWithDist();
-  }
   componentDidUpdate() {
     if (isEmpty(this.props.cars) && this.props.doErrorExist === false) {
       console.log("Cars is empty,refetch");
@@ -85,6 +82,7 @@ class CarList extends Component {
         car={item.car}
         distance={item.distance}
         onShowDetail={this.props.onShowDetail}
+        key={item.car._id}
       />
     ));
 

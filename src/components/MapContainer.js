@@ -23,6 +23,7 @@ class MapContainer extends Component {
   render() {
     const markers = this.props.cars.map(item => (
       <Marker
+        key={item.car._id}
         position={{
           lat: item.car.lat,
           lng: item.car.lng
