@@ -24,7 +24,7 @@ export const loadUser = () => (dispatch, getState) => {
     }))
     .catch(err => {
       if (err.response && err.response.data)
-        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch(returnErrors(err.response.data, err.response.status, 'LOAD_FAILED'));
       dispatch({
         type: AUTH_ERROR
       });
@@ -51,9 +51,8 @@ export const register = ({ username, email, password }) => dispatch => {
       })
     )
     .catch(err => {
-      dispatch(
-        returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')
-      );
+      if (err.response && err.response.data)
+        dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
       dispatch({
         type: REGISTER_FAIL
       });
