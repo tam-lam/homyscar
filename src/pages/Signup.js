@@ -2,51 +2,71 @@ import React, { Component } from "react";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SimplePageTitle from "../components/SimplePageTitle";
-import FormGroup from "../components/FormGroup";
 import RightArrowBtn from "../components/RightArrowBtn";
 import Alert from "../components/Alert";
-import {
-  isThereEmptyField,
-  emptyFieldMessage
-} from "../util/validationHelpers";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { register } from '../store/actions/authActions';
+import { clearErrors } from '../store/actions/errorActions';
+
 class Signup extends Component {
   state = {
-    doesErrorExist: false,
-    errorMessage: "",
-    user: {
-      password: "",
-      email: "",
-      firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      licenseNo: "",
-      paymentDetail: ""
-    }
+    username: '',
+    email: '',
+    password: '',
+    dateOfBirth: '',
+    licenseNo: '',
+    msg: null
   };
-  handleSubmit = event => {
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+    error: PropTypes.object.isRequired,
+    register: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+
+
+  onSubmit = event => {
     event.preventDefault();
-    let form = event.target;
-    this.setState({
-      user: {
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-        firstName: form.elements.firstName.value,
-        lastName: form.elements.lastName.value,
-        dateOfBirth: form.elements.dateOfBirth.value,
-        licenseNo: form.elements.licenseNo.value,
-        paymentDetail: form.elements.paymentDetail.value
+    const { username, email, password } = this.state;
+
+    // Create a user object
+    const newUser = {
+      username, 
+      email,
+      password
+    }
+
+    this.props.register(newUser);
+  };
+
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { error, isAuthenticated } =  this.props;
+
+    if (error !== prevProps.error) {
+      if(error.id === 'REGISTER_FAIL') {
+        this.setState({ msg: error.msg.msg})
+      } else {
+        this.setState({ msg: null})
       }
-    });
-    this.checkForError();
-  };
-  checkForError = () => {
-    isThereEmptyField(this.state.user)
-      ? this.setState({
-          doesErrorExist: true,
-          errorMessage: emptyFieldMessage
-        })
-      : this.setState({ doesErrorExist: false });
-  };
+    }
+
+    // Checking is user is authenticated
+    if(isAuthenticated) {
+      this.props.history.push('/')
+    }
+
+  }
   render() {
     return (
       <React.Fragment>
@@ -57,67 +77,75 @@ class Signup extends Component {
           subtitle="Sign up"
           doShowIcon={true}
         />
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.onSubmit}>
           <div className="container text-light">
             <div className="signup-form-container">
-              {this.state.doesErrorExist ? (
-                <Alert errorMessage={this.state.errorMessage} />
+              {this.props.error.id === 'REGISTER_FAIL'? (
+                <Alert errorMessage={this.props.error.msg.msg} />
               ) : null}
               <div className="row">
                 <div className="col-md-5 signup-auth-form">
-                  <FormGroup
-                    inputType="email"
-                    label="Email"
-                    name="email"
-                    placeholder="Enter your email"
+                  <label className="font-weight-bold text-light form-label shadow-lg">
+                    Name
+                  </label>
+                  <input
+                    type='text'
+                    name='username'
+                    id='username'
+                    placeholder='Name'
+                    className='mb-3'
+                    onChange={this.onChange}
+                    class="form-control form-input text-light form-control-lg"
+
                   />
-                  <FormGroup
-                    inputType="password"
-                    label="Password"
-                    name="password"
-                    placeholder="Enter your password"
+                  <label className="font-weight-bold text-light form-label shadow-lg">
+                    Email
+                  </label>
+                  <input
+                    type='email'
+                    name='email'
+                    id='email'
+                    placeholder='Email'
+                    className='mb-3'
+                    onChange={this.onChange}
+                    class="form-control form-input text-light form-control-lg"
+
                   />
                 </div>
                 <div className="col-md-7 signup-detail-form">
                   <div className="row">
-                    <div className="col-6">
-                      <FormGroup
-                        inputType="text"
-                        label="First Name"
-                        name="firstName"
-                        placeholder="First Name"
-                      />
-                    </div>
-                    <div className="col-6">
-                      <FormGroup
-                        inputType="text"
-                        label="Last Name"
-                        name="lastName"
-                        placeholder="Last Name"
+                    <div className="col-12">
+                      <label className="font-weight-bold text-light form-label shadow-lg">
+                        Password
+                      </label>
+                      <input
+                        type='password'
+                        name='password'
+                        id='password'
+                        placeholder='Password'
+                        className='mb-3'
+                        onChange={this.onChange}
+                        class="form-control form-input text-light form-control-lg"
+
                       />
                     </div>
                   </div>
-                  <FormGroup
+                  {/* <FormGroup
                     inputType="date"
                     label="Date of Birth"
                     name="dateOfBirth"
+                    id="dateOfBirth"
                     placeholder="dd/mm/yyyy"
+                    onChange={this.onChange}
                   />
                   <FormGroup
                     inputType="number"
                     label="License Number"
                     name="licenseNo"
+                    id="licenseNo"
                     placeholder="Enter your License number"
-                  />
-                  {/* Delete this form group if getting payment detail is not
-                  necessary */}
-                  <FormGroup
-                    inputType="text"
-                    label="Payment Detail"
-                    name="paymentDetail"
-                    placeholder="Enter your payment detail"
-                  />
-                  {/* //////////////// */}
+                    onChange={this.onChange}
+                  /> */}
                 </div>
               </div>
               <RightArrowBtn />
@@ -130,4 +158,12 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.error
+})
+
+export default connect(
+  mapStateToProps,
+  { register, clearErrors }
+)(Signup);

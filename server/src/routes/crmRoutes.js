@@ -34,6 +34,9 @@ const routes = (app) => {
     
   app.route('/newUser')
     .post(addNewUser)
+
+  app.route('/authUser')
+    .post(loginUser)
     
 
 }
