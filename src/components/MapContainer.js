@@ -14,11 +14,7 @@ class MapContainer extends Component {
     showingInfoWindow: true,
     activeMarker: {},
     selectedPlace: {},
-    cars: [],
-    userLocation: {
-      lat: 0,
-      lng: 0
-    }
+    cars: []
   };
 
   componentWillMount() {
@@ -51,6 +47,7 @@ class MapContainer extends Component {
         google={this.props.google}
       >
         {markers}
+        {this.displayUserMaker()}
         <Marker onClick={this.onMarkerClick} name={"Your location"} />
         <InfoWindow
           marker={this.state.activeMarker}
@@ -66,9 +63,9 @@ class MapContainer extends Component {
   }
 
   displayUserMaker = () => {
-    if (this.state.userLocation) {
-      console.log("LAT: " + this.state.userLocation.lat);
-    }
+    // if (this.props.userLocation) {
+    //   console.log("LAT: " + this.state.userLocation.lat);
+    // }
   };
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -93,7 +90,8 @@ MapContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  cars: state.cars.items
+  cars: state.cars.items,
+  userLocation: state.location.userLocation
 });
 
 export default connect(
