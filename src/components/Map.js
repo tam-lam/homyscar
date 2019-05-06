@@ -18,20 +18,19 @@ export class CurrentLocation extends React.Component {
         <div style={style} ref="map">
           Loading map...
         </div>
-        {this.saveUserLocation()}
         {this.renderChildren()}
       </div>
     );
   }
-  saveUserLocation = () => {
-    var { lat, lng } = this.props.initialCenter;
+  // saveUserLocation = () => {
+  //   var { lat, lng } = this.props.initialCenter;
 
-    if (this.state.currentLocation) {
-      lat = this.state.currentLocation.lat;
-      lng = this.state.currentLocation.lng;
-    }
-    this.props.saveUserLocation(lat, lng);
-  };
+  //   if (this.state.currentLocation) {
+  //     lat = this.state.currentLocation.lat;
+  //     lng = this.state.currentLocation.lng;
+  //   }
+  //   this.props.saveUserLocation(lat, lng);
+  // };
   constructor(props) {
     super(props);
 
@@ -81,6 +80,7 @@ export class CurrentLocation extends React.Component {
               lng: coords.longitude
             }
           });
+          this.props.saveUserLocation(coords.latitude, coords.longitude);
 
           // send current location to server
         });
@@ -98,9 +98,9 @@ export class CurrentLocation extends React.Component {
 
       // reference to the actual DOM element
       const node = ReactDOM.findDOMNode(mapRef);
-
       let { zoom } = this.props;
       const { lat, lng } = this.state.currentLocation;
+
       const center = new maps.LatLng(lat, lng);
       const mapConfig = Object.assign(
         {},
