@@ -72,8 +72,6 @@ export class CurrentLocation extends React.Component {
             }
           });
           this.props.saveUserLocation(coords.latitude, coords.longitude);
-
-          // send current location to server
         });
       }
     }

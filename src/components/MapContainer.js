@@ -66,7 +66,6 @@ class MapContainer extends Component {
     if (!isEmpty(this.props.userLocation)) {
       var { lat, lng } = this.props.userLocation;
       if (lat !== 0 && lng !== 0) {
-        console.log("displaying marker");
         return (
           <Marker
             position={{
