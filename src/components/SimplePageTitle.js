@@ -4,7 +4,7 @@ import icon from "../images/icon-white.png";
 class SimplePageTitle extends Component {
   showIcon = () => {
     if (this.props.doShowIcon) {
-      return <img src={icon} class="img-thumbnail" alt="thumbnail" />;
+      return <img src={icon} className="img-thumbnail" alt="thumbnail" />;
     }
   };
   render() {

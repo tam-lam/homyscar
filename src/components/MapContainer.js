@@ -8,7 +8,8 @@ import {
   saveSelectedCarDistanceInStore,
   saveSelectedCarInStore
 } from "../store/actions/carActions";
-
+import { isEmpty } from "../util/validationHelpers";
+import { saveUserLocation } from "../store/actions/locationActions";
 class MapContainer extends Component {
   state = {
     showingInfoWindow: true,
@@ -41,10 +42,13 @@ class MapContainer extends Component {
     ));
 
     return (
-      <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
+      <CurrentLocation
+        centerAroundCurrentLocation
+        saveUserLocation={this.props.saveUserLocation}
+        google={this.props.google}
+      >
         {markers}
-
-        <Marker onClick={this.onMarkerClick} name={"current location"} />
+        {this.displayUserMaker()}
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
@@ -58,6 +62,23 @@ class MapContainer extends Component {
     );
   }
 
+  displayUserMaker = () => {
+    if (!isEmpty(this.props.userLocation)) {
+      var { lat, lng } = this.props.userLocation;
+      if (lat !== 0 && lng !== 0) {
+        return (
+          <Marker
+            position={{
+              lat: lat,
+              lng: lng
+            }}
+            onClick={this.onMarkerClick}
+            name={"Your location"}
+          />
+        );
+      }
+    }
+  };
   onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
@@ -81,12 +102,18 @@ MapContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  cars: state.cars.items
+  cars: state.cars.items,
+  userLocation: state.location.userLocation
 });
 
 export default connect(
   mapStateToProps,
-  { fetchCarsWithDist, saveSelectedCarDistanceInStore, saveSelectedCarInStore }
+  {
+    fetchCarsWithDist,
+    saveSelectedCarDistanceInStore,
+    saveSelectedCarInStore,
+    saveUserLocation
+  }
 )(
   GoogleApiWrapper({
     apiKey: "AIzaSyDEFtWHf9PNwDPk74kYTMLpYzDg8WB7n7Y"
