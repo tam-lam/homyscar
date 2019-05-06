@@ -8,6 +8,7 @@ import {
   saveSelectedCarDistanceInStore,
   saveSelectedCarInStore
 } from "../store/actions/carActions";
+import { isEmpty } from "../util/validationHelpers";
 import { saveUserLocation } from "../store/actions/locationActions";
 class MapContainer extends Component {
   state = {
@@ -48,7 +49,6 @@ class MapContainer extends Component {
       >
         {markers}
         {this.displayUserMaker()}
-        <Marker onClick={this.onMarkerClick} name={"Your location"} />
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
@@ -63,9 +63,22 @@ class MapContainer extends Component {
   }
 
   displayUserMaker = () => {
-    // if (this.props.userLocation) {
-    //   console.log("LAT: " + this.state.userLocation.lat);
-    // }
+    if (!isEmpty(this.props.userLocation)) {
+      var { lat, lng } = this.props.userLocation;
+      if (lat !== 0 && lng !== 0) {
+        console.log("displaying marker");
+        return (
+          <Marker
+            position={{
+              lat: lat,
+              lng: lng
+            }}
+            onClick={this.onMarkerClick}
+            name={"Your location"}
+          />
+        );
+      }
+    }
   };
   onMarkerClick = (props, marker, e) =>
     this.setState({

@@ -22,15 +22,6 @@ export class CurrentLocation extends React.Component {
       </div>
     );
   }
-  // saveUserLocation = () => {
-  //   var { lat, lng } = this.props.initialCenter;
-
-  //   if (this.state.currentLocation) {
-  //     lat = this.state.currentLocation.lat;
-  //     lng = this.state.currentLocation.lng;
-  //   }
-  //   this.props.saveUserLocation(lat, lng);
-  // };
   constructor(props) {
     super(props);
 
