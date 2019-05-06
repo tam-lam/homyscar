@@ -18,11 +18,22 @@ export class CurrentLocation extends React.Component {
         <div style={style} ref="map">
           Loading map...
         </div>
+        {this.sendUserLocationToProps()}
         {this.renderChildren()}
       </div>
     );
   }
+  sendUserLocationToProps = () => {
+    var { lat, lng } = this.props.initialCenter;
+    var { currLat, currLng } = { lat, lng };
 
+    if (this.state.currentLocation) {
+      lat = this.state.currentLocation.lat;
+      lng = this.state.currentLocation.lng;
+    }
+    console.log(currLat);
+    this.props.sendUserLocationToProps(lat, lng);
+  };
   constructor(props) {
     super(props);
 
@@ -59,6 +70,7 @@ export class CurrentLocation extends React.Component {
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
           const coords = pos.coords;
+
           //send location values to back end server
           axios.post("http://localhost:3001/setlocation", {
             lat: coords.latitude,
@@ -124,8 +136,8 @@ export default CurrentLocation;
 CurrentLocation.defaultProps = {
   zoom: 13,
   initialCenter: {
-    lat: -1,
-    lng: 1
+    lat: 0,
+    lng: 0
   },
   centerAroundCurrentLocation: false,
   visible: true
