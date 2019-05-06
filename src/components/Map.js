@@ -18,21 +18,19 @@ export class CurrentLocation extends React.Component {
         <div style={style} ref="map">
           Loading map...
         </div>
-        {this.sendUserLocationToProps()}
+        {this.saveUserLocation()}
         {this.renderChildren()}
       </div>
     );
   }
-  sendUserLocationToProps = () => {
+  saveUserLocation = () => {
     var { lat, lng } = this.props.initialCenter;
-    var { currLat, currLng } = { lat, lng };
 
     if (this.state.currentLocation) {
       lat = this.state.currentLocation.lat;
       lng = this.state.currentLocation.lng;
     }
-    console.log(currLat);
-    this.props.sendUserLocationToProps(lat, lng);
+    this.props.saveUserLocation(lat, lng);
   };
   constructor(props) {
     super(props);
