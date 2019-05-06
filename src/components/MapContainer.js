@@ -41,7 +41,11 @@ class MapContainer extends Component {
     ));
 
     return (
-      <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
+      <CurrentLocation
+        centerAroundCurrentLocation
+        sendUserLocationToProps={this.sendUserLocationToProps}
+        google={this.props.google}
+      >
         {markers}
 
         <Marker onClick={this.onMarkerClick} name={"current location"} />
@@ -57,7 +61,9 @@ class MapContainer extends Component {
       </CurrentLocation>
     );
   }
-
+  sendUserLocationToProps = (iniLat, iniLng) => {
+    console.log("LAT+ LNG" + iniLat + " " + iniLng);
+  };
   onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
