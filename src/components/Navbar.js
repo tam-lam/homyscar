@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import icon from "../images/icon-black.png";
-import { connect } from 'react-redux';
-import { logout } from '../store/actions/authActions'
-import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import { logout } from "../store/actions/authActions";
+import PropTypes from "prop-types";
 
 class NavBar extends Component {
   static propTypes = {
@@ -11,6 +11,7 @@ class NavBar extends Component {
   };
 
   render() {
+    console.log("ISAUTHENTICATED: " + this.props.isAuthenticated);
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
@@ -60,12 +61,7 @@ class NavBar extends Component {
               <Link className="nav-item nav-link" to="/signup">
                 SIGN UP
               </Link>
-              <h2 className="d-none d-lg-block my-h2">
-                &nbsp;&nbsp;/&nbsp;&nbsp;
-              </h2>
-              <Link className="nav-item nav-link" onClick={this.props.logout} to="/">
-                LOGOUT
-              </Link>
+              {this.displayAuthLink()}
             </div>
           </div>
         </div>
@@ -73,5 +69,23 @@ class NavBar extends Component {
     );
   }
 }
-
-export default connect(null, { logout })(NavBar);
+const displayAuthLink = isAuthenticated => {
+  if (isAuthenticated) {
+    return (
+      <React.Fragment>
+        <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+        <Link className="nav-item nav-link" onClick={this.props.logout} to="/">
+          {" "}
+          LOGOUT
+        </Link>
+      </React.Fragment>
+    );
+  }
+};
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+export default connect(
+  mapStateToProps,
+  { logout }
+)(NavBar);
