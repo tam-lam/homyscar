@@ -12,6 +12,7 @@ describe('Creating users', () => {
     it('Creates a user', (done) => {
         //assertion is not included in mocha so 
         //require assert which was installed along with mocha
+        
         const user = new User({ username: 'testUser2' , email: "testing2@example.com" , password: "uniquepassword123"});
         user.save(function(err) {
                 if (err) done(err);
