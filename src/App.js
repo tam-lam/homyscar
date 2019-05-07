@@ -11,6 +11,7 @@ import Signin from "./pages/Signin";
 import Checkout from "./pages/Checkout";
 import Signup from "./pages/Signup";
 import Return from "./pages/Return";
+import User from "./pages/User";
 
 class App extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class App extends Component {
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/return" component={Return} />
+            <Route exact path ="/user" component={User} />
           </div>
         </Router>
       </Provider>
