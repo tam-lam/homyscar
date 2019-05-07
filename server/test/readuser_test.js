@@ -1,5 +1,6 @@
 // const assert = require('assert');
 // const User = require('../src/models/userModel');
+// const db = require('./test_helper')
 
 // let user;
 // beforeEach(  (done) => {

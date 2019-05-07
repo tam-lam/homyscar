@@ -22,3 +22,5 @@ beforeEach((done) => {
 
            }); 
 });
+
+module.exports = { db};
