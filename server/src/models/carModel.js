@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
-
+//import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-export const CarSchema = new Schema({
+const CarSchema = new Schema({
 
   rego: {
     type: String,
@@ -62,4 +62,6 @@ export const CarSchema = new Schema({
       updated_at: "updated_at"
     }
 })
+
+ module.exports = mongoose.model('Car', CarSchema);
   
