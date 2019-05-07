@@ -1,12 +1,16 @@
-import mongoose from 'mongoose';
-import emailValidator from 'email-validator';
-import bcrypt from 'bcrypt';
+// import mongoose from 'mongoose';
+// import emailValidator from 'email-validator';
+// import bcrypt from 'bcrypt';
+
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const emailValidator = require('email-validator');
 
 const SALT_ROUNDS = 12;
 
 const Schema = mongoose.Schema;
 
-export const UserSchema = new Schema({
+const UserSchema = new Schema({
 
     username: {
         type: String,
@@ -53,3 +57,5 @@ UserSchema.pre( 'save', async function preSave(next) {
 UserSchema.methods.comparePassword = async function comparePassword(candidate) {
     return bcrypt.compare(candidate, this.password);
 }
+
+module.exports = mongoose.model('User', UserSchema);

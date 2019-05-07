@@ -1,12 +1,14 @@
-import mongoose from 'mongoose';
-import { UserSchema } from '../models/userModel';
+// import mongoose from 'mongoose';
+// import { UserSchema } from '../models/userModel';
 
+const mongoose = require('mongoose');
+const User = require('../models/userModel');
 const express = require('express');
 const router = express.Router();
 
 const auth = require('../auth');
 
-const User = mongoose.model('User', UserSchema);
+// const User = mongoose.model('User', UserSchema);
 
 router.get('/', auth, (req, res) => {
   User.findById(req.user.id)

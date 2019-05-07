@@ -1,19 +1,19 @@
-import {
+const {
   addNewCar,
   getCars,
-} from "../controllers/carController";
+} = require("../controllers/carController");
 
-import { 
+const { 
   addNewRental,
   getRentals 
-} from "../controllers/rentalController"
+} = require("../controllers/rentalController");
 
-import { 
+const { 
   addNewUser,
   loginUser
-} from "../controllers/userController"
+} = require("../controllers/userController");
 
-import { setUserLocation , getCarsWithDistance } from "../controllers/mapController";
+const { setUserLocation , getCarsWithDistance } = require("../controllers/mapController");
 
 const routes = (app) => {
   app.route('/car')
@@ -41,4 +41,4 @@ const routes = (app) => {
 
 }
 
-export default routes;
+module.exports ={routes};

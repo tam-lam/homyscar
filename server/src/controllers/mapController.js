@@ -1,6 +1,8 @@
-import { CarSchema } from "../models/carModel";
-import mongoose from "mongoose";
-const Car = mongoose.model("Car", CarSchema);
+//import { CarSchema } from "../models/carModel";
+//import mongoose from "mongoose";
+const mongoose = require('mongoose');
+const Car = require('../models/carModel');
+
 var { promisify } = require("util");
 
 //Google Distance matrix api configs
@@ -14,7 +16,7 @@ var origins = ["Melbourne , AU"];
 var retrievedCars = [];
 var retrievedDistances = [];
 
-export const setUserLocation = (req, res) => {
+const setUserLocation = (req, res) => {
   var userLocation = req.body.lat + " , " + req.body.lng;
   origins.pop();
   origins.push(userLocation);
@@ -22,7 +24,7 @@ export const setUserLocation = (req, res) => {
   console.log("origin value is" + userLocation);
 };
 
-export async function getCarsWithDistance(req, res) {
+async function getCarsWithDistance(req, res) {
   var carAndDistanceArray = [];
 
   var carsFromDB = [];
@@ -62,7 +64,7 @@ export async function getCarsWithDistance(req, res) {
     });
 }
 
-export async function getCarsFromDB() {
+async function getCarsFromDB() {
   var carsArray = [];
   await Car.find({}, (err, car) => {
     if (err) {
@@ -75,7 +77,7 @@ export async function getCarsFromDB() {
   return carsArray;
 }
 
-export function getDestinations(databaseCars) {
+function getDestinations(databaseCars) {
   var destinationsArray = [];
   for (var i = 0; i < databaseCars.length; i++) {
     var currentCar = databaseCars[i];
@@ -85,7 +87,7 @@ export function getDestinations(databaseCars) {
   return destinationsArray;
 }
 
-export function calcDistBetweenCarsAndUser(carsFromDB, distances) {
+function calcDistBetweenCarsAndUser(carsFromDB, distances) {
   console.log(distances);
   var carAndDistArray = [];
   for (var i = 0; i < carsFromDB.length; i++) {
@@ -102,3 +104,5 @@ export function calcDistBetweenCarsAndUser(carsFromDB, distances) {
   }
   return carAndDistArray;
 }
+
+module.exports = { getCarsWithDistance , getCarsFromDB , getDestinations , calcDistBetweenCarsAndUser  };
