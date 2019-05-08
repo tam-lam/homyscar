@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import icon from "../images/icon-black.png";
-import { connect } from 'react-redux';
-import { logout } from '../store/actions/authActions'
-import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import { logout } from "../store/actions/authActions";
+import PropTypes from "prop-types";
 
 class NavBar extends Component {
   static propTypes = {
@@ -45,33 +45,54 @@ class NavBar extends Component {
               <h2 className="d-none d-lg-block my-h2">
                 &nbsp;&nbsp;/&nbsp;&nbsp;
               </h2>
-              <Link className="nav-item nav-link" to="/about">
+              <Link className="nav-item nav-link active" to="/about">
                 ABOUT
               </Link>
-              <h2 className="d-none d-lg-block my-h2">
-                &nbsp;&nbsp;/&nbsp;&nbsp;
-              </h2>
-              <Link className="nav-item nav-link" to="/signin">
-                SIGN IN
-              </Link>
-              <h2 className="d-none d-lg-block my-h2">
-                &nbsp;&nbsp;/&nbsp;&nbsp;
-              </h2>
-              <Link className="nav-item nav-link" to="/signup">
-                SIGN UP
-              </Link>
-              <h2 className="d-none d-lg-block my-h2">
-                &nbsp;&nbsp;/&nbsp;&nbsp;
-              </h2>
-              <Link className="nav-item nav-link" onClick={this.props.logout} to="/">
-                LOGOUT
-              </Link>
+
+              {this.displayAuthLink(this.props.isAuthenticated)}
             </div>
           </div>
         </div>
       </nav>
     );
   }
+  displayAuthLink = isAuthenticated => {
+    if (isAuthenticated) {
+      return (
+        <React.Fragment>
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <Link
+            className="nav-item nav-link active"
+            onClick={this.props.logout}
+            to="/"
+          >
+            {" "}
+            LOGOUT
+          </Link>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          {" "}
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <Link className="nav-item nav-link active" to="/signin">
+            SIGN IN
+          </Link>
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <Link className="nav-item nav-link active" to="/signup">
+            SIGN UP
+          </Link>
+        </React.Fragment>
+      );
+    }
+  };
 }
 
-export default connect(null, { logout })(NavBar);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+export default connect(
+  mapStateToProps,
+  { logout }
+)(NavBar);
