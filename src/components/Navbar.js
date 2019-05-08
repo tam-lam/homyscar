@@ -45,7 +45,7 @@ class NavBar extends Component {
               <h2 className="d-none d-lg-block my-h2">
                 &nbsp;&nbsp;/&nbsp;&nbsp;
               </h2>
-              <Link className="nav-item nav-link" to="/about">
+              <Link className="nav-item nav-link active" to="/about">
                 ABOUT
               </Link>
 
@@ -62,7 +62,7 @@ class NavBar extends Component {
         <React.Fragment>
           <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
           <Link
-            className="nav-item nav-link"
+            className="nav-item nav-link active"
             onClick={this.props.logout}
             to="/"
           >
@@ -76,11 +76,11 @@ class NavBar extends Component {
         <React.Fragment>
           {" "}
           <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
-          <Link className="nav-item nav-link" to="/signin">
+          <Link className="nav-item nav-link active" to="/signin">
             SIGN IN
           </Link>
           <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
-          <Link className="nav-item nav-link" to="/signup">
+          <Link className="nav-item nav-link active" to="/signup">
             SIGN UP
           </Link>
         </React.Fragment>
