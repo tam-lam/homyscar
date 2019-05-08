@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SimplePageTitle from "../components/SimplePageTitle";
 import RightArrowBtn from "../components/RightArrowBtn";
 import Alert from "../components/Alert";
-import PropTypes from 'prop-types';
-import { login } from '../store/actions/authActions';
-import { clearErrors } from '../store/actions/errorActions';
+import PropTypes from "prop-types";
+import { login } from "../store/actions/authActions";
+import { clearErrors } from "../store/actions/errorActions";
 
 class Signin extends Component {
   state = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     msg: null
   };
 
@@ -29,17 +29,16 @@ class Signin extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    
+
     const { email, password } = this.state;
 
     const user = {
       email,
       password
-    }
+    };
 
     // Attemp to login
-    this.props.login(user)
-
+    this.props.login(user);
   };
 
   componentWillUnmount() {
@@ -50,20 +49,18 @@ class Signin extends Component {
     const { error, isAuthenticated } = this.props;
 
     if (error !== prevProps.error) {
-      if (error.id === 'LOGIN_FAIL') {
-        this.setState({ msg: error.msg.msg })
+      if (error.id === "LOGIN_FAIL") {
+        this.setState({ msg: error.msg.msg });
       } else {
-        this.setState({ msg: null })
+        this.setState({ msg: null });
       }
     }
 
     // Checking is user is authenticated
     if (isAuthenticated) {
-      this.props.history.push('/')
+      this.props.history.push("/");
     }
-
   }
-
 
   render() {
     return (
@@ -77,18 +74,18 @@ class Signin extends Component {
         <form onSubmit={this.onSubmit}>
           <div className="container text-light">
             <div className="signin-form-container">
-              {this.props.error.id === 'LOGIN_FAIL' ? (
+              {this.props.error.id === "LOGIN_FAIL" ? (
                 <Alert errorMessage={this.props.error.msg.msg} />
               ) : null}
               <label className="font-weight-bold text-light form-label shadow-lg">
                 Email
               </label>
               <input
-                type='email'
-                name='email'
-                id='email'
-                placeholder='Email'
-                className='mb-3'
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                className="mb-3"
                 onChange={this.onChange}
                 class="form-control form-input text-light form-control-lg"
               />
@@ -96,11 +93,11 @@ class Signin extends Component {
                 Password
               </label>
               <input
-                type='password'
-                name='password'
-                id='password'
-                placeholder='Password'
-                className='mb-3'
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                className="mb-3"
                 onChange={this.onChange}
                 class="form-control form-input text-light form-control-lg"
               />
@@ -118,9 +115,9 @@ class Signin extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error
-})
+});
 
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   { login, clearErrors }
 )(Signin);

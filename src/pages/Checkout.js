@@ -88,7 +88,7 @@ class Checkout extends Component {
 const mapStateToProps = state => ({
   car: state.cars.selectedCar,
   distance: state.cars.selectedCarDistance,
-  isUserSignedIn: false
+  isUserSignedIn: state.auth.isAuthenticated
 });
 export default connect(
   mapStateToProps,
