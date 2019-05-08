@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { returnErrors } from './errorActions'
+import axios from "axios";
+import { returnErrors } from "./errorActions";
 
 import {
   USER_LOADED,
@@ -10,40 +10,45 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL
-} from './types';
+} from "./types";
 
 // Check token and load user
 export const loadUser = () => (dispatch, getState) => {
   // User loading
   dispatch({ type: USER_LOADING });
 
-  axios.get('http://localhost:3001/getUser', tokenConfig(getState))
-    .then(res => dispatch({
-      type: USER_LOADED,
-      payload: res.data
-    }))
+  axios
+    .get("http://localhost:3001/getUser", tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      })
+    )
     .catch(err => {
       if (err.response && err.response.data)
-        dispatch(returnErrors(err.response.data, err.response.status, 'LOAD_FAILED'));
+        dispatch(
+          returnErrors(err.response.data, err.response.status, "LOAD_FAILED")
+        );
       dispatch({
         type: AUTH_ERROR
       });
     });
-}
+};
 
 // Register User
 export const register = ({ username, email, password }) => dispatch => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
-  }
+  };
 
   // Request Body
   const body = JSON.stringify({ username, email, password });
 
   axios
-    .post('http://localhost:3001/newUser', body, config)
+    .post("http://localhost:3001/newUser", body, config)
     .then(res =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -52,26 +57,28 @@ export const register = ({ username, email, password }) => dispatch => {
     )
     .catch(err => {
       if (err.response && err.response.data)
-        dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
+        dispatch(
+          returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
+        );
       dispatch({
         type: REGISTER_FAIL
       });
     });
-}
+};
 
 // Login user
 export const login = ({ email, password }) => dispatch => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
-  }
+  };
 
   // Request Body
-  const body = JSON.stringify({email, password });
+  const body = JSON.stringify({ email, password });
 
   axios
-    .post('http://localhost:3001/authUser', body, config)
+    .post("http://localhost:3001/authUser", body, config)
     .then(res =>
       dispatch({
         type: LOGIN_SUCCESS,
@@ -80,19 +87,21 @@ export const login = ({ email, password }) => dispatch => {
     )
     .catch(err => {
       if (err.response && err.response.data)
-        dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'));
+        dispatch(
+          returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+        );
       dispatch({
         type: LOGIN_FAIL
       });
     });
-}
+};
 
 // Logout user
 export const logout = () => {
   return {
     type: LOGOUT_SUCCESS
-  }
-}
+  };
+};
 
 // Setup config/headers and token
 export const tokenConfig = getState => {
@@ -104,12 +113,12 @@ export const tokenConfig = getState => {
     headers: {
       "Content-type": "application/json"
     }
-  }
+  };
 
   // If token, add to headers
   if (token) {
-    config.headers['x-auth-token'] = token;
+    config.headers["x-auth-token"] = token;
   }
 
   return config;
-}
+};

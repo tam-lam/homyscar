@@ -11,7 +11,6 @@ class NavBar extends Component {
   };
 
   render() {
-    console.log("ISAUTHENTICATED: " + this.props.isAuthenticated);
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
@@ -49,39 +48,47 @@ class NavBar extends Component {
               <Link className="nav-item nav-link" to="/about">
                 ABOUT
               </Link>
-              <h2 className="d-none d-lg-block my-h2">
-                &nbsp;&nbsp;/&nbsp;&nbsp;
-              </h2>
-              <Link className="nav-item nav-link" to="/signin">
-                SIGN IN
-              </Link>
-              <h2 className="d-none d-lg-block my-h2">
-                &nbsp;&nbsp;/&nbsp;&nbsp;
-              </h2>
-              <Link className="nav-item nav-link" to="/signup">
-                SIGN UP
-              </Link>
-              {this.displayAuthLink()}
+
+              {this.displayAuthLink(this.props.isAuthenticated)}
             </div>
           </div>
         </div>
       </nav>
     );
   }
-}
-const displayAuthLink = isAuthenticated => {
-  if (isAuthenticated) {
-    return (
-      <React.Fragment>
-        <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
-        <Link className="nav-item nav-link" onClick={this.props.logout} to="/">
+  displayAuthLink = isAuthenticated => {
+    if (isAuthenticated) {
+      return (
+        <React.Fragment>
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <Link
+            className="nav-item nav-link"
+            onClick={this.props.logout}
+            to="/"
+          >
+            {" "}
+            LOGOUT
+          </Link>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
           {" "}
-          LOGOUT
-        </Link>
-      </React.Fragment>
-    );
-  }
-};
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <Link className="nav-item nav-link" to="/signin">
+            SIGN IN
+          </Link>
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <Link className="nav-item nav-link" to="/signup">
+            SIGN UP
+          </Link>
+        </React.Fragment>
+      );
+    }
+  };
+}
+
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
