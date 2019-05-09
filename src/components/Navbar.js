@@ -61,6 +61,10 @@ class NavBar extends Component {
       return (
         <React.Fragment>
           <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <Link className="nav-item nav-link active" to="/user">
+            MY ACCOUNT
+          </Link>
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
           <Link
             className="nav-item nav-link active"
             onClick={this.props.logout}

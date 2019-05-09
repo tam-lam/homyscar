@@ -7,9 +7,9 @@ import { isEmpty } from "../util/validationHelpers";
 import SummaryContainer from "../components/SummaryContainer";
 import SimplePageTitle from "../components/SimplePageTitle";
 class Checkout extends Component {
-  // signinOnClick = () => {
-  //   this.setState({ isUserSignedIn: true });
-  // };
+  componentDidMount() {
+    const { car } = this.props.location.state;
+  }
   displayTitle = () => {
     var subtitle = isEmpty(this.props.car)
       ? "Please select a vehicle before checkout."
