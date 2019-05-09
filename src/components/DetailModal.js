@@ -68,7 +68,10 @@ class DetailModal extends Component {
             <Link
               className="btn btn-block rent-btn bg-success text-light shadow-lg"
               to={{
-                pathname: "/checkout"
+                pathname: "/checkout",
+                state: {
+                  car: this.props.car
+                }
               }}
             >
               Rent now
