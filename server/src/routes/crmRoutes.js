@@ -1,19 +1,16 @@
-const {
+var {
   addNewCar,
   getCars,
 } = require("../controllers/carController");
 
-const { 
-  addNewRental,
-  getRentals 
-} = require("../controllers/rentalController");
+var {addNewRental , getRentals}  = require("../controllers/rentalController");
 
-const { 
+var { 
   addNewUser,
   loginUser
 } = require("../controllers/userController");
 
-const { setUserLocation , getCarsWithDistance } = require("../controllers/mapController");
+var  {setUserLocation , getCarsWithDistance }  = require("../controllers/mapController");
 
 const routes = (app) => {
   app.route('/car')
@@ -25,7 +22,8 @@ const routes = (app) => {
     
 
   app.route('/getcarswithdistance')
-  .get(getCarsWithDistance)
+  .get(getCarsWithDistance); 
+  
     
     
   app.route('/rental')

@@ -14,7 +14,7 @@ mongoose.connection
         console.warn('Error : ',error);
     });
 //Called hooks which runs before something.
-beforeEach((done) => {
+before((done) => {
         mongoose.connection.collections.users.drop(() => {
                 //this function runs after the drop is completed
                 console.log("connect to server");

@@ -8,7 +8,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const routes = require('./src/routes/crmRoutes');
+const {routes} = require('./src/routes/crmRoutes');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
