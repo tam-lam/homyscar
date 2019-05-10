@@ -24,7 +24,7 @@ const setUserLocation = (req, res) => {
   console.log("origin value is" + userLocation);
 };
 
-async function getCarsWithDistance(req, res) {
+const  getCarsWithDistance = (req, res) => {
   var carAndDistanceArray = [];
 
   var carsFromDB = [];
@@ -105,4 +105,4 @@ function calcDistBetweenCarsAndUser(carsFromDB, distances) {
   return carAndDistArray;
 }
 
-module.exports = { getCarsWithDistance , getCarsFromDB , getDestinations , calcDistBetweenCarsAndUser  };
+module.exports = { setUserLocation , getCarsWithDistance   };
