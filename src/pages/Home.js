@@ -7,6 +7,7 @@ import DetailModal from "../components/DetailModal";
 import CarList from "../components/CarList";
 import { isEmpty } from "../util/validationHelpers";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Home extends Component {
   constructor(props) {
@@ -16,8 +17,7 @@ class Home extends Component {
     };
   }
   displayAlert = () => {
-    var checkoutCar = JSON.parse(sessionStorage.getItem("checkoutCar"));
-    if (!isEmpty(checkoutCar)) {
+    if (!isEmpty(this.props.checkoutCar)) {
       return (
         <div
           className="alert alert-light text-dark checkout-alert shadow-lg"
@@ -77,5 +77,11 @@ class Home extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  checkoutCar: state.cars.checkoutCar
+});
 
-export default Home;
+export default connect(
+  mapStateToProps,
+  {}
+)(Home);
