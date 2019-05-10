@@ -6,23 +6,24 @@ import { connect } from "react-redux";
 import { isEmpty } from "../util/validationHelpers";
 import SummaryContainer from "../components/SummaryContainer";
 import SimplePageTitle from "../components/SimplePageTitle";
+import PropTypes from "prop-types";
+
 import {
   saveSelectedCarInStore,
   saveSelectedCarDistanceInStore
 } from "../store/actions/carActions";
-// import { saveCheckoutCar } from "../store/actions/carActions";
+import { saveCheckoutCar } from "../store/actions/carActions";
 
 class Checkout extends Component {
   componentWillMount() {
-    // const { car } = this.props.location.state;
-    // this.props.saveCheckoutCar(this.props.car);
-    var checkoutCar = JSON.parse(localStorage.getItem("checkoutCar"));
-    if (isEmpty(this.props.car) && !isEmpty(checkoutCar)) {
-      this.props.saveSelectedCarInStore(checkoutCar);
+    if (isEmpty(this.props.car) && !isEmpty(this.props.checkoutCar)) {
+      this.props.saveSelectedCarInStore(this.props.checkoutCar);
+      this.props.saveSelectedCarDistanceInStore(this.props.checkoutDistance);
     } else {
-      localStorage.setItem("checkoutCar", JSON.stringify(this.props.car));
+      if (!isEmpty(this.props.car)) {
+        this.props.saveCheckoutCar(this.props.car, this.props.distance);
+      }
     }
-    // console.log("this car" + checkoutCar.make);
   }
   displayTitle = () => {
     var subtitle = isEmpty(this.props.car)
@@ -99,12 +100,19 @@ class Checkout extends Component {
     );
   }
 }
+Checkout.propTypes = {
+  car: PropTypes.array.isRequired,
+  saveSelectedCarInStore: PropTypes.func.isRequired,
+  saveCheckoutCar: PropTypes.func.isRequired
+};
 const mapStateToProps = state => ({
   car: state.cars.selectedCar,
+  checkoutCar: state.cars.checkoutCar,
+  checkoutDistance: state.cars.checkoutDistance,
   distance: state.cars.selectedCarDistance,
   isUserSignedIn: state.auth.isAuthenticated
 });
 export default connect(
   mapStateToProps,
-  { saveSelectedCarInStore }
+  { saveSelectedCarInStore, saveCheckoutCar, saveSelectedCarDistanceInStore }
 )(Checkout);

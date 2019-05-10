@@ -9,8 +9,10 @@ import {
 const initialState = {
   items: [],
   selectedCar: {},
-  selectedCarDistance: "",
-  doErrorExist: false
+  selectedDistance: "",
+  doErrorExist: false,
+  checkoutCar: JSON.parse(sessionStorage.getItem("checkoutCar")),
+  checkoutDistance: sessionStorage.getItem("checkoutDistance")
 };
 
 export default function(state = initialState, action) {
@@ -37,7 +39,9 @@ export default function(state = initialState, action) {
       };
     case SAVE_CHECKOUT_CAR:
       return {
-        ...state
+        ...state,
+        checkoutCar: JSON.parse(sessionStorage.getItem("checkoutCar")),
+        selectedDistance: sessionStorage.getItem("selectedDistance")
       };
     default:
       return state;

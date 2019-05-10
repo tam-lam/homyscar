@@ -24,12 +24,13 @@ export const saveSelectedCarInStore = selectedCar => dispatch => {
   selectedCar = JSON.parse(JSON.stringify(selectedCar));
   dispatch({ type: SAVE_SELECTED_CAR_IN_STORE, payload: selectedCar });
 };
-// export const saveCheckoutCar = checkoutCar => dispatch => {
-//   console.log("Performing action");
-//   localStorage.setItem("checkoutCar", JSON.stringify(this.props.car));
+export const saveCheckoutCar = (checkoutCar, checkoutDistance) => dispatch => {
+  sessionStorage.setItem("checkoutCar", JSON.stringify(checkoutCar));
+  console.log("saveCheckoutCar: " + checkoutDistance);
+  sessionStorage.setItem("checkoutDistance", checkoutDistance);
 
-//   dispatch({ type: SAVE_CHECKOUT_CAR });
-// };
+  dispatch({ type: SAVE_CHECKOUT_CAR });
+};
 export const saveSelectedCarDistanceInStore = distance => dispatch => {
   dispatch({ type: SAVE_SELECTED_CAR_DISTANCE_IN_STORE, payload: distance });
 };

@@ -5,9 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import MapContainer from "../components/MapContainer";
 import DetailModal from "../components/DetailModal";
 import CarList from "../components/CarList";
-import Alert from "../components/Alert";
 import { isEmpty } from "../util/validationHelpers";
-import warningIcon from "../images/warning.png";
 import { Link } from "react-router-dom";
 
 class Home extends Component {
@@ -18,7 +16,7 @@ class Home extends Component {
     };
   }
   displayAlert = () => {
-    var checkoutCar = JSON.parse(localStorage.getItem("checkoutCar"));
+    var checkoutCar = JSON.parse(sessionStorage.getItem("checkoutCar"));
     if (!isEmpty(checkoutCar)) {
       return (
         <div
