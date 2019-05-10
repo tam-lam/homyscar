@@ -35,7 +35,8 @@ class Home extends Component {
                 to="/checkout"
               >
                 Checkout
-              </Link>
+              </Link>{" "}
+              page
             </div>
           </div>
         </div>
