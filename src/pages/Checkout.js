@@ -6,15 +6,23 @@ import { connect } from "react-redux";
 import { isEmpty } from "../util/validationHelpers";
 import SummaryContainer from "../components/SummaryContainer";
 import SimplePageTitle from "../components/SimplePageTitle";
+import {
+  saveSelectedCarInStore,
+  saveSelectedCarDistanceInStore
+} from "../store/actions/carActions";
 // import { saveCheckoutCar } from "../store/actions/carActions";
 
 class Checkout extends Component {
-  componentDidMount() {
+  componentWillMount() {
     // const { car } = this.props.location.state;
     // this.props.saveCheckoutCar(this.props.car);
-    localStorage.setItem("checkoutCar", JSON.stringify(this.props.car));
-    var thisCar = JSON.parse(localStorage.getItem("checkoutCar"));
-    console.log("this car" + thisCar.make);
+    var checkoutCar = JSON.parse(localStorage.getItem("checkoutCar"));
+    if (isEmpty(this.props.car) && !isEmpty(checkoutCar)) {
+      this.props.saveSelectedCarInStore(checkoutCar);
+    } else {
+      localStorage.setItem("checkoutCar", JSON.stringify(this.props.car));
+    }
+    // console.log("this car" + checkoutCar.make);
   }
   displayTitle = () => {
     var subtitle = isEmpty(this.props.car)
@@ -81,7 +89,7 @@ class Checkout extends Component {
   };
   render() {
     return (
-      <React.Fragment className="text-center">
+      <React.Fragment className="text-center" key={this.props.car._id}>
         <NavBar />
         {this.displayTitle()}
         {this.displayAuthenticationBtns()}
@@ -98,5 +106,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  {}
+  { saveSelectedCarInStore }
 )(Checkout);
