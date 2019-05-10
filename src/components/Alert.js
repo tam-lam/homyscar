@@ -3,7 +3,10 @@ import warningIcon from "../images/warning.png";
 class Alert extends Component {
   render() {
     return (
-      <div className="alert alert-light text-dark shadow-lg" role="alert">
+      <div
+        className="alert alert-light warning-alert text-dark shadow-lg"
+        role="alert"
+      >
         <div className="row">
           <div className="col-1 text-center">
             <img

@@ -6,9 +6,15 @@ import { connect } from "react-redux";
 import { isEmpty } from "../util/validationHelpers";
 import SummaryContainer from "../components/SummaryContainer";
 import SimplePageTitle from "../components/SimplePageTitle";
+// import { saveCheckoutCar } from "../store/actions/carActions";
+
 class Checkout extends Component {
   componentDidMount() {
-    const { car } = this.props.location.state;
+    // const { car } = this.props.location.state;
+    // this.props.saveCheckoutCar(this.props.car);
+    localStorage.setItem("checkoutCar", JSON.stringify(this.props.car));
+    var thisCar = JSON.parse(localStorage.getItem("checkoutCar"));
+    console.log("this car" + thisCar.make);
   }
   displayTitle = () => {
     var subtitle = isEmpty(this.props.car)

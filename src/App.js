@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
-import { loadUser } from './store/actions/authActions'
+import { loadUser } from "./store/actions/authActions";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import About from "./pages/About";
@@ -29,7 +29,7 @@ class App extends Component {
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/return" component={Return} />
-            <Route exact path ="/user" component={User} />
+            <Route exact path="/user" component={User} />
           </div>
         </Router>
       </Provider>
