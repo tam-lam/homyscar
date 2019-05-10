@@ -3,7 +3,8 @@ import {
   SAVE_SELECTED_CAR_IN_STORE,
   SAVE_SELECTED_CAR_DISTANCE_IN_STORE,
   FETCH_ERROR_OCCUR,
-  SAVE_CHECKOUT_CAR
+  SAVE_CHECKOUT_CAR,
+  DELETE_CHECKOUT_CAR
 } from "../actions/types";
 
 const initialState = {
@@ -38,6 +39,12 @@ export default function(state = initialState, action) {
         doErrorExist: action.payload
       };
     case SAVE_CHECKOUT_CAR:
+      return {
+        ...state,
+        checkoutCar: JSON.parse(sessionStorage.getItem("checkoutCar")),
+        selectedDistance: sessionStorage.getItem("selectedDistance")
+      };
+    case DELETE_CHECKOUT_CAR:
       return {
         ...state,
         checkoutCar: JSON.parse(sessionStorage.getItem("checkoutCar")),

@@ -3,7 +3,8 @@ import {
   SAVE_SELECTED_CAR_IN_STORE,
   SAVE_SELECTED_CAR_DISTANCE_IN_STORE,
   FETCH_ERROR_OCCUR,
-  SAVE_CHECKOUT_CAR
+  SAVE_CHECKOUT_CAR,
+  DELETE_CHECKOUT_CAR
 } from "./types";
 
 export const fetchCarsWithDist = () => dispatch => {
@@ -26,11 +27,15 @@ export const saveSelectedCarInStore = selectedCar => dispatch => {
 };
 export const saveCheckoutCar = (checkoutCar, checkoutDistance) => dispatch => {
   sessionStorage.setItem("checkoutCar", JSON.stringify(checkoutCar));
-  console.log("saveCheckoutCar: " + checkoutDistance);
   sessionStorage.setItem("checkoutDistance", checkoutDistance);
-
   dispatch({ type: SAVE_CHECKOUT_CAR });
 };
 export const saveSelectedCarDistanceInStore = distance => dispatch => {
   dispatch({ type: SAVE_SELECTED_CAR_DISTANCE_IN_STORE, payload: distance });
+};
+export const deleteCheckoutCar = () => dispatch => {
+  console.log("called");
+  sessionStorage.removeItem("checkoutCar");
+  sessionStorage.removeItem("checkoutDistance");
+  dispatch({ type: DELETE_CHECKOUT_CAR });
 };

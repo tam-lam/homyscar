@@ -10,7 +10,8 @@ import PropTypes from "prop-types";
 
 import {
   saveSelectedCarInStore,
-  saveSelectedCarDistanceInStore
+  saveSelectedCarDistanceInStore,
+  deleteCheckoutCar
 } from "../store/actions/carActions";
 import { saveCheckoutCar } from "../store/actions/carActions";
 
@@ -75,10 +76,26 @@ class Checkout extends Component {
             </div>
             <SummaryContainer />
           </div>
+          <div className="row cancel-button bg-danger rounded-bottom">
+            {" "}
+            <button
+              type="button"
+              className="btn btn-block btn-danger"
+              onClick={() => this.cancelOnClick()}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       );
     }
   };
+  cancelOnClick = () => {
+    this.props.deleteCheckoutCar();
+    this.props.history.push("/");
+    console.log("Click");
+  };
+
   displayPayPalBtn = () => {
     if (this.props.isUserSignedIn) {
       return (
@@ -114,5 +131,10 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { saveSelectedCarInStore, saveCheckoutCar, saveSelectedCarDistanceInStore }
+  {
+    saveSelectedCarInStore,
+    saveCheckoutCar,
+    saveSelectedCarDistanceInStore,
+    deleteCheckoutCar
+  }
 )(Checkout);
