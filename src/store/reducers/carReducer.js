@@ -38,13 +38,8 @@ export default function(state = initialState, action) {
         ...state,
         doErrorExist: action.payload
       };
-    case SAVE_CHECKOUT_CAR:
-      return {
-        ...state,
-        checkoutCar: JSON.parse(sessionStorage.getItem("checkoutCar")),
-        selectedDistance: sessionStorage.getItem("selectedDistance")
-      };
     case DELETE_CHECKOUT_CAR:
+    case SAVE_CHECKOUT_CAR:
       return {
         ...state,
         checkoutCar: JSON.parse(sessionStorage.getItem("checkoutCar")),

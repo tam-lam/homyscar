@@ -4,6 +4,7 @@ import icon from "../images/icon-black.png";
 import { connect } from "react-redux";
 import { logout } from "../store/actions/authActions";
 import PropTypes from "prop-types";
+import { deleteCheckoutCar } from "../store/actions/carActions";
 
 class NavBar extends Component {
   static propTypes = {
@@ -56,6 +57,10 @@ class NavBar extends Component {
       </nav>
     );
   }
+  logoutOnClick = () => {
+    this.props.deleteCheckoutCar();
+    this.props.logout();
+  };
   displayAuthLink = isAuthenticated => {
     if (isAuthenticated) {
       return (
@@ -67,7 +72,7 @@ class NavBar extends Component {
           <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
           <Link
             className="nav-item nav-link active"
-            onClick={this.props.logout}
+            onClick={this.logoutOnClick}
             to="/"
           >
             {" "}
@@ -98,5 +103,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, deleteCheckoutCar }
 )(NavBar);

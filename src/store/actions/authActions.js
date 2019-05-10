@@ -1,6 +1,5 @@
 import axios from "axios";
 import { returnErrors } from "./errorActions";
-import { deleteCheckoutCar } from "./carActions";
 import {
   USER_LOADED,
   USER_LOADING,
@@ -97,8 +96,7 @@ export const login = ({ email, password }) => dispatch => {
 };
 
 // Logout user
-export const logout = () => dispatch => {
-  dispatch(deleteCheckoutCar());
+export const logout = () => {
   return {
     type: LOGOUT_SUCCESS
   };
