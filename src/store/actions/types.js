@@ -1,8 +1,12 @@
+//Car actions
 export const FETCH_CARS_WITH_DIST = "FETCH_CARS_WITH_DIST";
 export const SAVE_SELECTED_CAR_IN_STORE = "SAVE_SELECTED_CAR_IN_STORE";
 export const SAVE_SELECTED_CAR_DISTANCE_IN_STORE =
   "SAVE_SELECTED_CAR_DISTANCE_IN_STORE";
+export const SAVE_CHECKOUT_CAR = "SAVE_CHECKOUT_CAR";
 export const FETCH_ERROR_OCCUR = "FETCH_ERROR_OCCUR";
+
+//Auth actions
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";
@@ -13,4 +17,6 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+
+//location actions
 export const SAVE_USER_LOCATION = "SAVE_USER_LOCATION";

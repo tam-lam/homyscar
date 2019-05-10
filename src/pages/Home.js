@@ -5,6 +5,10 @@ import Jumbotron from "../components/Jumbotron";
 import MapContainer from "../components/MapContainer";
 import DetailModal from "../components/DetailModal";
 import CarList from "../components/CarList";
+import Alert from "../components/Alert";
+import { isEmpty } from "../util/validationHelpers";
+import warningIcon from "../images/warning.png";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
   constructor(props) {
@@ -13,7 +17,31 @@ class Home extends Component {
       modalShow: false
     };
   }
+  displayAlert = () => {
+    var checkoutCar = JSON.parse(localStorage.getItem("checkoutCar"));
+    if (!isEmpty(checkoutCar)) {
+      return (
+        <div
+          className="alert alert-light text-dark checkout-alert shadow-lg"
+          role="alert"
+        >
+          <div className="row">
+            <div className="col-1 text-center" />
 
+            <div className="col-10 text-dark">
+              You selected a vehicle. Please complete or cancle booking in{" "}
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to="/checkout"
+              >
+                Checkout
+              </Link>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
   render() {
     let modalClose = () => this.setState({ modalShow: false });
 
@@ -25,6 +53,8 @@ class Home extends Component {
     return (
       <React.Fragment>
         <NavBar />
+        {this.displayAlert()}
+
         <Jumbotron
           title="Rent now"
           ishomepage={true}

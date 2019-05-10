@@ -2,7 +2,8 @@ import {
   FETCH_CARS_WITH_DIST,
   SAVE_SELECTED_CAR_IN_STORE,
   SAVE_SELECTED_CAR_DISTANCE_IN_STORE,
-  FETCH_ERROR_OCCUR
+  FETCH_ERROR_OCCUR,
+  SAVE_CHECKOUT_CAR
 } from "../actions/types";
 
 const initialState = {
@@ -33,6 +34,10 @@ export default function(state = initialState, action) {
       return {
         ...state,
         doErrorExist: action.payload
+      };
+    case SAVE_CHECKOUT_CAR:
+      return {
+        ...state
       };
     default:
       return state;
