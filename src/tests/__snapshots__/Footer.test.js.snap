@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly Footer Component 1`] = `
+<footer
+  className="footer"
+>
+  <div
+    className="container"
+  >
+    <span
+      className="text-muted"
+    >
+      <a
+        href="https://github.com/Abdosalah/ProgProject2019Sem2"
+      >
+         
+        Team 0
+      </a>
+       
+      © 
+      2019
+       - RMIT Project 1 2019
+    </span>
+  </div>
+</footer>
+`;
