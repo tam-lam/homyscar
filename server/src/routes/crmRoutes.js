@@ -1,19 +1,16 @@
-import {
+var {
   addNewCar,
   getCars,
-} from "../controllers/carController";
+} = require("../controllers/carController");
 
-import { 
-  addNewRental,
-  getRentals 
-} from "../controllers/rentalController"
+var {addNewRental , getRentals}  = require("../controllers/rentalController");
 
-import { 
+var { 
   addNewUser,
   loginUser
-} from "../controllers/userController"
+} = require("../controllers/userController");
 
-import { setUserLocation , getCarsWithDistance } from "../controllers/mapController";
+var  {setUserLocation , getCarsWithDistance }  = require("../controllers/mapController");
 
 const routes = (app) => {
   app.route('/car')
@@ -25,7 +22,8 @@ const routes = (app) => {
     
 
   app.route('/getcarswithdistance')
-  .get(getCarsWithDistance)
+  .get(getCarsWithDistance); 
+  
     
     
   app.route('/rental')
@@ -41,4 +39,4 @@ const routes = (app) => {
 
 }
 
-export default routes;
+module.exports ={routes};
