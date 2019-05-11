@@ -10,7 +10,7 @@ class CarInfoTable extends Component{
         }
       }
       componentDidMount() {
-        return fetch('http://167.99.227.136:3001/rental')
+        return fetch("http://167.99.227.136:3001/rental")
           .then((response) => response.json())
           .then((responseJson) => {
            
