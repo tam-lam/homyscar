@@ -1,13 +1,16 @@
-import mongoose from 'mongoose';
-import { UserSchema } from '../models/userModel';
-import bcrypt from 'bcrypt';
+// import mongoose from 'mongoose';
+// import { UserSchema } from '../models/userModel';
+// import bcrypt from 'bcrypt';
+
+const bcrypt = require('bcrypt');
+const User = require('../models/userModel');
+
 
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-const User = mongoose.model('User', UserSchema);
 
-export const addNewUser = (req, res) => {
+const addNewUser = (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
@@ -42,7 +45,7 @@ export const addNewUser = (req, res) => {
         })
 };
 
-export const loginUser = (req, res) => {
+const loginUser = (req, res) => {
     const { email, password } = req.body;
 
     // Simple Validation
@@ -81,7 +84,7 @@ export const loginUser = (req, res) => {
         })
 };
 
-export const getUsers = (req, res) => {
+const getUsers = (req, res) => {
     User.find({}, (err, user) => {
         if (err) {
             res.send(err);
@@ -89,3 +92,5 @@ export const getUsers = (req, res) => {
         res.json(user);
     });
 };
+
+module.exports = { addNewUser , loginUser , getUsers};

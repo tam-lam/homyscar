@@ -1,14 +1,18 @@
-// const { setUserLocation , getCarsFromDB ,  getCarsWithDistance , getDestinations , calcDistBetweenCarsAndUser } = require("../controllers/mapController");
+// const {  getDestinations , calcDistBetweenCarsAndUser } = require("../src/controllers/mapController");
+// var expect = require('chai').expect;
+// const chai = require('chai');
+// const should = chai.should();
+
 
 // describe('Test' , () => {
-//     test ('Should return address of car object' , () => {
+//     it('Should return address of car object' , () => {
 //       var tempArray = [];
 //       var tempItem  = { car: "mazda" , address: "02 russell street , melbourne , au" };
 //       tempArray.push(tempItem);
-//       expect(getDestinations(tempArray)).toEqual([tempItem.address]);
+//       expect(getDestinations(tempArray)).equal([tempItem.address]);
 //     });
 
-//     test ( "Should return an array of car along with its distance" ,   () => {
+//     it( "Should return an array of car along with its distance" ,   () => {
 
 //       var mockGoogleResponse = {destination_addresses : [ "New York, NY, USA" ],
 //       origin_addresses : [ "Washington, DC, USA" ],
@@ -39,18 +43,18 @@
 //       var mockDistanceArray  = [];
 //       mockDistanceArray.push(mockGoogleResponse);
 //       console.log(mockDistanceArray);
-//       expect(calcDistBetweenCarsAndUser(mockCarArray , mockDistanceArray[0])).toEqual([{car: mockCar , distance: mockGoogleResponse.rows[0].elements[0].distance }]);
+//       expect(calcDistBetweenCarsAndUser(mockCarArray , mockDistanceArray[0])).equal([{car: mockCar , distance: mockGoogleResponse.rows[0].elements[0].distance }]);
 
 //     });
 
-//     test("Should return right amount of values" , () => {
+//     it("Should return right amount of values" , () => {
 //       var tempArray = [];
 //       var tempItem  = { car: "mazda" , address: "02 russell street , melbourne , au" };
 //       tempArray.push(tempItem);
 //       tempArray.push(tempItem);
 //       tempArray.push(tempItem);
 //       tempArray.push(tempItem);
-//       expect(getDestinations(tempArray).length ).toEqual(4);
+//       expect(getDestinations(tempArray).length ).equals(4);
 //     });
 
 

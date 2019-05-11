@@ -1,9 +1,17 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import routes from './src/routes/crmRoutes';
-import cookieParser from 'cookie-parser';
-import session from 'express-session';
+// import express from 'express';
+// import mongoose from 'mongoose';
+// import bodyParser from 'body-parser';
+// import routes from './src/routes/crmRoutes';
+// import cookieParser from 'cookie-parser';
+// import session from 'express-session';
+
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const {routes} = require('./src/routes/crmRoutes');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+
 // import auth from './src/auth';
 
 
