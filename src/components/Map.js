@@ -60,7 +60,7 @@ export class CurrentLocation extends React.Component {
           const coords = pos.coords;
 
           //send location values to back end server
-          axios.post("http://167.99.227.136:3001/setlocation", {
+          axios.post("http://localhost:3001/setlocation", {
             lat: coords.latitude,
             lng: coords.longitude
           });
