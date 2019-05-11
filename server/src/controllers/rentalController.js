@@ -1,9 +1,7 @@
-import mongoose from 'mongoose';
-import { RentalSchema } from '../models/rentalModel';
+const mongoose = require('mongoose');
+const Rental = require('../models/rentalModel');
 
-const Rental = mongoose.model('Rental', RentalSchema);
-
-export const addNewRental = (req, res) => {
+const addNewRental = (req, res) => {
   let newRental = new Rental(req.body);
 
   newRental.save((err, Rental) => {
@@ -14,7 +12,7 @@ export const addNewRental = (req, res) => {
   });
 };
 
-export const getRentals = (req, res) => {
+const getRentals = (req, res) => {
   Rental.find({}, (err, rental) => {
     if (err) {
       res.send(err);
@@ -22,3 +20,5 @@ export const getRentals = (req, res) => {
     res.json(rental);
   });
 };
+
+module.exports = { addNewRental , getRentals};
