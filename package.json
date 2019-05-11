@@ -49,7 +49,7 @@
     "server": "nodemon server/index.js",
     "jest": "./node_modules/.bin/jest",
     "test-mocha": "mocha --recursive --timeout 10000",
-    "start-project": "concurrently \"npm run server\" \"wait-on http://167.99.227.136:3001 && npm start\" "
+    "start-project": "concurrently \"npm run server\" \"wait-on http://167.99.227.136:3001/car && npm start\" "
   },
   "eslintConfig": {
     "extends": "react-app"
