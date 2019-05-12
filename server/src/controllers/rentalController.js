@@ -1,5 +1,3 @@
-//import mongoose from 'mongoose';
-//import { RentalSchema } from '../models/rentalModel';
 const mongoose = require('mongoose');
 const Rental = require('../models/rentalModel');
 

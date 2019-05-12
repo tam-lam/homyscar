@@ -19,24 +19,22 @@
 //                 });
 //         });
 //     })
+// })
 
-
+// describe('Car post request', () => {
+//     it('it should not POST a car without required fields', (done) => {
+//         let car = {
+//             rego: "The Lord of the Rings",
+//             model: "J.R.R. Tolkien",
+//             year: 1954
+//         }
+//         chai.request(server)
+//             .post('/car')
+//             .send(car)
+//             .end((err, res) => {
+//                 res.should.have.status(200);
+//                 expect(res.body.name).to.equal('ValidationError')
+//                 done();
+//             });
+//     });
 // });
-
-// // describe('Car post request', () => {
-// //     it('it should not POST a car without required fields', (done) => {
-// //         let car = {
-// //             rego: "XYZ123",
-// //             model: "nissan",
-// //             year: 2014
-// //         }
-// //         chai.request(server)
-// //             .post('/car')
-// //             .send(car)
-// //             .end((err, res) => {
-// //                 res.should.have.status(400);
-// //                 expect(res).to.equal(undefined);
-// //                 done();
-// //             });
-// //     });
-// // });

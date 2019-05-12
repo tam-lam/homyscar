@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchCarsWithDist } from "../store/actions/carActions";
+import { fetchCarsWithDist , fetchCars } from "../store/actions/carActions";
 import { GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import CurrentLocation from "./Map";
 import {
@@ -19,7 +19,8 @@ class MapContainer extends Component {
   };
 
   componentWillMount() {
-    this.props.fetchCarsWithDist();
+    //this.props.fetchCarsWithDist();
+    this.props.fetchCars();
   }
   render() {
     const markers = this.props.cars.map(item => (
@@ -98,7 +99,8 @@ class MapContainer extends Component {
 
 MapContainer.propTypes = {
   fetchCarsWithDist: PropTypes.func.isRequired,
-  cars: PropTypes.array.isRequired
+  cars: PropTypes.array.isRequired,
+  fetchCars: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -110,6 +112,7 @@ export default connect(
   mapStateToProps,
   {
     fetchCarsWithDist,
+    fetchCars,
     saveSelectedCarDistanceInStore,
     saveSelectedCarInStore,
     saveUserLocation

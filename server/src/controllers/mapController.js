@@ -1,5 +1,3 @@
-//import { CarSchema } from "../models/carModel";
-//import mongoose from "mongoose";
 const mongoose = require('mongoose');
 const Car = require('../models/carModel');
 
