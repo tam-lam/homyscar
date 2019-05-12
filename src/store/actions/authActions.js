@@ -19,7 +19,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get("http://167.99.227.136:3001/getUser", tokenConfig(getState))
+    .get("http://localhost:3001/getUser", tokenConfig(getState))
     .then(res =>
       dispatch({
         type: USER_LOADED,
@@ -49,7 +49,7 @@ export const register = ({ username, email, password }) => dispatch => {
   const body = JSON.stringify({ username, email, password });
 
   axios
-    .post("http://167.99.227.136:3001/newUser", body, config)
+    .post("http://localhost:3001/newUser", body, config)
     .then(res =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -79,7 +79,7 @@ export const login = ({ email, password }) => dispatch => {
   const body = JSON.stringify({ email, password });
 
   axios
-    .post("http://167.99.227.136:3001/authUser", body, config)
+    .post("http://localhost:3001/authUser", body, config)
     .then(res =>
       dispatch({
         type: LOGIN_SUCCESS,

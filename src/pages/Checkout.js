@@ -99,9 +99,12 @@ class Checkout extends Component {
   displayPayPalBtn = () => {
     if (this.props.isUserSignedIn) {
       return (
-        <button className="btn btn-primary btn-lg shadow-lg checkout-btn">
-          Check out with PayPal
+        <form action="http://localhost:3001/pay" method="post">
+          <button className="btn btn-primary btn-lg shadow-lg checkout-btn" type="submit">
+            Check out with PayPal
         </button>
+        </form>
+        
       );
     }
   };

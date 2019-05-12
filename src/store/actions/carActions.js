@@ -8,7 +8,7 @@ import {
 } from "./types";
 
 export const fetchCarsWithDist = () => dispatch => {
-  fetch("http://167.99.227.136:3001/getcarswithdistance")
+  fetch("http://localhost:3001/getcarswithdistance")
     .then(res => res.json())
     .then(cars =>
       dispatch({
