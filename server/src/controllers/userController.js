@@ -1,7 +1,3 @@
-// import mongoose from 'mongoose';
-// import { UserSchema } from '../models/userModel';
-// import bcrypt from 'bcrypt';
-
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 

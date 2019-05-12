@@ -1,7 +1,3 @@
-// import mongoose from 'mongoose';
-// import emailValidator from 'email-validator';
-// import bcrypt from 'bcrypt';
-
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const emailValidator = require('email-validator');

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchCarsWithDist } from "../store/actions/carActions";
+import { fetchCarsWithDist , fetchCars } from "../store/actions/carActions";
 import CarItem from "./CarItem";
 import { isEmpty } from "../util/validationHelpers";
 import Spinner from "react-bootstrap/Spinner";
@@ -13,7 +13,8 @@ class CarList extends Component {
   componentDidUpdate() {
     if (isEmpty(this.props.cars) && this.props.doErrorExist === false) {
       console.log("Cars is empty,refetch");
-      this.props.fetchCarsWithDist();
+      //this.props.fetchCarsWithDist();
+      this.props.fetchCars();
     }
   }
   myTimer = () => {
@@ -35,7 +36,8 @@ class CarList extends Component {
     ) {
       this.setState({ refreshCount: this.state.refreshCount + 1 });
       console.log("REFRESHING COUNT:" + this.state.refreshCount);
-      this.props.fetchCarsWithDist();
+      //this.props.fetchCarsWithDist();
+      this.props.fetchCars();
     } else {
       this.setState({
         refreshCount: this.state.refreshCount + 1
@@ -99,7 +101,8 @@ class CarList extends Component {
 
 CarList.propTypes = {
   fetchCarsWithDist: PropTypes.func.isRequired,
-  cars: PropTypes.array.isRequired
+  cars: PropTypes.array.isRequired,
+  fetchCars: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -109,5 +112,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchCarsWithDist }
+  { fetchCarsWithDist , fetchCars }
 )(CarList);
