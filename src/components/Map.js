@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
+import { connect } from 'react-redux';
+import { saveUserLocation } from "../store/actions/locationActions";
+import PropTypes from 'prop-types';
+
 
 const mapStyles = {
   map: {
@@ -11,6 +15,10 @@ const mapStyles = {
 };
 
 export class CurrentLocation extends React.Component {
+
+  static propTypes = {
+    saveUserLocation: PropTypes.func.isRequired
+  }
   render() {
     const style = Object.assign({}, mapStyles.map);
     return (
@@ -60,17 +68,17 @@ export class CurrentLocation extends React.Component {
           const coords = pos.coords;
 
           //send location values to back end server
-          axios.post("http://localhost:3001/setlocation", {
-            lat: coords.latitude,
-            lng: coords.longitude
-          });
+          // axios.post("http://localhost:3001/setlocation", {
+          //   lat: coords.latitude,
+          //   lng: coords.longitude
+          // });
 
-          this.setState({
-            currentLocation: {
-              lat: coords.latitude,
-              lng: coords.longitude
-            }
-          });
+          // this.setState({
+          //   currentLocation: {
+          //     lat: coords.latitude,
+          //     lng: coords.longitude
+          //   }
+          // });
           this.props.saveUserLocation(coords.latitude, coords.longitude);
         });
       }
@@ -118,7 +126,7 @@ export class CurrentLocation extends React.Component {
     });
   }
 }
-export default CurrentLocation;
+
 
 CurrentLocation.defaultProps = {
   zoom: 13,
@@ -129,3 +137,9 @@ CurrentLocation.defaultProps = {
   centerAroundCurrentLocation: false,
   visible: true
 };
+
+const mapStateToProps = state => ({
+  userLocation: state.location.userLocation
+});
+
+export default connect(mapStateToProps , {saveUserLocation })(CurrentLocation);
