@@ -11,8 +11,15 @@ var {
       } = require("../controllers/userController");
       
       var  {setUserLocation , getCarsWithDistance }  = require("../controllers/mapController");
+      var { payment, success } = require("../controllers/paymentController");
       
       const routes = (app) => {
+        app.route('/success')
+          .get(success)
+
+        app.route('/pay')
+          .post(payment);
+
         app.route('/car')
           .post(addNewCar)
           .get(getCars);

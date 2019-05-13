@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { saveUserLocation } from "../store/actions/locationActions";
 import PropTypes from 'prop-types';
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { saveUserLocation } from "../store/actions/locationActions";
 
 const mapStyles = {
   map: {
@@ -19,6 +22,8 @@ export class CurrentLocation extends React.Component {
   static propTypes = {
     saveUserLocation: PropTypes.func.isRequired
   }
+
+
   render() {
     const style = Object.assign({}, mapStyles.map);
     return (
@@ -85,6 +90,7 @@ export class CurrentLocation extends React.Component {
     }
     this.loadMap();
   }
+
   loadMap() {
     if (this.props && this.props.google) {
       // checks if google is available
