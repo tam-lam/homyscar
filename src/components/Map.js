@@ -1,11 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import axios from "axios";
-import { connect } from 'react-redux';
-import { saveUserLocation } from "../store/actions/locationActions";
 import PropTypes from 'prop-types';
-
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { saveUserLocation } from "../store/actions/locationActions";
 
