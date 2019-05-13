@@ -12,6 +12,7 @@ import Checkout from "./pages/Checkout";
 import Signup from "./pages/Signup";
 import Return from "./pages/Return";
 import User from "./pages/User";
+import Paypal from "./pages/Paypal";
 
 class App extends Component {
   componentDidMount() {
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/return" component={Return} />
             <Route exact path="/user" component={User} />
+            <Route exact path="/paypal" component={Paypal} />
           </div>
         </Router>
       </Provider>

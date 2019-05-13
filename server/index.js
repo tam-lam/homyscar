@@ -12,8 +12,6 @@ const {routes} = require('./src/routes/crmRoutes');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-// import auth from './src/auth';
-
 
 const config = require('config');
 const MongoStore = require('connect-mongo')(session);

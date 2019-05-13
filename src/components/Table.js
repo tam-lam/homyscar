@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Table from 'react-bootstrap/Table'
+import config from 'config';
 
 class CarInfoTable extends Component{
     constructor() {
@@ -9,7 +10,7 @@ class CarInfoTable extends Component{
         }
       }
       componentDidMount() {
-        return fetch('http://localhost:3001/rental')
+        return fetch("http://167.99.227.136:3001/rental")
           .then((response) => response.json())
           .then((responseJson) => {
            
