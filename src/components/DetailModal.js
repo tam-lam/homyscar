@@ -26,7 +26,7 @@ class DetailModal extends Component {
           <Modal.Header className="modal-header" closeButton>
             <Modal.Title className="modal-title">Details</Modal.Title>
           </Modal.Header>
-          <Modal.Body closeButton>
+          <Modal.Body>
             <div className="container ">
               <div className=" detailContainer text-center ">
                 <img
@@ -68,10 +68,7 @@ class DetailModal extends Component {
             <Link
               className="btn btn-block rent-btn bg-success text-light shadow-lg"
               to={{
-                pathname: "/checkout",
-                state: {
-                  car: this.props.car
-                }
+                pathname: "/checkout"
               }}
             >
               Rent now

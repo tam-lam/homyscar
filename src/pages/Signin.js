@@ -87,7 +87,7 @@ class Signin extends Component {
                 placeholder="Email"
                 className="mb-3"
                 onChange={this.onChange}
-                class="form-control form-input text-light form-control-lg"
+                className="form-control form-input text-light form-control-lg"
               />
               <label className="font-weight-bold text-light form-label shadow-lg">
                 Password
@@ -99,7 +99,7 @@ class Signin extends Component {
                 placeholder="Password"
                 className="mb-3"
                 onChange={this.onChange}
-                class="form-control form-input text-light form-control-lg"
+                className="form-control form-input text-light form-control-lg"
               />
               <RightArrowBtn />
             </div>

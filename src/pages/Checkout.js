@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { isEmpty } from "../util/validationHelpers";
 import SummaryContainer from "../components/SummaryContainer";
 import SimplePageTitle from "../components/SimplePageTitle";
-import PropTypes from "prop-types";
 
 import {
   saveSelectedCarInStore,
@@ -93,25 +92,26 @@ class Checkout extends Component {
   cancelOnClick = () => {
     this.props.deleteCheckoutCar();
     this.props.history.push("/");
-    console.log("Click");
   };
 
   displayPayPalBtn = () => {
     if (this.props.isUserSignedIn) {
       return (
         <form action="http://localhost:3001/pay" method="post">
-          <button className="btn btn-primary btn-lg shadow-lg checkout-btn" type="submit">
+          <button
+            className="btn btn-primary btn-lg shadow-lg checkout-btn"
+            type="submit"
+          >
             Check out with PayPal
-        </button>
+          </button>
         </form>
-        
       );
     }
   };
   render() {
     return (
-      <React.Fragment className="text-center" key={this.props.car._id}>
-        <NavBar />
+      <React.Fragment>
+        <NavBar className="text-center" />
         {this.displayTitle()}
         {this.displayAuthenticationBtns()}
         {this.displayCheckout()}
@@ -120,11 +120,7 @@ class Checkout extends Component {
     );
   }
 }
-Checkout.propTypes = {
-  car: PropTypes.array.isRequired,
-  saveSelectedCarInStore: PropTypes.func.isRequired,
-  saveCheckoutCar: PropTypes.func.isRequired
-};
+
 const mapStateToProps = state => ({
   car: state.cars.selectedCar,
   checkoutCar: state.cars.checkoutCar,
