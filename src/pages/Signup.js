@@ -120,7 +120,7 @@ class Signup extends Component {
                         placeholder="Password"
                         className="mb-3"
                         onChange={this.onChange}
-                        class="form-control form-input text-light form-control-lg"
+                        className="form-control form-input text-light form-control-lg"
                       />
                     </div>
                   </div>

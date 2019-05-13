@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchCarsWithDist , fetchCars } from "../store/actions/carActions";
+import { fetchCarsWithDist, fetchCars } from "../store/actions/carActions";
 import CarItem from "./CarItem";
 import { isEmpty } from "../util/validationHelpers";
 import Spinner from "react-bootstrap/Spinner";
@@ -12,7 +12,6 @@ class CarList extends Component {
   };
   componentDidUpdate() {
     if (isEmpty(this.props.cars) && this.props.doErrorExist === false) {
-      console.log("Cars is empty,refetch");
       //this.props.fetchCarsWithDist();
       this.props.fetchCars();
     }
@@ -112,5 +111,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchCarsWithDist , fetchCars }
+  { fetchCarsWithDist, fetchCars }
 )(CarList);
