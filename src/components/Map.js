@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { saveUserLocation } from "../store/actions/locationActions";
 
@@ -13,11 +13,9 @@ const mapStyles = {
 };
 
 export class CurrentLocation extends React.Component {
-
   static propTypes = {
     saveUserLocation: PropTypes.func.isRequired
-  }
-
+  };
 
   render() {
     const style = Object.assign({}, mapStyles.map);
@@ -73,12 +71,12 @@ export class CurrentLocation extends React.Component {
           //   lng: coords.longitude
           // });
 
-          // this.setState({
-          //   currentLocation: {
-          //     lat: coords.latitude,
-          //     lng: coords.longitude
-          //   }
-          // });
+          this.setState({
+            currentLocation: {
+              lat: coords.latitude,
+              lng: coords.longitude
+            }
+          });
           this.props.saveUserLocation(coords.latitude, coords.longitude);
         });
       }
@@ -128,7 +126,6 @@ export class CurrentLocation extends React.Component {
   }
 }
 
-
 CurrentLocation.defaultProps = {
   zoom: 13,
   initialCenter: {
@@ -143,4 +140,7 @@ const mapStateToProps = state => ({
   userLocation: state.location.userLocation
 });
 
-export default connect(mapStateToProps , {saveUserLocation })(CurrentLocation);
+export default connect(
+  mapStateToProps,
+  { saveUserLocation }
+)(CurrentLocation);
