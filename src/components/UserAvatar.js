@@ -7,7 +7,7 @@ class UserAvatar extends Component {
           src={this.props.userImg}
           height="90"
           width="90"
-          className="shadow-lg rounded-circle "
+          className="shadow rounded-circle "
           alt="carimage"
         />
         <span class="text-truncate" style={{ maxWidth: 100 }}>

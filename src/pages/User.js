@@ -7,7 +7,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import UserAvatar from "../components/UserAvatar";
 import Footer from "../components/Footer";
-import UserDetail from "../components/UserDetail";
+import UserInformation from "../components/UserInformation";
+import RentalHistory from "./RentalHistory";
+import CurrentRentals from "../components/CurrentRentals";
+
 class User extends Component {
   state = {
     userName: "Ten fwaklj",
@@ -42,10 +45,13 @@ class User extends Component {
                       <Nav.Link className="text-dark" eventKey="userInfo">
                         User infomation
                       </Nav.Link>
-                      <Nav.Link className="text-dark" eventKey="payment">
-                        Payment details
+                      <Nav.Link className="text-dark" eventKey="currentRentals">
+                        Current rentals
                       </Nav.Link>
-                      <Nav.Link className="text-dark" eventKey="as">
+                      <Nav.Link className="text-dark" eventKey="rentalHistory">
+                        Rental history
+                      </Nav.Link>
+                      <Nav.Link className="text-dark" eventKey="confirmation">
                         Confirmation
                       </Nav.Link>
                     </Nav>
@@ -55,82 +61,14 @@ class User extends Component {
                 <Col md={9}>
                   <Tab.Content className="">
                     <Tab.Pane eventKey="userInfo">
-                      <div className="row">
-                        <div className="account-detail-container shadow-lg bg-dark col-md-6">
-                          <h1>Account Details</h1>
-                          <UserDetail title="Username" content={userName} />
-                          <UserDetail title="User ID" content={id} />
-                          <UserDetail title="Email" content={email} />
-                        </div>
-                        <div className="account-detail-container shadow-lg bg-dark col-md-4">
-                          <h1>Personal Details</h1>
-                          <UserDetail title="First name" content={firstName} />
-                          <UserDetail title="Last name" content={lastName} />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="account-detail-container shadow-lg bg-dark col-md-5">
-                          <h1>License Detail</h1>
-                          <UserDetail
-                            title="License number"
-                            content={license}
-                          />
-                          <UserDetail
-                            title="Date of birth"
-                            content={dateOfBirth}
-                          />
-                        </div>
-                        <div className="account-detail-container d-sm-block col-md-4 ">
-                          <h1 className="rounded shadow-lg">
-                            User information
-                          </h1>
-                        </div>
-                      </div>
+                      <UserInformation />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="payment">
-                      <h1>
-                        <strong>Payment details:</strong>
-                      </h1>
-                      <div className="h">
-                        <hr />
-                      </div>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/13</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/14</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/16</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/15</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
+                    <Tab.Pane eventKey="rentalHistory">
+                      <RentalHistory />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="fifth">
-                      <h3>
-                        <strong>Payment details:</strong>
-                      </h3>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
-                      <h4>2019/04/12</h4>
-                      <p>rent: car tye: #3455667 AU$36/h</p>
+                    <Tab.Pane eventKey="currentRentals">
+                      <CurrentRentals />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="second" />
-                    <Tab.Pane eventKey="first" />
-                    <Tab.Pane eventKey="second" />
                   </Tab.Content>
                 </Col>
               </Row>
