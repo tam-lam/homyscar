@@ -3,11 +3,10 @@ import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchConfirmations } from '../store/actions/confirmationActions'
 import { addRental } from '../store/actions/rentalActions'
 
 
-class Confirmation extends Component{
+class Rental extends Component{
 
   componentDidMount(){
         alert('component updating')
@@ -22,20 +21,11 @@ class Confirmation extends Component{
 render(){
 
         // get confirmations 
- 
-       if ( this.props.confirmations != undefined){
-
-        var confirmItems = this.props.confirmations.map(item => 
-
+       var confirmItems = this.props.confirmations.map(item => (
         <div>
-          <button type="button" onClick={this.props.onAddRental({user_id: item.confirmation[0].user_id , car_rego:item.confirmation[0].rego})}>
-           Confirm Booking for  {item.confirmation[0].rego }
-             </button>
+          <button type="button"> Confirm Booking for  {item.confirmation[0].rego}  </button>
         </div>
-       );
-
-}
-       
+       ));
 
 return (
 
@@ -62,13 +52,9 @@ function mapPropsToState(state){
 
 const mapDispatchToProps = dispatch => {
   return { 
-    getConfirmations: user_id => {
-      dispatch(fetchConfirmations(user_id));
-    } ,
-    onAddRental: rental => {
-        dispatch(addRental(rental));
-        alert('rental added')
-      }
+    getConfirmations: rental => {
+      dispatch(addRental(rental));
+    }
   };
 };
 

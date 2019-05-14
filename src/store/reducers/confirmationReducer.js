@@ -43,7 +43,7 @@ export default function confirmationsReducer(state = initialState , action) {
             return {
                 ...state,
                 requestingConfirmations: false,
-                recievedConfirmations: [... state.recievedConfirmations , action.payload]
+                recievedConfirmations:  [...state.recievedConfirmations , action.payload]
             }
         default:
             return state;

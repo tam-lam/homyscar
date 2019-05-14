@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 const RentalSchema = new Schema({
 
-  rental_id: {
-    type: String,
-    required: true
-  },
   user_id: {
     type: String,
     required: true
@@ -17,19 +13,19 @@ const RentalSchema = new Schema({
   },
   booking_date: {
     type: Date,
-    required: true
+    default: Date.now()
   },
   return_date: {
     type: Date,
-    required: true
+    required: false
   },
   return_location: {
     type: String,
-    required: true
+    required: false
   },
   total_price: {
     type: Number,
-    required: true
+    required: false
   }
 },
 {

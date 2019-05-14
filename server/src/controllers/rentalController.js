@@ -9,6 +9,7 @@ const addNewRental = (req, res) => {
       res.send(err);
     }
     res.json(Rental);
+    
   });
 };
 
