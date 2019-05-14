@@ -17,21 +17,17 @@ const addNewConfirmation = (req , res) => {
 
 const getConfirmations = (req , res) => {
   console.log('client is requesting confirmations for ' , req.query.user_id)
-  
-  search = getConfirmationsFromDB(req.query.user_id)
-  res.json(search)
-}
-
-async function getConfirmationsFromDB(requiredUserId) {
-  var confirmationsArray = await Confirmation.find({}, (err, confirmations) => {
+ 
+  requiredUserId = req.query.user_id;
+  Confirmation.find({user_id: requiredUserId}, (err, confirmations) => {
     if (err) {
       res.send(err);
     }
-   
-    confirmationsArray.push(confirmations)
+   console.log('found confirmation is ' , confirmations);
+    res.json(confirmations)
   });
-  console.log('confirmationsArray ' , confirmationsArray);
-  return confirmationsArray;
 }
+
+
 
 module.exports = { addNewConfirmation , getConfirmations};

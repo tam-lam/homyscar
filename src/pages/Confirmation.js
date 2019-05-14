@@ -9,32 +9,47 @@ import { fetchConfirmations } from '../store/actions/confirmationActions'
 class Confirmation extends Component{
 
   state = {
-    confirmations: []
+    confirmations: [],
+    confirmationItems: []
   }
 
-
-  static propTypes = {
-    auth: PropTypes.object.isRequired
-  };
+  
 
 
   componentWillUpdate(){
+   
     alert('component updating')
-    if ( this.props.currentUser){
-      const auth = this.props
+    if (this.props.currentUser){
       alert(this.props.currentUser )
       console.log('confirmation id from confirmation page' , this.props.currentUser._id )
       this.props.getConfirmations(this.props.currentUser._id)
     }
+
+    if (this.props.confirmations){
+      this.state.confirmationItems = this.props.confirmations.map(item => (
+        <div>
+          <button type="button"> Confirmation </button>
+        </div>
+       ));
+    }
+
   }
  
 render(){
-     
+
+  
+
+ 
+
 return (
 
   <React.Fragment>
     <NavBar />
      <p>List of Confirmations</p>
+
+    
+    {this.state.confirmationItems}
+
     <Footer />
   </React.Fragment>
 
@@ -46,7 +61,8 @@ function mapPropsToState(state){
   return(
     {
       currentUser: state.auth.user,
-      auth: state.auth
+      confirmations: state.confirmations.rego,
+      carRego: state.cars.checkoutCar.rego,
     }
   )
 }
