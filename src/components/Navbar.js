@@ -70,6 +70,11 @@ class NavBar extends Component {
             MY ACCOUNT
           </Link>
           <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <Link className="nav-item nav-link active" to="/confirmations">
+            Confirmations
+          </Link>
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
           <Link
             className="nav-item nav-link active"
             onClick={this.logoutOnClick}

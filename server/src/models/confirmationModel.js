@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema =mongoose.Schema;
-const EXPIRATION_TIME_SECONDS = '1h';
+const EXPIRATION_TIME_SECONDS = '60m';
 
 const ConfirmationSchema = new Schema({
 

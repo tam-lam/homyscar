@@ -3,7 +3,7 @@ var {addNewRental , getRentals}  = require("../controllers/rentalController");
 var { addNewUser, loginUser } = require("../controllers/userController");
 var  {setUserLocation , getCarsWithDistance }  = require("../controllers/mapController");
 var { payment, success } = require("../controllers/paymentController");
-var { addNewConfirmation } = require("../controllers/confirmationController");
+var { addNewConfirmation , getConfirmations } = require("../controllers/confirmationController");
       
 const routes = (app) => {
   app.route('/success')
@@ -34,6 +34,9 @@ const routes = (app) => {
 
   app.route('/addConfirmation')
   .post(addNewConfirmation)
+
+  app.route('/getConfirmation')
+  .get(getConfirmations)
 }
       
 module.exports ={routes};

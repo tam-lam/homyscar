@@ -7,10 +7,22 @@ class Paypal extends Component {
 
 
 
-  thiscomponentWillMount(){
+  componentWillMount(){
     console.log('logging paypal');
     console.log(this.props.currentCar)
   };
+
+  componentDidMount(){
+    alert(this.props.currentCar )
+  }
+
+  // componentDidUpdate(){
+  //   if(this.props.currentUserId.user){
+  //     alert( this.props.currentUserId.user.username)
+  //   }
+  // }
+
+
 
 
 
@@ -20,10 +32,9 @@ class Paypal extends Component {
     
     
     return (
-      alert(this.props.currentCar),
       <div>
         <h1>Buy a Hat</h1>
-        <form action="http://localhost:3001/success" method="get">
+        <form action="http://localhost:3001/success" method="get" onSubmit={() => this.props.onAddConfirmation({rego: this.props.currentCar , user_id: this.props.currentUser.user._id})}>
           <input type="hidden" name="PayerID" value={params['PayerID']}></input>
           <input type="hidden" name="paymentId" value={params['paymentId']}></input>
           <input type="submit" value="Buy" ></input>
@@ -35,7 +46,11 @@ class Paypal extends Component {
 
 // mapping redux state to this class props
 function mapStateToProps(state){
-  return {currentCar: state.cars.checkoutCar.rego}
+  return {
+    currentCar: state.cars.checkoutCar.rego,
+    currentUser: state.auth
+  
+  }
 }
 
 const mapDispatchToProps = dispatch => {
