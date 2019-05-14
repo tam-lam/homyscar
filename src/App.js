@@ -13,7 +13,6 @@ import Signup from "./pages/Signup";
 import Return from "./pages/Return";
 import User from "./pages/User";
 import Paypal from "./pages/Paypal";
-import Confirmation from "./pages/Confirmation";
 
 class App extends Component {
   componentDidMount() {
@@ -33,7 +32,6 @@ class App extends Component {
             <Route exact path="/return" component={Return} />
             <Route exact path="/user" component={User} />
             <Route exact path="/paypal" component={Paypal} />
-            <Route exact path="/confirmation" component={Confirmation} />
           </div>
         </Router>
       </Provider>
