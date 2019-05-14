@@ -18,7 +18,7 @@ const addNewConfirmation = (req , res) => {
 const getConfirmations = (req , res) => {
   console.log('client is requesting confirmations for ' , req.query.user_id)
  
-  requiredUserId = req.query.user_id;
+  var requiredUserId = req.query.user_id;
   Confirmation.find({user_id: requiredUserId}, (err, confirmations) => {
     if (err) {
       res.send(err);
