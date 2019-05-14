@@ -34,7 +34,8 @@ class Paypal extends Component {
     return (
       <div>
         <h1>Buy a Hat</h1>
-        <form action="http://localhost:3001/success" method="get" onSubmit={() => this.props.onAddConfirmation({rego: this.props.currentCar , user_id: this.props.currentUser.user._id})}>
+        {/* onSubmit={() => this.props.onAddConfirmation({rego: this.props.currentCar , user_id: this.props.currentUser.user._id})} */}
+        <form action="http://localhost:3001/success" method="get" >
           <input type="hidden" name="PayerID" value={params['PayerID']}></input>
           <input type="hidden" name="paymentId" value={params['paymentId']}></input>
           <input type="submit" value="Buy" ></input>
