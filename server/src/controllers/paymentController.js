@@ -1,4 +1,5 @@
 const paypal = require('paypal-rest-sdk');
+const Payment = require('../models/paymentModel');
 
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
@@ -67,10 +68,20 @@ const success = (req, res) => {
       throw error;
     } else {
       console.log("Get Payment Response");
-      console.log(JSON.stringify(payment));
+      console.log(JSON.stringify(payment, undefined, 2));
       res.redirect("http://localhost:3000/")
     }
   });
 }
 
-module.exports = { payment, success };
+const savePayment = (req, res) => {
+  let newPayment = new Payment(req.body);
+  newPayment.save((err, payment) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(payment);
+  });
+}
+
+module.exports = { payment, success, savePayment };
