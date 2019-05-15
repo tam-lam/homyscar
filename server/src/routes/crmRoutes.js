@@ -1,6 +1,7 @@
 import {
   addNewCar,
   getCars,
+  getCarById
 } from "../controllers/carController";
 
 import { 
@@ -29,6 +30,9 @@ const routes = (app) => {
   app.route('/rental')
     .post(addNewRental)
     .get(getRentals)
+
+    app.route('/getcarbyid')
+  .get(getCarById)
 
 }
 

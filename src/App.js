@@ -34,6 +34,9 @@ class App extends Component {
             <Route exact path="/car/edit/:id" component={EditCar} />
             <Route exact path="/car/:id" component={CarDetails} />
             <Route exact path="/car" component={Cars} />
+            <Route exact path="/Editcar" component={EditCar} />
+
+            
 
 
           </div>

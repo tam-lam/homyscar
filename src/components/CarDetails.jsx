@@ -2,18 +2,19 @@ import React, { Component } from "react";
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { matchPath } from 'react-router';
-
+import Button from 'react-bootstrap/Button'
 class CarDetails extends Component{
     constructor(props) {
         super(props)
         this.state = {
           
-         details:''
+         details:'',
         }
       }
       
       componentDidMount() {
         this.getCars();
+        console.log(this.props.match)
         }
         
              
@@ -26,10 +27,11 @@ class CarDetails extends Component{
           // })
 
            let carId= this.props.match.params._id;
-          //let carId= this.state.details._id;
       
-          axios.get(`http://localhost:3000/car/${carId}`)
-        //   axios.get(`http://localhost:3001/car/${carId}`)
+        axios.get(`http://localhost:3001/car/${carId}`)
+
+        // axios.get(`http://localhost:3001/car/${carId}`)
+
 
           .then(response =>{
             this.setState({details:response.data},()=>{
@@ -50,11 +52,16 @@ class CarDetails extends Component{
 
     render(){
     return(
+      <div className="all">
     <div className="text-light bg-dark">
         <hr/>
-      <Link className="btn grey" to="/car">Back</Link>
-       
-        <h1>{this.state.details._id}</h1>
+        <Button className="btn-secondary">
+      <Link className="text-light btn grey" to="/car">Back</Link></Button>
+      <div className="success">
+      <Button className="btn-success">
+      <Link className="text-light btn grey" to="/admin">Back to Admin page</Link></Button></div>
+       <h1> Car Detail</h1>
+        <h2>{this.state.details._id} </h2>
      <ul className="collection"> 
     <li className="collection-item">
       Make:{this.state.details.make}
@@ -82,14 +89,15 @@ class CarDetails extends Component{
     </li>
     
 </ul>
-                       
-        
-           <Link className="btn" to={`/car/edit/${this.state.details._id} `}>Edit</Link>
-           
-           <button  onClick={this.onDelete.bind(this)} className="btn red right"
-           > Delete</button>
-            {/* {this.onDelete.bind(this)} */}
+<div className="success">            
+           <Button className="btn-primary">
+           <Link  to={`/car/edit/${this.state.details._id} `}>Edit</Link>
+           </Button>
+           <Button  onClick={this.onDelete.bind(this)} className="btn-danger left"
+           > Delete</Button>
                     
+            </div>
+            </div>
             </div>
 
     );}

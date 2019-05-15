@@ -1,0 +1,23 @@
+[
+    {
+        "id":"u1368",
+        "licenseNo":"ABCD1234",
+        "firstName":"Wilson",
+        "lastName":"EXY",
+        "email":"Wilson@gmail.com",
+        "dateOfBirth":"12/4/1987",
+        "paymentDetail":"$44/h"
+    
+    },
+
+    {
+        "id":"u1368",
+        "licenseNo":"ABCD1234",
+        "firstName":"Wilson",
+        "lastName":"EXY",
+        "email":"Wilson@gmail.com",
+        "dateOfBirth":"12/4/1987",
+        "paymentDetail":"$44/h"
+    
+    }
+]

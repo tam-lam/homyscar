@@ -13,6 +13,8 @@ import Container from 'react-bootstrap/Container'
 import TTable from "../components/Table";
 import userP from "../images/userP.jpg";
 import Image from 'react-bootstrap/Image'
+import Cars from "../components/Cars";
+import UserM from "./userM";
 
 class TabM extends Component {
     render() {
@@ -45,10 +47,10 @@ class TabM extends Component {
 </Col>
 
 
-<Col sm={8}>
+<Col sm={9}>
  <Tab.Content>
    <Tab.Pane eventKey="#link1">
-   <CarTable />
+   <Cars />
   
    
    </Tab.Pane>
@@ -59,6 +61,7 @@ class TabM extends Component {
    </Tab.Pane>
 
    <Tab.Pane eventKey="#link3">
+   <UserM />
    </Tab.Pane>
    
    <Tab.Pane eventKey="#link4"> 

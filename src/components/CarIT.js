@@ -65,9 +65,7 @@ class CarIT extends Component{
          </td>
        
           </tr>
-      
-        {/* )        
-      } */}
+
 
                     </tbody>
             </Table>

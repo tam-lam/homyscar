@@ -22,3 +22,14 @@ export const getCars = (req, res) => {
     res.json(car);
   });
 };
+
+export const getCarById = (req , res ) => {
+  let currentCarRego = req.query.car_rego;
+  Car.find({rego: currentCarRego} , (err , car) => {
+    if (err) {
+      res.send(err);
+    }
+    console.log("found car id is " , car)
+    res.json(car)
+  });
+};

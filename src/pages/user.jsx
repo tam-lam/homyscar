@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import ListGroup from 'react-bootstrap/ListGroup'
 import Card from 'react-bootstrap/Card'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
-import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
 import userP from "../images/userP.jpg";
 import Tab from 'react-bootstrap/Tab'
@@ -18,6 +17,9 @@ import "../stylesheets/user.css";
 import Image from 'react-bootstrap/Image'
 import Row from 'react-bootstrap/Row'
 import Col  from 'react-bootstrap/Col'
+// import {Link} from 'react-router-dom'
+
+
 class User extends Component {
   render() {
    return ( 
@@ -25,11 +27,11 @@ class User extends Component {
 <NavBar />
 
 <h1 className=" text-light text-center">User infomation view system</h1><div className="main">
-<Card className="bg-dark text-white">
+<Card className="bg-dark text-light">
   
   <Card.ImgOverlay>
  
-  <Image src={userP}   height="90" width="100"roundedCircle />
+  <Image src={userP}   height="100" width="120"roundedCircle />
     <Card.Title>Ten</Card.Title>
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
   <Row className="bg-light text-dark">
@@ -38,6 +40,7 @@ class User extends Component {
       <Nav variant="pills" className="flex-column">
         <Nav.Item>
           <Nav.Link eventKey="first" >User infomation:</Nav.Link>
+          {/* <Link className="btn blue" to="/car">Back</Link> */}
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="second">Payment details:</Nav.Link>
