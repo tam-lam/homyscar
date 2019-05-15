@@ -22,3 +22,7 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 //location actions
 export const SAVE_USER_LOCATION = "SAVE_USER_LOCATION";
+
+//Payment actions
+export const PAYMENT_INFO = "PAYMENT_INFO";
+export const CLEAR_PAYMENT_INFO = "CLEAR_PAYMENT_INFO";

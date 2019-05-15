@@ -29,9 +29,7 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true,
-        trim: true,
-        createIndex: { unique: true },
-        minlength: 8,
+        trim: true
     }
 },
     {
