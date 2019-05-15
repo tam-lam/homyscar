@@ -10,6 +10,7 @@ import Footer from "../components/Footer";
 import UserInformation from "../components/UserInformation";
 import RentalHistory from "./RentalHistory";
 import CurrentRentals from "../components/CurrentRentals";
+import SimplePageTitle from "../components/SimplePageTitle";
 
 class User extends Component {
   state = {
