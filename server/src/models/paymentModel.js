@@ -22,12 +22,15 @@ const PaymentSchema = new Schema({
     type: String,
     required: true,
     trim: true
+  },
+  expireAt: {
+    type: Date,
+    default: Date.now,
+    index: { expires: EXPIRY_TIME }
   }
 },
   {
     timestamps: true
   })
-
-PaymentSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 });
 
 module.exports = mongoose.model('Payment', PaymentSchema);
