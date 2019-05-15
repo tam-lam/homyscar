@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import queryString from 'query-string';
+import { savePaymentInfo } from '../store/actions/paymentActions'
 
 
-export default class Paypal extends Component {
+class Paypal extends Component {
+
+  static propTypes = {
+    savePaymentInfo: PropTypes.func.isRequired
+  };
+
+  componentWillMount() {
+    let url = this.props.location.search;
+    let params = queryString.parse(url);
+    
+    const user_id = "MY USER ID";
+    const paymentId = params['paymentId']; 
+    const payerId = params['PayerID'];
+
+    if ( paymentId && payerId && user_id )
+      this.props.savePaymentInfo(user_id, paymentId, payerId);
+    else 
+      console.log("no payment INFO provided")
+  }
 
   render() {
     let url = this.props.location.search;
@@ -20,3 +41,8 @@ export default class Paypal extends Component {
     )
   }
 }
+
+export default connect(
+  null,
+  { savePaymentInfo }
+)(Paypal);
