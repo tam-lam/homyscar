@@ -13,7 +13,9 @@ import Signup from "./pages/Signup";
 import Return from "./pages/Return";
 import User from "./pages/User";
 import Paypal from "./pages/Paypal";
-import Confirmations from "./pages/Confirmation"
+import Confirmations from "./pages/Confirmation";
+import Rental from "./pages/Rental";
+
 
 class App extends Component {
   componentDidMount() {
@@ -34,6 +36,8 @@ class App extends Component {
             <Route exact path="/user" component={User} />
             <Route exact path="/paypal" component={Paypal} />
             <Route exact path="/confirmations" component={Confirmations} />
+            <Route exact path="/Rental" component={Rental} />
+
           </div>
         </Router>
       </Provider>
