@@ -12,7 +12,7 @@ const initialState = {
         rentals: [],
         error: null,
         fetching: false,
-        fetchedRentals: []
+        fetchedRentals: null
 }
 
 export default function rentalsReducer(state = initialState , action){
@@ -43,7 +43,7 @@ export default function rentalsReducer(state = initialState , action){
                 return {
                         ...state,
                         fetching: false,
-                        fetchedRentals: [...state.fetchedRentals , action.payload]
+                        fetchedRentals: action.payload
                         
                 }
                 default:

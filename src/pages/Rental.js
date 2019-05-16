@@ -9,12 +9,27 @@ class Rental extends Component{
 
   componentDidMount(){
         alert('component updating')
-        this.props.onFetchRental(this.props.currentUser._id)
+        
+
+        if (this.props.currentUser){
+                this.props.onFetchRental(this.props.currentUser._id)
+        }
    
   }
  
 render(){
 
+        if ( this.props.rentals !== null){
+                alert('confirmations is defined')
+                 var rentalItems = this.props.rentals.map(item => 
+                <div>
+                  <button type="button" onClick={() => {this.props.onAddRental({user_id: item.user_id , car_rego: item.rego})}}>
+                   Rental for {item.rego }
+                     </button>
+                </div>
+               );      
+        //        this.setState({confirmationItems: confirmItems});  
+        }
  
 
 return (
@@ -22,7 +37,7 @@ return (
   <React.Fragment>
     <NavBar />
      <p>List of Rentals</p>  
-    {/* {confirmItems} */}
+    {rentalItems}
 
     <Footer />
   </React.Fragment>
@@ -35,6 +50,7 @@ function mapPropsToState(state){
   return(
     {
       currentUser: state.auth.user,
+      rentals: state.rentals.fetchedRentals
     }
   )
 }
