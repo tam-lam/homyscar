@@ -26,9 +26,8 @@ render(){
        if ( this.props.confirmations != undefined){
 
         var confirmItems = this.props.confirmations.map(item => 
-
         <div>
-          <button type="button" onClick={this.props.onAddRental({user_id: item.confirmation[0].user_id , car_rego:item.confirmation[0].rego})}>
+          <button type="button" onClick={() => {this.props.onAddRental({user_id: item.confirmation[0].user_id , car_rego:item.confirmation[0].rego})}}>
            Confirm Booking for  {item.confirmation[0].rego }
              </button>
         </div>
@@ -66,9 +65,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchConfirmations(user_id));
     } ,
     onAddRental: rental => {
-        dispatch(addRental(rental));
-        alert('rental added')
-      }
+        dispatch(addRental(rental));      }
   };
 };
 

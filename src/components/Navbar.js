@@ -67,12 +67,15 @@ class NavBar extends Component {
         <React.Fragment>
           <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
           <Link className="nav-item nav-link active" to="/user">
-            MY ACCOUNT
+            My Account
           </Link>
-          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
           <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
           <Link className="nav-item nav-link active" to="/confirmations">
             Confirmations
+          </Link>
+          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+          <Link className="nav-item nav-link active" to="/Rental">
+            Rentals
           </Link>
           <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
           <Link

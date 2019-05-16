@@ -1,13 +1,18 @@
 import {
         ADD_RENTAL_SUCCESS,
         ADD_RENTAL_FAILURE,
-        ADD_RENTAL_STARTED
+        ADD_RENTAL_STARTED,
+        REQUEST_RENTAL,
+        RECIEVE_RENTAL
 } from '../actions/types';
+import { stat } from 'fs';
 
 const initialState = {
         loading: false,
         rentals: [],
-        error: null
+        error: null,
+        fetching: false,
+        fetchedRentals: []
 }
 
 export default function rentalsReducer(state = initialState , action){
@@ -28,6 +33,18 @@ export default function rentalsReducer(state = initialState , action){
                 return {
                         ...state,
                         error: action.payload
+                };
+                case REQUEST_RENTAL:
+                return {
+                        ...state,
+                        fetching: true
+                };
+                case RECIEVE_RENTAL:
+                return {
+                        ...state,
+                        fetching: false,
+                        fetchedRentals: [...state.fetchedRentals , action.payload]
+                        
                 }
                 default:
                 return state;

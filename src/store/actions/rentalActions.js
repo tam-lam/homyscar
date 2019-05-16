@@ -1,7 +1,10 @@
 import {
         ADD_RENTAL_SUCCESS,
         ADD_RENTAL_FAILURE,
-        ADD_RENTAL_STARTED
+        ADD_RENTAL_STARTED,
+        REQUEST_RENTAL,
+        RECIEVE_RENTAL
+        
 } from './types';
 import axios from 'axios';
 
@@ -20,6 +23,20 @@ export const addRental = ({car_rego , user_id }) => {
         }
 }
 
+export const fetchRental = (user_id) => {
+        return dispatch => {
+
+                dispatch(requestRental());
+
+                axios.get('http://localhost:3001/rental', {
+                        params: {
+                                user_id: user_id
+                        }
+                }).then(res => dispatch(recieveRental(res.data)))
+                .then(error => console.log('error in retrieving rental' , error.message))
+        }
+}
+
 
 
 
@@ -35,4 +52,13 @@ const addRentalSuccess = rental =>({
 const addRentalFailure = error => ({
         type: ADD_RENTAL_FAILURE,
         payload: error
+})
+
+const requestRental = () => ({
+        type: REQUEST_RENTAL,
+})
+
+const recieveRental = rental => ({
+        type: RECIEVE_RENTAL,
+        payload: rental
 })
