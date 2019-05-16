@@ -11,7 +11,7 @@ const initialState = {
     confirmations: [],
     error: null,
     requestingConfirmations: false,
-    recievedConfirmations: []
+    recievedConfirmations: null
 };
 
 export default function confirmationsReducer(state = initialState , action) {
@@ -43,7 +43,7 @@ export default function confirmationsReducer(state = initialState , action) {
             return {
                 ...state,
                 requestingConfirmations: false,
-                recievedConfirmations:  [...state.recievedConfirmations , action.payload]
+                recievedConfirmations:   action.payload
             }
         default:
             return state;

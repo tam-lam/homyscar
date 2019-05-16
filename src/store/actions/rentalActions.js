@@ -17,8 +17,20 @@ export const addRental = ({car_rego , user_id }) => {
                         car_rego,
                         user_id
                 })
-                .then(res => dispatch(addRentalSuccess(res.data)))
-                .then(error => dispatch(addRentalFailure(error.message)))
+                .then(res => {
+                        dispatch(addRentalSuccess(res.data))
+
+                        axios.delete('http://localhost:3001/deleteConfirmation' ,  {
+                                params: {
+                                        rego: car_rego
+                                }
+                        });
+
+                
+                })
+                .catch(error => dispatch(addRentalFailure(error)))
+
+
 
         }
 }

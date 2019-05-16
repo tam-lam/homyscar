@@ -9,6 +9,9 @@ import { addRental } from '../store/actions/rentalActions'
 
 class Confirmation extends Component{
 
+        state = {
+                confirmationItems: []
+        }
   componentDidMount(){
         alert('component updating')
         if (this.props.currentUser){
@@ -16,24 +19,32 @@ class Confirmation extends Component{
           console.log('confirmation id from confirmation page' , this.props.currentUser._id )
           this.props.getConfirmations(this.props.currentUser._id)
         }
+
    
+  }
+  
+  componentDidUpdate(){
+
+  
   }
  
 render(){
 
         // get confirmations 
  
-       if ( this.props.confirmations != undefined){
+        if ( this.props.confirmations !== null){
+                alert('confirmations is defined')
+                 var confirmItems = this.props.confirmations.confirmation.map(item => 
+                <div>
+                  <button type="button" onClick={() => {this.props.onAddRental({user_id: item.user_id , car_rego: item.rego})}}>
+                   Confirm Booking for  {item.rego }
+                     </button>
+                </div>
+               );      
+        //        this.setState({confirmationItems: confirmItems});  
+        }
 
-        var confirmItems = this.props.confirmations.map(item => 
-        <div>
-          <button type="button" onClick={() => {this.props.onAddRental({user_id: item.confirmation[0].user_id , car_rego:item.confirmation[0].rego})}}>
-           Confirm Booking for  {item.confirmation[0].rego }
-             </button>
-        </div>
-       );
-
-}
+ 
        
 
 return (

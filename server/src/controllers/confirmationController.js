@@ -28,6 +28,18 @@ const getConfirmations = (req , res) => {
   });
 }
 
+const deleteConfirmation = (req , res) => {
+        var deletionCarRego = req.query.rego
+
+        Confirmation.findOneAndDelete({rego: deletionCarRego} , ( err , confirmation) =>{
+                if (err) {
+                        res.send(err);
+                }
+                console.log('deleting confirmation with rego' , deletionCarRego);
+                res.json(res.status)
+        });
+}
 
 
-module.exports = { addNewConfirmation , getConfirmations};
+
+module.exports = { addNewConfirmation , getConfirmations , deleteConfirmation};
