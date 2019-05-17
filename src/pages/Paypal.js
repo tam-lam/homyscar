@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import queryString from 'query-string';
 import { savePaymentInfo } from '../store/actions/paymentActions'
-import {connect} from 'react-redux';
 import { addConfirmation } from '../store/actions/confirmationActions';
 
 

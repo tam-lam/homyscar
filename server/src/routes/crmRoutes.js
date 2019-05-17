@@ -2,7 +2,7 @@ var { addNewCar,  getCars } = require("../controllers/carController");
 var {addNewRental , getRentals}  = require("../controllers/rentalController");
 var { addNewUser, loginUser } = require("../controllers/userController");
 var  {setUserLocation , getCarsWithDistance }  = require("../controllers/mapController");
-var { payment, success } = require("../controllers/paymentController");
+var { payment, success , savePayment } = require("../controllers/paymentController");
 var { addNewConfirmation , getConfirmations , deleteConfirmation} = require("../controllers/confirmationController");
       
 const routes = (app) => {
