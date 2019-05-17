@@ -38,7 +38,7 @@ const  getCarsWithDistance = (req, res) => {
     confirmationsFromDB = await getConfirmationsFromDB();
     rentalsFromDB = await getRentalsFromDB();
 
-    availableCars = getOnlyAvailableCars(carsFromDB , rentalsFromDB , confirmationsFromDB);
+    availableCars = await getOnlyAvailableCars(carsFromDB , rentalsFromDB , confirmationsFromDB);
 
 
     var destinations = getDestinations(availableCars);
@@ -113,7 +113,7 @@ async function getRentalsFromDB(){
   return rentalsArray;
 }
 
-function getOnlyAvailableCars(carsArray , rentalsArray ,  confirmationsArray){
+async function getOnlyAvailableCars(carsArray , rentalsArray ,  confirmationsArray){
 
   var unavailableCars = []
   for ( var x = 0 ; x < confirmationsArray.length; x++){

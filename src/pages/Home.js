@@ -8,6 +8,7 @@ import CarList from "../components/CarList";
 import { isEmpty } from "../util/validationHelpers";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { fetchCars } from "../store/actions/carActions";
 
 class Home extends Component {
   constructor(props) {
@@ -15,6 +16,10 @@ class Home extends Component {
     this.state = {
       modalShow: false
     };
+  }
+
+  componentDidMount(){
+    this.props.callFetchCars();
   }
   displayAlert = () => {
     if (!isEmpty(this.props.checkoutCar)) {
@@ -77,11 +82,19 @@ class Home extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    callFetchCars: () => {
+      dispatch(fetchCars());
+    }
+  };
+};
 const mapStateToProps = state => ({
   checkoutCar: state.cars.checkoutCar
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  mapDispatchToProps
 )(Home);
