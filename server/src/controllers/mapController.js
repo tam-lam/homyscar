@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Car = require('../models/carModel');
 const Confirmations = require('../models/confirmationModel')
+const Rentals = require('../models/rentalModel');
 
 var { promisify } = require("util");
 
@@ -28,14 +29,16 @@ const  getCarsWithDistance = (req, res) => {
 
   // initialise arrays
   var carsFromDB = [];
-  var confirmationsFromDb = [];
+  var confirmationsFromDB = [];
+  var rentalsFromDB = [];
   var availableCars = [];
 
   var distancePromise = new Promise(async function(resolve, reject) {
     carsFromDB = await getCarsFromDB();
-    confirmationsFromDb = await getConfirmationsFromDB();
-    availableCars = getOnlyAvailableCars(carsFromDB , confirmationsFromDb);
-    console.log("AVAILABLE CARS ARE" , availableCars);
+    confirmationsFromDB = await getConfirmationsFromDB();
+    rentalsFromDB = await getRentalsFromDB();
+
+    availableCars = getOnlyAvailableCars(carsFromDB , rentalsFromDB , confirmationsFromDB);
 
 
     var destinations = getDestinations(availableCars);
@@ -96,27 +99,43 @@ async function getConfirmationsFromDB(){
   return confirmationsArray;
 }
 
-function getOnlyAvailableCars(carsArray , confirmationsArray){
+async function getRentalsFromDB(){
+  var rentalsArray = [];
+
+  await Rentals.find({} , (err , rental) => {
+    if (err) {
+      res.send(err);
+    }
+    for (var i = 0 ;  i < rental.length ; i++ ){
+      rentalsArray.push(rental[i]);
+    }
+  });
+  return rentalsArray;
+}
+
+function getOnlyAvailableCars(carsArray , rentalsArray ,  confirmationsArray){
 
   var unavailableCars = []
   for ( var x = 0 ; x < confirmationsArray.length; x++){
       console.log('confirmation unavailble is ' , confirmationsArray)
       unavailableCars.push(confirmationsArray[x].rego);
   }
-  console.log(unavailableCars);
+
+  for ( x = 0 ; x < rentalsArray.length; x++){
+      console.log('rental unavailable for  ' , rentalsArray[x].car_rego)
+      unavailableCars.push(rentalsArray[x].car_rego);
+  }
+
+  console.log('unavailable cars are ' , unavailableCars);
   var availableCars = []
   for (var i = 0; i < carsArray.length; i++) {
-    console.log('running');
     var isAvailable = false;
     for ( var j = 0 ; j < unavailableCars.length ; j++){
-      console.log('checking');
       if (carsArray[i].rego === unavailableCars[j]){
-        console.log('found unavailable car');
         isAvailable = true;
-
       }
-
     }
+    
     if (isAvailable == false){
       availableCars.push(carsArray[i]);
     }

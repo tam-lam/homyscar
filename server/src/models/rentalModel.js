@@ -26,6 +26,9 @@ const RentalSchema = new Schema({
   total_price: {
     type: Number,
     required: false
+  },
+  on_rent: {
+    type: Boolean
   }
 },
 {
