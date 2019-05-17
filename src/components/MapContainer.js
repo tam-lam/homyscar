@@ -20,7 +20,7 @@ class MapContainer extends Component {
 
   componentWillMount() {
     //this.props.fetchCarsWithDist();
-    this.props.fetchCars();
+    //this.props.fetchCars();
   }
   render() {
     const markers = this.props.cars.map(item => (

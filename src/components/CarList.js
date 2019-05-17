@@ -13,7 +13,7 @@ class CarList extends Component {
   componentDidUpdate() {
     if (isEmpty(this.props.cars) && this.props.doErrorExist === false) {
       //this.props.fetchCarsWithDist();
-      this.props.fetchCars();
+      //this.props.fetchCars();
     }
   }
   myTimer = () => {
