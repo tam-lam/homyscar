@@ -9,8 +9,8 @@ import UserAvatar from "../components/UserAvatar";
 import Footer from "../components/Footer";
 import UserInformation from "../components/UserInformation";
 import RentalHistory from "./RentalHistory";
-import CurrentRentals from "../components/CurrentRentals";
-import SimplePageTitle from "../components/SimplePageTitle";
+import Confirmation from "../components/Confirmation";
+import Rental from "../components/Rental";
 
 class User extends Component {
   state = {
@@ -52,8 +52,8 @@ class User extends Component {
                       <Nav.Link className="text-dark" eventKey="rentalHistory">
                         Rental history
                       </Nav.Link>
-                      <Nav.Link className="text-dark" eventKey="confirmation">
-                        Confirmation
+                      <Nav.Link className="text-dark" eventKey="confirmations">
+                        Confirmations
                       </Nav.Link>
                     </Nav>
                   </div>
@@ -68,7 +68,10 @@ class User extends Component {
                       <RentalHistory />
                     </Tab.Pane>
                     <Tab.Pane eventKey="currentRentals">
-                      <CurrentRentals />
+                      <Rental />
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="confirmations">
+                      <Confirmation />
                     </Tab.Pane>
                   </Tab.Content>
                 </Col>
