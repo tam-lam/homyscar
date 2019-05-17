@@ -10,7 +10,7 @@ class UserAvatar extends Component {
           className="shadow rounded-circle "
           alt="carimage"
         />
-        <span class="text-truncate" style={{ maxWidth: 100 }}>
+        <span className="text-truncate" style={{ maxWidth: 100 }}>
           <h3 className="font-weight-bold username text-truncate ">
             {this.props.userName}
           </h3>
