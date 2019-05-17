@@ -15,8 +15,8 @@ class UserInformation extends Component {
 
   componentDidMount() {
     if (this.props.user) {
-      const { _id, username, email } = this.props.user;
-      this.setState({ username: username, email: email, id: _id });
+      const { id, username, email } = this.props.user;
+      this.setState({ id: id, username: username, email: email });
     }
   }
 
@@ -26,8 +26,8 @@ class UserInformation extends Component {
         <div className="row">
           <div className="account-detail-container shadow-lg bg-dark col-md-6">
             <h1>Account Details</h1>
-            <UserDetail title="Username" content={this.state.username} />
             <UserDetail title="User ID" content={this.state.id} />
+            <UserDetail title="Username" content={this.state.username} />
             <UserDetail title="Email" content={this.state.email} />
           </div>
           <div className="account-detail-container shadow-lg bg-dark col-md-4">
