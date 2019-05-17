@@ -98,7 +98,7 @@ class MapContainer extends Component {
 }
 
 MapContainer.propTypes = {
-  fetchCarsWithDist: PropTypes.func.isRequired,
+  //fetchCarsWithDist: PropTypes.func.isRequired,
   cars: PropTypes.array.isRequired,
   fetchCars: PropTypes.func.isRequired
 };
@@ -111,7 +111,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    fetchCarsWithDist,
+   // fetchCarsWithDist,
     fetchCars,
     saveSelectedCarDistanceInStore,
     saveSelectedCarInStore,

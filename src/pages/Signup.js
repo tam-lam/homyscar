@@ -154,6 +154,7 @@ class Signup extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  carRego: state.cars.checkoutCar.rego,
   error: state.error
 });
 

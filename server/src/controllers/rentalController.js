@@ -3,12 +3,13 @@ const Rental = require('../models/rentalModel');
 
 const addNewRental = (req, res) => {
   let newRental = new Rental(req.body);
-
+  newRental.on_rent = true;
   newRental.save((err, Rental) => {
     if (err) {
       res.send(err);
     }
     res.json(Rental);
+    
   });
 };
 
