@@ -8,13 +8,9 @@ import { fetchRental } from '../store/actions/rentalActions'
 class Rental extends Component{
 
   componentDidMount(){
-        alert('component updating')
-        
-
-        if (this.props.currentUser){
-                this.props.onFetchRental(this.props.currentUser._id)
-        }
-   
+  if (this.props.currentUser){
+      this.props.onFetchRental(this.props.currentUser._id)
+    }
   }
  
 render(){
@@ -24,11 +20,10 @@ render(){
                  var rentalItems = this.props.rentals.map(item => 
                 <div>
                   <button type="button" onClick={() => {this.props.onAddRental({user_id: item.user_id , car_rego: item.rego})}}>
-                   Rental for {item.rego }
-                     </button>
+                   Rental for {item.car_rego }
+                  </button>
                 </div>
                );      
-        //        this.setState({confirmationItems: confirmItems});  
         }
  
 

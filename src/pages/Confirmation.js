@@ -9,43 +9,24 @@ import { addRental } from '../store/actions/rentalActions'
 
 class Confirmation extends Component{
 
-        state = {
-                confirmationItems: []
-        }
   componentDidMount(){
-        alert('component updating')
         if (this.props.currentUser){
-          alert(this.props.currentUser )
           console.log('confirmation id from confirmation page' , this.props.currentUser._id )
           this.props.getConfirmations(this.props.currentUser._id)
-        }
-
-   
+        } 
   }
-  
-  componentDidUpdate(){
 
-  
+  render(){
+  if ( this.props.confirmations !== null){
+    var confirmItems = this.props.confirmations.confirmation.map(item => 
+    <div>
+      <button type="button" onClick={() => {this.props.onAddRental({user_id: item.user_id , car_rego: item.rego})}}>
+        Confirm Booking for  {item.rego}
+      </button>
+    </div>
+    );      
   }
- 
-render(){
 
-        // get confirmations 
- 
-        if ( this.props.confirmations !== null){
-                alert('confirmations is defined')
-                 var confirmItems = this.props.confirmations.confirmation.map(item => 
-                <div>
-                  <button type="button" onClick={() => {this.props.onAddRental({user_id: item.user_id , car_rego: item.rego})}}>
-                   Confirm Booking for  {item.rego }
-                     </button>
-                </div>
-               );      
-        //        this.setState({confirmationItems: confirmItems});  
-        }
-
- 
-       
 
 return (
 
