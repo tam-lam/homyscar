@@ -7,10 +7,10 @@ class UserInformation extends Component {
     username: "",
     id: "",
     email: "",
-    firstName: "Forst",
-    lastName: "Last",
-    license: "1204914124",
-    dateOfBirth: "safafawefa"
+    firstName: "",
+    lastName: "",
+    license: "",
+    dateOfBirth: ""
   };
 
   componentDidMount() {
