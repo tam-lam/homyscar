@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Car = require('../models/carModel');
+const Confirmations = require('../models/confirmationModel')
+const Rentals = require('../models/rentalModel');
 
 var { promisify } = require("util");
 
@@ -23,15 +25,23 @@ const setUserLocation = (req, res) => {
 };
 
 const  getCarsWithDistance = (req, res) => {
-  var carAndDistanceArray = [];
+  
 
+  // initialise arrays
   var carsFromDB = [];
-  //   var h;
+  var confirmationsFromDB = [];
+  var rentalsFromDB = [];
+  var availableCars = [];
 
   var distancePromise = new Promise(async function(resolve, reject) {
     carsFromDB = await getCarsFromDB();
+    confirmationsFromDB = await getConfirmationsFromDB();
+    rentalsFromDB = await getRentalsFromDB();
 
-    var destinations = getDestinations(carsFromDB);
+    availableCars = getOnlyAvailableCars(carsFromDB , rentalsFromDB , confirmationsFromDB);
+
+
+    var destinations = getDestinations(availableCars);
     distance.matrix(origins, destinations, function(err, distances) {
       if (err) {
         return console.log(err);
@@ -73,6 +83,64 @@ async function getCarsFromDB() {
     }
   });
   return carsArray;
+}
+
+async function getConfirmationsFromDB(){
+  var confirmationsArray = [];
+
+  await Confirmations.find({} , (err , confirmation) => {
+    if (err) {
+      res.send(err);
+    }
+    for (var i = 0 ;  i < confirmation.length ; i++ ){
+      confirmationsArray.push(confirmation[i]);
+    }
+  });
+  return confirmationsArray;
+}
+
+async function getRentalsFromDB(){
+  var rentalsArray = [];
+
+  await Rentals.find({} , (err , rental) => {
+    if (err) {
+      res.send(err);
+    }
+    for (var i = 0 ;  i < rental.length ; i++ ){
+      rentalsArray.push(rental[i]);
+    }
+  });
+  return rentalsArray;
+}
+
+function getOnlyAvailableCars(carsArray , rentalsArray ,  confirmationsArray){
+
+  var unavailableCars = []
+  for ( var x = 0 ; x < confirmationsArray.length; x++){
+      console.log('confirmation unavailble is ' , confirmationsArray)
+      unavailableCars.push(confirmationsArray[x].rego);
+  }
+
+  for ( x = 0 ; x < rentalsArray.length; x++){
+      console.log('rental unavailable for  ' , rentalsArray[x].car_rego)
+      unavailableCars.push(rentalsArray[x].car_rego);
+  }
+
+  console.log('unavailable cars are ' , unavailableCars);
+  var availableCars = []
+  for (var i = 0; i < carsArray.length; i++) {
+    var isAvailable = false;
+    for ( var j = 0 ; j < unavailableCars.length ; j++){
+      if (carsArray[i].rego === unavailableCars[j]){
+        isAvailable = true;
+      }
+    }
+    
+    if (isAvailable == false){
+      availableCars.push(carsArray[i]);
+    }
+  }
+  return availableCars;
 }
 
 function getDestinations(databaseCars) {

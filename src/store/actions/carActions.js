@@ -54,23 +54,13 @@ export const deleteCheckoutCar = () => dispatch => {
 };
 
 export function fetchCars() {
-  return function(dispatch) {
-    dispatch(requestCarsWithDist());
+        return function(dispatch){
+               dispatch(requestCarsWithDist()) 
 
-    return fetch(`http://localhost:3001/getcarswithdistance`)
-      .then(
-        response => response.json(),
-        // Do not use catch, because that will also catch
-        // any errors in the dispatch and resulting render,
-        // causing a loop of 'Unexpected batch number' errors.
-        // https://github.com/facebook/react/issues/6895
-        error => console.log("An error occurred.", error)
-      )
-      .then(cars =>
-        // We can dispatch many times!
-        // Here, we update the app state with the results of the API call.
-
-        dispatch(recieveCarsWithDist(cars))
-      );
-  };
-}
+        fetch(`http://localhost:3001/getcarswithdistance`)
+        .then( response => response.json(),
+                error => console.log('An error occurred.', error))
+        .then(cars =>
+        dispatch(recieveCarsWithDist(cars)))
+        }
+};
