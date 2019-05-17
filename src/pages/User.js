@@ -11,27 +11,18 @@ import UserInformation from "../components/UserInformation";
 import RentalHistory from "./RentalHistory";
 import Confirmation from "../components/Confirmation";
 import Rental from "../components/Rental";
+import { connect } from "react-redux";
 
 class User extends Component {
   state = {
-    userName: "Ten fwaklj",
-    id: 1234,
-    email: "Ten@gmail.com",
-    firstName: "Ten",
-    lastName: "Sfafafw",
-    license: "ACB22445579",
-    dateOfBirth: "01/01/2000"
+    userName: ""
   };
+  componentDidMount() {
+    if (this.props.user) {
+      this.setState({ username: this.props.user.username });
+    }
+  }
   render() {
-    const {
-      userName,
-      id,
-      email,
-      firstName,
-      lastName,
-      license,
-      dateOfBirth
-    } = this.state;
     return (
       <React.Fragment>
         <NavBar />
@@ -42,7 +33,10 @@ class User extends Component {
                 <Col md={3} className="text-light">
                   <div className="nav-container shadow-lg bg-light text-dark">
                     <Nav variant="pills" className="flex-column">
-                      <UserAvatar userImg={userImg} userName={userName} />
+                      <UserAvatar
+                        userImg={userImg}
+                        userName={this.state.username}
+                      />
                       <Nav.Link className="text-dark" eventKey="userInfo">
                         User infomation
                       </Nav.Link>
@@ -84,5 +78,12 @@ class User extends Component {
     );
   }
 }
-
-export default User;
+function mapPropsToState(state) {
+  return {
+    user: state.auth.user
+  };
+}
+export default connect(
+  mapPropsToState,
+  null
+)(User);
