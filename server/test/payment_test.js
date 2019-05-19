@@ -1,8 +1,5 @@
-const assert = require('assert');
 const chai = require('chai');
 const chaiHttp = require('chai-http')
-const should = chai.should;
-// const app = require('../index')
 const app = 'localhost:3001'
 
 
@@ -15,12 +12,9 @@ const Payment = require('../src/models/paymentModel');
 
 
 
-describe('Testing payments Model and routes', () => {
+describe('Testing payments Model and their routes', () => {
 
   it('Creates a payment', (done) => {
-    //assertion is not included in mocha so 
-    //require assert which was installed along with mocha
-
     const newPayment = new Payment({ userId: 'test_userId', payerId: "test_payerId", paymentId: "test_paymentId" });
     newPayment.save(function (err) {
       if (err) done(err);
@@ -29,10 +23,22 @@ describe('Testing payments Model and routes', () => {
 
   });
 
-  it('Sends a request to payments route', (done) => {
-    //assertion is not included in mocha so 
-    //require assert which was installed along with mocha
+  it('Tries to create a payment without userId', (done) => {
+    const newPayment = new Payment({payerId: "test_payerId", paymentId: "test_paymentId" });
+    newPayment.save(function (err) {
+      if (err){
+        expect(err['name']).to.be.a('string', 'ValidationError');
+        done()
+      }
+      else {
+        done(new Error("This should not Work"))
+      }
 
+    });
+
+  });
+
+  it('Sends a request to payments route', (done) => {
     chai.request(app)
       .get('/savepayment')
       .end((err, res) => {
@@ -42,19 +48,5 @@ describe('Testing payments Model and routes', () => {
       });
 
   });
-
-  // it('Checks if the success redirects you', (done) => {
-  //   //assertion is not included in mocha so 
-  //   //require assert which was installed along with mocha
-
-  //   chai.request(app)
-  //     .get('/success')
-  //     .end((err, res) => {
-  //       expect(200);
-  //       expect(res).to.redirect;
-  //       done();
-  //     });
-
-  // });
 
 });
