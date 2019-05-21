@@ -11,16 +11,7 @@ class Rental extends Component {
   render() {
     if (this.props.rentals !== null) {
       var rentalItems = this.props.rentals.map(item => (
-        <RentalItem
-          key={item._id}
-          rental={item}
-          handleOnClick={() => {
-            this.props.onAddRental({
-              user_id: item.user_id,
-              car_rego: item.rego
-            });
-          }}
-        />
+        <RentalItem key={item._id} rental={item} />
       ));
     }
 

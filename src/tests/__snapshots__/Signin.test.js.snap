@@ -2,7 +2,7 @@
 
 exports[`render Alert correctly 1`] = `
 <div
-  className="alert alert-light text-dark shadow-lg"
+  className="alert alert-light warning-alert text-dark shadow-lg"
   role="alert"
 >
   <div

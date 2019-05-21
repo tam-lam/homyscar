@@ -15,7 +15,8 @@ import { connect } from "react-redux";
 
 class User extends Component {
   state = {
-    userName: ""
+    userName: "",
+    defaultActiveKey: "userInfo"
   };
   componentDidMount() {
     if (this.props.user) {
@@ -28,7 +29,10 @@ class User extends Component {
         <NavBar />
         <div className="container main-container">
           <div className="main">
-            <Tab.Container id="left-tabs-example" defaultActiveKey="userInfo">
+            <Tab.Container
+              id="left-tabs-example"
+              defaultActiveKey={this.state.defaultActiveKey}
+            >
               <Row className=" text-light">
                 <Col md={3} className="text-light">
                   <div className="nav-container shadow-lg bg-light text-dark">
