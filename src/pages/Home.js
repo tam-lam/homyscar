@@ -6,9 +6,10 @@ import MapContainer from "../components/MapContainer";
 import DetailModal from "../components/DetailModal";
 import CarList from "../components/CarList";
 import { isEmpty } from "../util/validationHelpers";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchCars } from "../store/actions/carActions";
+import { Transition, animated, Spring } from "react-spring/renderprops";
+import CheckoutAlert from "../components/CheckoutAlert";
 
 class Home extends Component {
   constructor(props) {
@@ -18,31 +19,24 @@ class Home extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.callFetchCars();
   }
+
   displayAlert = () => {
     if (!isEmpty(this.props.checkoutCar)) {
       return (
-        <div
-          className="alert alert-light text-dark checkout-alert shadow-lg"
-          role="alert"
+        <Spring
+          from={{ opacity: 0, marginTop: -5 }}
+          to={{ opacity: 1, marginTop: 0 }}
+          config={{ delay: 500, duration: 500 }}
         >
-          <div className="row">
-            <div className="col-1 text-center" />
-
-            <div className="col-10 text-dark">
-              You selected a vehicle. Please complete or cancle booking in{" "}
-              <Link
-                style={{ textDecoration: "none", color: "black" }}
-                to="/checkout"
-              >
-                Checkout
-              </Link>{" "}
-              page
+          {props => (
+            <div style={props}>
+              <CheckoutAlert />
             </div>
-          </div>
-        </div>
+          )}
+        </Spring>
       );
     }
   };
