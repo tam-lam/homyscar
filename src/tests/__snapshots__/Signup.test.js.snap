@@ -34,7 +34,7 @@ exports[`render SimpleTitle  correctly 1`] = `
   >
     <img
       alt="thumbnail"
-      class="img-thumbnail"
+      className="img-thumbnail"
       src="icon-white.png"
     />
     Homy's car
