@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchRental } from "../store/actions/rentalActions";
 import RentalItem from "../components/RentalItem";
+import { isEmpty } from "../util/validationHelpers";
 class Rental extends Component {
   componentDidMount() {
     if (this.props.currentUser) {
@@ -18,8 +19,13 @@ class Rental extends Component {
     return (
       <React.Fragment>
         <div className="tab-content-container">
-          <h1>List of Rentals</h1>
-          {rentalItems}
+          <h1 className="display-3">List of Rentals</h1>
+
+          {isEmpty(rentalItems) ? (
+            <p className="text-muted">No rental record found</p>
+          ) : (
+            rentalItems
+          )}
         </div>
       </React.Fragment>
     );

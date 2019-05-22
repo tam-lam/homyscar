@@ -23,7 +23,7 @@ class SummaryContainer extends Component {
             className="thumbnail-img shadow-lg"
             alt="car thumbnail"
           />
-          <div className=" container-fuild summary-container bg-light rounded-right ">
+          <div className=" container-fuild summary-container bg-light rounded-righ text-left ">
             <h1 className="font-weight-bold">Summary</h1>
             <h2>
               {this.props.car.make} {this.props.car.model} {this.props.car.year}
@@ -56,8 +56,8 @@ class SummaryContainer extends Component {
   }
 }
 const mapStateToProps = state => ({
-  car: state.cars.selectedCar,
-  distance: state.cars.selectedCarDistance
+  car: state.cars.checkoutCar,
+  distance: state.cars.checkoutDistance
 });
 export default connect(
   mapStateToProps,

@@ -16,7 +16,7 @@ class Jumbotron extends Component {
         <div className="container">
           <h1 className="display-3  shadow-lg">{this.props.title}</h1>
           <p className="lead">{this.props.subtitle}</p>
-          {this.renderLocationBtn()}
+          {/* {this.renderLocationBtn()} */}
         </div>
       </div>
     );

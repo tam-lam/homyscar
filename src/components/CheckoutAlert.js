@@ -13,7 +13,7 @@ class CheckoutAlert extends Component {
           <div className="col-1 text-center" />
 
           <div className="col-10 text-dark">
-            You selected a vehicle. Please complete or cancle booking in{" "}
+            You selected a vehicle. Please complete or cancel booking in{" "}
             <Link
               style={{ textDecoration: "none", color: "black" }}
               to="/checkout"

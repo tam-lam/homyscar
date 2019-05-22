@@ -46,7 +46,7 @@ class UserInformation extends Component {
             />
           </div>
           <div className="account-detail-container d-none d-md-block col-md-4 ">
-            <h1 className="rounded shadow-lg">User information</h1>
+            <h1 className="rounded shadow-lg display-3">User information</h1>
           </div>
         </div>
       </React.Fragment>
