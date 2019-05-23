@@ -12,9 +12,10 @@ class SummaryContainer extends Component {
       </div>
     );
   };
+
   render() {
     var carImgURL = "/images/" + this.props.car.rego + ".jpg";
-
+    console.log(this.props.distance);
     return (
       <React.Fragment>
         <div className="detail-container col-lg-7 rounded-right shadow ">
