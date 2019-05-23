@@ -48,7 +48,7 @@ class Confirmation extends Component {
           ) : (
             confirmItems
           )}
-          <Link
+          {/* <Link
             to={{
               pathname: "/"
             }}
@@ -68,7 +68,7 @@ class Confirmation extends Component {
             onClick={() => {}}
           >
             Confirm Booking for ABC123
-          </Link>
+          </Link> */}
         </div>
       </React.Fragment>
     );
