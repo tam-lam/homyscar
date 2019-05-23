@@ -19,7 +19,7 @@ class Rental extends Component {
     return (
       <React.Fragment>
         <div className="tab-content-container">
-          <h1 className="display-3">List of Rentals</h1>
+          <h1 className="display-3">Rentals</h1>
 
           {isEmpty(rentalItems) ? (
             <p className="text-muted">No rental record found</p>

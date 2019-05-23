@@ -47,9 +47,9 @@ class User extends Component {
                       <Nav.Link className="text-dark" eventKey="currentRentals">
                         Current rentals
                       </Nav.Link>
-                      <Nav.Link className="text-dark" eventKey="rentalHistory">
+                      {/* <Nav.Link className="text-dark" eventKey="rentalHistory">
                         Rental history
-                      </Nav.Link>
+                      </Nav.Link> */}
                       <Nav.Link className="text-dark" eventKey="confirmations">
                         Confirmations
                       </Nav.Link>
@@ -62,9 +62,9 @@ class User extends Component {
                     <Tab.Pane eventKey="userInfo">
                       <UserInformation />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="rentalHistory">
+                    {/* <Tab.Pane eventKey="rentalHistory">
                       <RentalHistory />
-                    </Tab.Pane>
+                    </Tab.Pane> */}
                     <Tab.Pane eventKey="currentRentals">
                       <Rental />
                     </Tab.Pane>

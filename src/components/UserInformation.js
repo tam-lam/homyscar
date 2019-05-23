@@ -38,7 +38,7 @@ class UserInformation extends Component {
         </div>
         <div className="row">
           <div className="account-detail-container shadow-lg bg-dark col-md-5">
-            <h1>License Detail</h1>
+            <h1>License Details</h1>
             <UserDetail title="License number" content={this.state.license} />
             <UserDetail
               title="Date of birth"
