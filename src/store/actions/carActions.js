@@ -41,7 +41,12 @@ export const saveSelectedCarInStore = selectedCar => dispatch => {
 };
 export const saveCheckoutCar = (checkoutCar, checkoutDistance) => dispatch => {
   sessionStorage.setItem("checkoutCar", JSON.stringify(checkoutCar));
+
   sessionStorage.setItem("checkoutDistance", checkoutDistance);
+  console.log(
+    "Checkout distance: " + sessionStorage.getItem("checkoutDistance")
+  );
+
   dispatch({ type: SAVE_CHECKOUT_CAR });
 };
 export const saveSelectedCarDistanceInStore = distance => dispatch => {
