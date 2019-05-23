@@ -33,11 +33,34 @@ class Paypal extends Component {
   render() {
     let url = this.props.location.search;
     let params = queryString.parse(url);
-
+    const user_id = "MY USER ID";
+    const paymentId = params["paymentId"];
+    const payerId = params["PayerID"];
     return (
-      <div>
+      <div className="text-light">
         {/* onSubmit={() => this.props.onAddConfirmation({rego: this.props.currentCar , user_id: this.props.currentUser.user._id})} */}
         <Navbar />
+        {this.hasPaymentDetails(payerId, paymentId) ? (
+          this.displayConfirmation(params)
+        ) : (
+          <SimplePageTitle
+            title="Invalid booking!"
+            subtitle="No payment found"
+          />
+        )}
+      </div>
+    );
+  }
+  hasPaymentDetails = (payerId, paymentID) => {
+    return payerId && paymentID;
+  };
+  cancelOnClick = () => {
+    this.props.onDeleteCheckoutCar();
+    this.props.history.push("/");
+  };
+  displayConfirmation = params => {
+    return (
+      <React.Fragment>
         <form
           action="http://localhost:3001/success"
           method="get"
@@ -48,7 +71,7 @@ class Paypal extends Component {
             });
             this.props.onDeleteCheckoutCar();
           }}
-          className="text-center"
+          className="text-center text-dark"
         >
           <input type="hidden" name="PayerID" value={params["PayerID"]} />
           <input type="hidden" name="paymentId" value={params["paymentId"]} />
@@ -86,18 +109,13 @@ class Paypal extends Component {
             </div>
           </div>
         </form>
-      </div>
+      </React.Fragment>
     );
-  }
-  cancelOnClick = () => {
-    this.props.onDeleteCheckoutCar();
-    this.props.history.push("/");
   };
 }
 
 function mapStateToProps(state) {
   return {
-    // currentCar: state.cars.checkoutCar.rego,
     currentCar: state.cars.checkoutCar,
     currentUser: state.auth
   };
