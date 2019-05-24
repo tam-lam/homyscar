@@ -43,12 +43,6 @@ class NavBar extends Component {
               <Link className="nav-item nav-link active" to="/">
                 HOME <span className="sr-only">(current)</span>
               </Link>
-              <h2 className="d-none d-lg-block my-h2">
-                &nbsp;&nbsp;/&nbsp;&nbsp;
-              </h2>
-              <Link className="nav-item nav-link active" to="/about">
-                ABOUT
-              </Link>
 
               {this.displayAuthLink(this.props.isAuthenticated)}
             </div>

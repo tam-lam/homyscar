@@ -7,7 +7,6 @@ import { deleteCheckoutCar } from "../store/actions/carActions";
 import SimplePageTitle from "../components/SimplePageTitle";
 import Navbar from "../components/Navbar";
 import SummaryContainer from "../components/SummaryContainer";
-import { notifyCheckoutSucceed } from "../components/ToastContent";
 
 class Paypal extends Component {
   state = {
@@ -40,7 +39,6 @@ class Paypal extends Component {
       <div className="text-light">
         {/* onSubmit={() => this.props.onAddConfirmation({rego: this.props.currentCar , user_id: this.props.currentUser.user._id})} */}
         <Navbar />
-        {this.displayConfirmation(params)}
         {this.hasPaymentDetails(payerId, paymentId) ? (
           this.displayConfirmation(params)
         ) : (
