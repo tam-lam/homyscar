@@ -32,7 +32,6 @@ class Paypal extends Component {
   render() {
     let url = this.props.location.search;
     let params = queryString.parse(url);
-    const user_id = "MY USER ID";
     const paymentId = params["paymentId"];
     const payerId = params["PayerID"];
     return (

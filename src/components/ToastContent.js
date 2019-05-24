@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 
 const PAYMENT_SUCCEED = "PAYMENT_SUCCEED";
 const CONFIRM_SUCCEED = "CONFIRM_SUCCEED";
+const RETURN_SUCCEED = "RETURN_SUCCEED";
+
 toast.configure({
   autoClose: 30000,
   draggable: false,
@@ -12,6 +14,11 @@ toast.configure({
 export const notifyConfirm = () =>
   toast(<ToastContent type={CONFIRM_SUCCEED} />, {
     containerId: "notifyConfirm",
+    type: toast.TYPE.SUCCESS
+  });
+export const notifyReturnSucceed = () =>
+  toast(<ToastContent type={RETURN_SUCCEED} />, {
+    containerId: "notifyReturnSucceed",
     type: toast.TYPE.SUCCESS
   });
 
@@ -27,7 +34,13 @@ const ToastContent = props => {
       return <PaymentSucceedContent />;
     case CONFIRM_SUCCEED:
       return <ConfirmSucceedContent />;
+    case RETURN_SUCCEED:
+      return <ReturnSucceedContent />;
+    default:
   }
+};
+const ReturnSucceedContent = () => {
+  return "You have returned a vehicle!";
 };
 const ConfirmSucceedContent = () => {
   return "You have confirmed a booking!";

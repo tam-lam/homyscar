@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getDateString, getTimeString } from "../util/dateHelper";
+import { Link } from "react-router-dom";
 
 class RentalItem extends Component {
   state = {};
@@ -35,9 +36,17 @@ class RentalItem extends Component {
           >
             Active Rental
           </button>
-          <button className="btn btn-light" style={returnBtnStyle}>
+
+          <Link
+            to={{
+              pathname: "/"
+            }}
+            style={returnBtnStyle}
+            className="btn btn-light"
+            onClick={this.props.onReturn}
+          >
             Return
-          </button>
+          </Link>
         </div>
       </React.Fragment>
     );

@@ -1,7 +1,6 @@
 import React from "react";
 import { isEmpty } from "../util/validationHelpers";
 const UserDetail = props => {
-  console.log(isEmpty(props.content));
   return (
     <React.Fragment>
       <div style={detailStyle}>
