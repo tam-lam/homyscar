@@ -6,8 +6,8 @@ import { addConfirmation } from "../store/actions/confirmationActions";
 import { deleteCheckoutCar } from "../store/actions/carActions";
 import SimplePageTitle from "../components/SimplePageTitle";
 import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
 import SummaryContainer from "../components/SummaryContainer";
+import { notifyCheckoutSucceed } from "../components/ToastContent";
 
 class Paypal extends Component {
   state = {
@@ -40,6 +40,7 @@ class Paypal extends Component {
       <div className="text-light">
         {/* onSubmit={() => this.props.onAddConfirmation({rego: this.props.currentCar , user_id: this.props.currentUser.user._id})} */}
         <Navbar />
+        {this.displayConfirmation(params)}
         {this.hasPaymentDetails(payerId, paymentId) ? (
           this.displayConfirmation(params)
         ) : (
@@ -77,7 +78,7 @@ class Paypal extends Component {
           <input type="hidden" name="paymentId" value={params["paymentId"]} />
           <SimplePageTitle
             title="Confirmation"
-            subtitle="One last step to go!"
+            subtitle="Once completed, confirm booking in My Account!"
           />
           <div className="container checkout-container shadow-lg rounded">
             <div className="row">
@@ -85,14 +86,14 @@ class Paypal extends Component {
                 <h1 className="deposit-amount">PayPal</h1>
                 <h3 className="deposit-label ">Deposit</h3>
                 <br />
-                We hold on to payment information to prevent "one way trips".
-                Please Signin to checkout
+                After Checkout and arriving at vehicle please visit{" "}
+                <strong>My Account</strong> page to confirm your booking
                 <br />
                 <br />
                 <input
-                  className="btn btn-success btn-lg shadow-lg"
+                  className="btn btn-primary btn-lg shadow-lg"
                   type="submit"
-                  value="Confirm booking"
+                  value="Complete checkout"
                 />
               </div>
               <SummaryContainer />
