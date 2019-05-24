@@ -84,4 +84,13 @@ const savePayment = (req, res) => {
   });
 }
 
-module.exports = { payment, success, savePayment };
+const getAllPayments = (req, res) => {
+  Payment.find({}, (err, payments) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(payments);
+  });
+}
+
+module.exports = { payment, success, savePayment, getAllPayments };
