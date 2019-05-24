@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col";
 import UserAvatar from "../components/UserAvatar";
 import Footer from "../components/Footer";
 import UserInformation from "../components/UserInformation";
-import RentalHistory from "./RentalHistory";
 import Confirmation from "../components/Confirmation";
 import Rental from "../components/Rental";
 import { connect } from "react-redux";

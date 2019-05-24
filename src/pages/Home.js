@@ -8,7 +8,7 @@ import CarList from "../components/CarList";
 import { isEmpty } from "../util/validationHelpers";
 import { connect } from "react-redux";
 import { fetchCars } from "../store/actions/carActions";
-import { Transition, animated, Spring } from "react-spring/renderprops";
+import { Spring } from "react-spring/renderprops";
 import CheckoutAlert from "../components/CheckoutAlert";
 
 class Home extends Component {
