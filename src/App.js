@@ -13,14 +13,28 @@ import Signup from "./pages/Signup";
 import Return from "./pages/Return";
 import User from "./pages/User";
 import Paypal from "./pages/Paypal";
-
+import "react-toastify/dist/ReactToastify.css";
+import {
+  notifyConfirm,
+  notifyCheckoutSucceed
+} from "./components/ToastContent";
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
   }
+
   render() {
     return (
       <Provider store={store}>
+        <button onClick={notifyConfirm}>Notify</button>
+        <button
+          onClick={() => {
+            notifyCheckoutSucceed();
+          }}
+        >
+          Notify
+        </button>
+
         <Router>
           <div>
             <Route exact path="/" component={Home} />
