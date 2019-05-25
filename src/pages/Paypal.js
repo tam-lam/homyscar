@@ -7,6 +7,7 @@ import { deleteCheckoutCar } from "../store/actions/carActions";
 import SimplePageTitle from "../components/SimplePageTitle";
 import Navbar from "../components/Navbar";
 import SummaryContainer from "../components/SummaryContainer";
+import { notifyCheckoutSucceed } from "../components/ToastContent";
 
 class Paypal extends Component {
   state = {
@@ -67,6 +68,7 @@ class Paypal extends Component {
               rego: this.state.rego,
               user_id: this.props.currentUser.user._id
             });
+            notifyCheckoutSucceed();
             this.props.onDeleteCheckoutCar();
           }}
           className="text-center text-dark"
@@ -77,38 +79,45 @@ class Paypal extends Component {
             title="Confirmation"
             subtitle="Once completed, confirm booking in My Account!"
           />
-          <div className="container checkout-container shadow-lg rounded">
-            <div className="row">
-              <div className="price-container col-lg-5 bg-dark rounded-left text-center text-light">
-                <h1 className="deposit-amount">PayPal</h1>
-                <h3 className="deposit-label ">Deposit</h3>
-                <br />
-                After Checkout and arriving at vehicle please visit{" "}
-                <strong>My Account</strong> page to confirm your booking
-                <br />
-                <br />
-                <input
-                  className="btn btn-primary btn-lg shadow-lg"
-                  type="submit"
-                  value="Complete checkout"
-                />
-              </div>
-              <SummaryContainer />
-            </div>
-            <div className="row cancel-button bg-danger rounded-bottom">
-              {" "}
-              <button
-                type="button"
-                className="btn btn-block btn-danger"
-                onClick={() => this.cancelOnClick()}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
+          {this.displaySummary()}
         </form>
       </React.Fragment>
     );
+  };
+  displaySummary = () => {
+    if (this.props.currentCar != null) {
+      return (
+        <div className="container checkout-container shadow-lg rounded">
+          <div className="row">
+            <div className="price-container col-lg-5 bg-dark rounded-left text-center text-light">
+              <h1 className="deposit-amount">PayPal</h1>
+              <h3 className="deposit-label ">Deposit</h3>
+              <br />
+              After Checkout and arriving at vehicle please visit{" "}
+              <strong>My Account</strong> page to confirm your booking
+              <br />
+              <br />
+              <input
+                className="btn btn-primary btn-lg shadow-lg"
+                type="submit"
+                value="Complete checkout"
+              />
+            </div>
+            <SummaryContainer />
+          </div>
+          <div className="row cancel-button bg-danger rounded-bottom">
+            {" "}
+            <button
+              type="button"
+              className="btn btn-block btn-danger"
+              onClick={() => this.cancelOnClick()}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      );
+    }
   };
 }
 
