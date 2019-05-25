@@ -4,6 +4,7 @@ const assert = require('assert');
 const User = require('../src/models/userModel');
 const Car = require('../src/models/carModel');
 const Rental = require('../src/models/rentalModel');
+const Confirmation = require('../src/models/confirmationModel');
 
 
 
@@ -89,6 +90,33 @@ describe('Creating users', () => {
         })
       });
 
+      it('Creates a confirmation record' , (done) => {
+
+        var correctConfirmation = Confirmation({
+          rego: 'ABC123',
+          user_id: '12345'
+        });
+
+        correctConfirmation.save()
+        .then( () => {
+          assert( !correctConfirmation.isNew);
+          done()
+        }).catch(done);
+
+      });
+
+      it('Should not create a confirmation record with no rego provided' , (done) => {
+          var wrongConfirmation = Confirmation({
+            user_id: '23456'
+          });
+
+          wrongConfirmation.save(err => {
+            if (err) { return  done();}
+            throw new Error('Should generate Error');
+          });
+
+
+      });
 
 
 
