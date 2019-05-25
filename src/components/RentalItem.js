@@ -37,16 +37,13 @@ class RentalItem extends Component {
             Active Rental
           </button>
 
-          <Link
-            to={{
-              pathname: "/"
-            }}
+          <button
             style={returnBtnStyle}
             className="btn btn-light"
-            onClick={this.props.onReturn}
+            onClick={this.props.onShowDetail}
           >
             Return
-          </Link>
+          </button>
         </div>
       </React.Fragment>
     );

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { isEmpty } from "../util/validationHelpers";
 class SummaryContainer extends Component {
   showDetail = (label, detail, width, isImportant) => {
     var className = "col-sm-" + width + " detail-col text-capitalize";
