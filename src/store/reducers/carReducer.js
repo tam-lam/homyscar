@@ -16,7 +16,7 @@ const initialState = {
   doErrorExist: false,
   checkoutCar: JSON.parse(sessionStorage.getItem("checkoutCar")),
   checkoutDistance: sessionStorage.getItem("checkoutDistance"),
-  isFetchingCars: false,
+  isFetchingCars: false
 };
 
 export default function(state = initialState, action) {
@@ -46,19 +46,19 @@ export default function(state = initialState, action) {
       return {
         ...state,
         checkoutCar: JSON.parse(sessionStorage.getItem("checkoutCar")),
-        selectedDistance: sessionStorage.getItem("selectedDistance")
+        checkoutDistance: sessionStorage.getItem("checkoutDistance")
       };
     case REQUEST_CARS_WITH_DIST:
       return {
-          ...state,
-          isFetchingCars: true
-      }
+        ...state,
+        isFetchingCars: true
+      };
     case RECIEVE_CARS_WITH_DIST:
-      return{
-          ...state,
-          isFetchingCars: false,
-          items: action.payload
-      }
+      return {
+        ...state,
+        isFetchingCars: false,
+        items: action.payload
+      };
     default:
       return state;
   }

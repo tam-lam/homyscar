@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col";
 import UserAvatar from "../components/UserAvatar";
 import Footer from "../components/Footer";
 import UserInformation from "../components/UserInformation";
-import RentalHistory from "./RentalHistory";
 import Confirmation from "../components/Confirmation";
 import Rental from "../components/Rental";
 import { connect } from "react-redux";
@@ -34,7 +33,7 @@ class User extends Component {
               defaultActiveKey={this.state.defaultActiveKey}
             >
               <Row className=" text-light">
-                <Col md={3} className="text-light">
+                <Col lg={3} className="text-light">
                   <div className="nav-container shadow-lg bg-light text-dark">
                     <Nav variant="pills" className="flex-column">
                       <UserAvatar
@@ -44,11 +43,8 @@ class User extends Component {
                       <Nav.Link className="text-dark" eventKey="userInfo">
                         User infomation
                       </Nav.Link>
-                      <Nav.Link className="text-dark" eventKey="currentRentals">
-                        Current rentals
-                      </Nav.Link>
-                      <Nav.Link className="text-dark" eventKey="rentalHistory">
-                        Rental history
+                      <Nav.Link className="text-dark" eventKey="rentalLog">
+                        Rental Log
                       </Nav.Link>
                       <Nav.Link className="text-dark" eventKey="confirmations">
                         Confirmations
@@ -57,15 +53,12 @@ class User extends Component {
                   </div>
                 </Col>
 
-                <Col md={9}>
+                <Col lg={9}>
                   <Tab.Content className="">
                     <Tab.Pane eventKey="userInfo">
                       <UserInformation />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="rentalHistory">
-                      <RentalHistory />
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="currentRentals">
+                    <Tab.Pane eventKey="rentalLog">
                       <Rental />
                     </Tab.Pane>
                     <Tab.Pane eventKey="confirmations">

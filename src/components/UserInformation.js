@@ -38,7 +38,7 @@ class UserInformation extends Component {
         </div>
         <div className="row">
           <div className="account-detail-container shadow-lg bg-dark col-md-5">
-            <h1>License Detail</h1>
+            <h1>License Details</h1>
             <UserDetail title="License number" content={this.state.license} />
             <UserDetail
               title="Date of birth"
@@ -46,7 +46,7 @@ class UserInformation extends Component {
             />
           </div>
           <div className="account-detail-container d-none d-md-block col-md-4 ">
-            <h1 className="rounded shadow-lg">User information</h1>
+            <h1 className="rounded shadow-lg display-3">User information</h1>
           </div>
         </div>
       </React.Fragment>
