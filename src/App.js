@@ -31,7 +31,6 @@ class App extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/return" component={Return} />
             <Route exact path="/user" component={User} />
             <Route exact path="/paypal" component={Paypal} />
           </div>
