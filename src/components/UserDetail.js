@@ -4,7 +4,7 @@ const UserDetail = props => {
   return (
     <React.Fragment>
       <div style={detailStyle}>
-        <h4>{props.title}: </h4>{" "}
+        <h4>{props.title} </h4>{" "}
         {!isEmpty(props.content) ? (
           <p>{props.content} </p>
         ) : (
