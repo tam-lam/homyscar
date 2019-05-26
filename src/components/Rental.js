@@ -20,16 +20,16 @@ class Rental extends Component {
   }
 
   render() {
-    var rental1 = {
-      booking_date: "2019-05-25T04:29:18.579Z",
-      _id: "5ce8c4c5ded7273b7aaa2a80",
-      car_rego: "PKJ837",
-      user_id: "5ce8a3b4e8beb52f4b797dea",
-      on_rent: true,
-      created_at: "2019-05-25T04:29:57.950Z",
-      updated_at: "2019-05-25T04:29:57.950Z",
-      __v: 0
-    };
+    // var rental1 = {
+    //   booking_date: "2019-05-25T04:29:18.579Z",
+    //   _id: "5ce8c4c5ded7273b7aaa2a80",
+    //   car_rego: "PKJ837",
+    //   user_id: "5ce8a3b4e8beb52f4b797dea",
+    //   on_rent: true,
+    //   created_at: "2019-05-25T04:29:57.950Z",
+    //   updated_at: "2019-05-25T04:29:57.950Z",
+    //   __v: 0
+    // };
     let modalClose = () => this.setState({ modalShow: false });
     let modalShow = () => {
       this.setState({
@@ -57,12 +57,12 @@ class Rental extends Component {
           ) : (
             rentalItems
           )}
-          <RentalItem
+          {/* <RentalItem
             key={rental1._id}
             rental={rental1}
             onReturn={this.props.onReturn}
             onShowDetail={modalShow}
-          />
+          /> */}
         </div>
       </React.Fragment>
     );
