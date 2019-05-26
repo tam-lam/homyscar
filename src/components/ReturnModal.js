@@ -23,7 +23,8 @@ class ReturnModal extends Component {
                 <h1 className="display-3 font-weight-bold">Total</h1>
 
                 <h1 className="display-3 font-weight-bold">$123</h1>
-                <p>Rent by Test</p>
+                <h4>UserName</h4>
+                <p>Booked on: Sat May 25 2019 at 2:29:18 pm</p>
               </div>
 
               <div className="text-left">
@@ -37,10 +38,10 @@ class ReturnModal extends Component {
                 </div>
                 <div className="row">
                   <div className="col-lg-6">
-                    <UserDetail title="Booking date" content="1214" />
+                    <UserDetail title="Return Date" content="Sat May 25 2019" />
                   </div>
                   <div className="col-lg-6">
-                    <UserDetail title="Booking Time" content="1214" />
+                    <UserDetail title="Return Time" content="2:29:18 pm" />
                   </div>
                 </div>
               </div>
