@@ -41,26 +41,33 @@ export const saveSelectedCarInStore = selectedCar => dispatch => {
 };
 export const saveCheckoutCar = (checkoutCar, checkoutDistance) => dispatch => {
   sessionStorage.setItem("checkoutCar", JSON.stringify(checkoutCar));
+
   sessionStorage.setItem("checkoutDistance", checkoutDistance);
+  console.log(
+    "Checkout distance: " + sessionStorage.getItem("checkoutDistance")
+  );
+
   dispatch({ type: SAVE_CHECKOUT_CAR });
 };
 export const saveSelectedCarDistanceInStore = distance => dispatch => {
   dispatch({ type: SAVE_SELECTED_CAR_DISTANCE_IN_STORE, payload: distance });
 };
 export const deleteCheckoutCar = () => dispatch => {
+  console.log("deleting checkout car");
   sessionStorage.removeItem("checkoutCar");
   sessionStorage.removeItem("checkoutDistance");
   dispatch({ type: DELETE_CHECKOUT_CAR });
 };
 
 export function fetchCars() {
-        return function(dispatch){
-               dispatch(requestCarsWithDist()) 
+  return function(dispatch) {
+    dispatch(requestCarsWithDist());
 
-        fetch(`http://localhost:3001/getcarswithdistance`)
-        .then( response => response.json(),
-                error => console.log('An error occurred.', error))
-        .then(cars =>
-        dispatch(recieveCarsWithDist(cars)))
-        }
-};
+    fetch(`http://localhost:3001/getcarswithdistance`)
+      .then(
+        response => response.json(),
+        error => console.log("An error occurred.", error)
+      )
+      .then(cars => dispatch(recieveCarsWithDist(cars)));
+  };
+}

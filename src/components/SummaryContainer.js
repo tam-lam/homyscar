@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 class SummaryContainer extends Component {
   showDetail = (label, detail, width, isImportant) => {
     var className = "col-sm-" + width + " detail-col text-capitalize";
@@ -12,9 +11,11 @@ class SummaryContainer extends Component {
       </div>
     );
   };
+
   render() {
     var carImgURL = "/images/" + this.props.car.rego + ".jpg";
 
+    console.log(this.props.distance);
     return (
       <React.Fragment>
         <div className="detail-container col-lg-7 rounded-right shadow ">
@@ -23,7 +24,7 @@ class SummaryContainer extends Component {
             className="thumbnail-img shadow-lg"
             alt="car thumbnail"
           />
-          <div className=" container-fuild summary-container bg-light rounded-right ">
+          <div className=" container-fuild summary-container bg-light rounded-righ text-left ">
             <h1 className="font-weight-bold">Summary</h1>
             <h2>
               {this.props.car.make} {this.props.car.model} {this.props.car.year}
@@ -56,8 +57,8 @@ class SummaryContainer extends Component {
   }
 }
 const mapStateToProps = state => ({
-  car: state.cars.selectedCar,
-  distance: state.cars.selectedCarDistance
+  car: state.cars.checkoutCar,
+  distance: state.cars.checkoutDistance
 });
 export default connect(
   mapStateToProps,
