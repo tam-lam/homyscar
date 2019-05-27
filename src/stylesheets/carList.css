@@ -1,0 +1,79 @@
+.img-thumbnail {
+  max-width: 100px !important;
+  max-height: 100px !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding-right: 20px;
+}
+.my-list-group {
+  max-height: 600px;
+  overflow: scroll;
+}
+
+.collection{
+  overflow: hidden;
+  width: 100%;
+  margin: 20px auto;
+  padding: 0;
+}
+.collection-item{
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+  overflow: auto;
+  cursor: pointer;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.collection-item::-webkit-scrollbar {
+  display: block;
+}
+.collection-item::-webkit-scrollbar {/*滚动条整体样式*/
+  width: 0px;     /*高宽分别对应横竖滚动条的尺寸*/
+  height: 10px;
+}
+.collection-item::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: #535353;
+}
+.collection-item::-webkit-scrollbar-track {/*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  background: #EDEDED;
+}
+.loading-spinner {
+  width: 100px !important;
+  height: 100px !important;
+  margin-bottom: 30px;
+}
+.spinner-container {
+  user-select: none;
+  padding-top: 150px;
+  height: 600px;
+  margin: auto;
+}
+.loading-list-container {
+  margin: auto;
+  padding-left: 40px;
+  max-width: 300px;
+}
+.slow-spin {
+  -webkit-animation: fa-spin 6s infinite linear;
+  animation: fa-spin 6s infinite linear;
+}
+.fa-spin {
+  -webkit-animation: fa-spin 6s infinite linear;
+  animation: fa-spin 6s infinite linear;
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}

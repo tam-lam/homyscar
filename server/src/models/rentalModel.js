@@ -1,9 +1,7 @@
-import mongoose from 'mongoose';
-
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-export const RentalSchema = new Schema({
-
+const RentalSchema = new Schema({
   rental_id: {
     type: String,
     required: true
@@ -32,9 +30,10 @@ export const RentalSchema = new Schema({
     type: Number,
     required: true
   }
-},
-{
+}, {
   timestamps: {
   createdAt: "created_at",
   updatedAt: "updated_at"}
 })
+
+module.exports = mongoose.model('Rental', RentalSchema);

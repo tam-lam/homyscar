@@ -1,35 +1,58 @@
-import {
-  addNewCar,
-  getCars,
-} from "../controllers/carController";
+var {
+    addNewCar,
+    getCars,
+    updateCar,
+    delCar
+} = require("../controllers/carController");
 
-import { 
-  addNewRental,
-  getRentals 
-} from "../controllers/rentalController"
+var {addNewRental, getRentals} = require("../controllers/rentalController");
 
+var {
+    addNewUser,
+    loginUser,
+    delUser,
+    getUsers,
+    updateUser
+} = require("../controllers/userController");
 
-
-import { setUserLocation , getCarsWithDistance } from "../controllers/mapController";
-
+var {setUserLocation, getCarsWithDistance} = require("../controllers/mapController");
 
 const routes = (app) => {
-  app.route('/car')
-    .post(addNewCar)
-    .get(getCars);
+    app.route('/car')
+        .post(addNewCar)
+        .get(getCars)
+        .put(updateCar)
 
-  app.route('/setlocation')
-  .post(setUserLocation); 
-    
+    app.route('/car/del')
+        .post(delCar)
 
-  app.route('/getcarswithdistance')
-  .get(getCarsWithDistance)
-    
-    
-  app.route('/rental')
-    .post(addNewRental)
-    .get(getRentals)
+    app.route('/user')
+        .get(getUsers)
+        .post(addNewUser)
+        .put(updateUser)
+
+    app.route('/user/del')
+        .post(delUser)
+
+    app.route('/setlocation')
+        .post(setUserLocation);
+
+
+    app.route('/getcarswithdistance')
+        .get(getCarsWithDistance);
+
+
+    app.route('/rental')
+        .post(addNewRental)
+        .get(getRentals)
+
+    app.route('/newUser')
+        .post(addNewUser)
+
+    app.route('/authUser')
+        .post(loginUser)
+
 
 }
 
-export default routes;
+module.exports = {routes};
