@@ -9,6 +9,8 @@ import { isEmpty } from "../util/validationHelpers";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchCars } from "../store/actions/carActions";
+import { getRentalHistory } from "../store/actions/rentalHistoryAction";
+import PropTypes from "prop-types";
 
 class Home extends Component {
   constructor(props) {
@@ -18,8 +20,16 @@ class Home extends Component {
     };
   }
 
+  // static propTypes = {
+  //   getRentalHistory: PropTypes.func.isRequired
+  // };
+
   componentDidMount(){
     this.props.callFetchCars();
+    if ( this.props.user ){
+      this.props.callFetchRentals(this.props.user.id);
+    }
+
   }
   displayAlert = () => {
     if (!isEmpty(this.props.checkoutCar)) {
@@ -87,11 +97,15 @@ const mapDispatchToProps = dispatch => {
   return {
     callFetchCars: () => {
       dispatch(fetchCars());
+    },
+    callFetchRentals: (user_id) => {
+      dispatch(getRentalHistory(user_id) )
     }
   };
 };
 const mapStateToProps = state => ({
-  checkoutCar: state.cars.checkoutCar
+  checkoutCar: state.cars.checkoutCar,
+  user: state.auth.user
 });
 
 export default connect(

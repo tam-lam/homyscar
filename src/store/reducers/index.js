@@ -6,6 +6,7 @@ import locationReducer from "./locationReducer";
 import paymentReducer from "./paymentReducer";
 import confirmationReducer from "./confirmationReducer";
 import rentalsReducer from "./rentalReducer";
+import rentalHistoryReducer from "./rentalHistoryReducer"
 export default combineReducers({
   cars: carReducer,
   error: errorReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   location: locationReducer,
   payment: paymentReducer,
   confirmations: confirmationReducer,
-  rentals: rentalsReducer
+  rentals: rentalsReducer,
+  rentalHistory: rentalHistoryReducer
 });
