@@ -2,8 +2,41 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class RentalHistory extends Component {
-  state = {};
+
+
+  convertDate (incomingDate) {
+    const date = new Date(incomingDate)
+    return date.toDateString()
+  }
+
+  convertOnRent (on_rent) {
+    if (on_rent)
+      return "YES"
+    else
+      return "NO"
+  }
+
+  displayRentals() {
+    if (this.props.user) {
+      const aRental =  this.props.myRentalHistory.map((rental, key) =>
+        <li>
+          <h3>Rental Number {(key+1)}</h3>
+          <h3>Booking Date {this.convertDate(rental.booking_date)}</h3>
+          <h3>Return Date {this.convertDate(rental.return_date)}</h3>
+          <h3>Rental Active {this.convertOnRent(rental.on_rent)}</h3>
+        </li>
+      );
+      return aRental
+    }
+  }
+
+
   render() {
+
+    
+
+    const myRentals = this.displayRentals()
+
     return (
       <React.Fragment>
         <h1>
@@ -12,27 +45,21 @@ class RentalHistory extends Component {
         <div className="h">
           <hr />
         </div>
-        <h4>2019/04/12</h4>
-        <p>rent: car tye: #3455667 AU$36/h</p>
-        <h4>2019/04/13</h4>
-        <p>rent: car tye: #3455667 AU$36/h</p>
-        <h4>2019/04/14</h4>
-        <p>rent: car tye: #3455667 AU$36/h</p>
-        <h4>2019/04/16</h4>
-        <p>rent: car tye: #3455667 AU$36/h</p>
-        <h4>2019/04/15</h4>
-        <p>rent: car tye: #3455667 AU$36/h</p>
-        <h4>2019/04/12</h4>
-        <p>rent: car tye: #3455667 AU$36/h</p>
-        <h4>2019/04/12</h4>
-        <p>rent: car tye: #3455667 AU$36/h</p>
+        <div>
+          <ul>
+            {myRentals}
+          </ul>
+        </div>
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  user: state.auth.user,
+  myRentalHistory: state.rentalHistory.my_rental_history
+});
 export default connect(
   mapStateToProps,
-  {}
+  null
 )(RentalHistory);

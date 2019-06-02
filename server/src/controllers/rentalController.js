@@ -22,4 +22,15 @@ const getRentals = (req, res) => {
   });
 };
 
-module.exports = { addNewRental , getRentals};
+const getUserRentals = (req, res) => {
+  const { user_id } = req.body;
+
+  Rental.find({ user_id }, (err, rental) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(rental);
+  });
+};
+
+module.exports = { addNewRental, getRentals, getUserRentals};
