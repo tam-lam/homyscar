@@ -33,7 +33,8 @@ const addNewUser = (req, res) => {
                         user: {
                             id: user.id,
                             username: user.username,
-                            email: user.email
+                            email: user.email,
+                            isAdmin: user.isAdmin
                         }
                     })
                 }
@@ -70,7 +71,8 @@ const loginUser = (req, res) => {
                                 user: {
                                     id: user.id,
                                     username: user.username,
-                                    email: user.email
+                                    email: user.email,
+                                    isAdmin: user.isAdmin
                                 }
                             })
                         }

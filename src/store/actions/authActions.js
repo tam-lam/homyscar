@@ -45,8 +45,10 @@ export const register = ({ username, email, password }) => dispatch => {
     }
   };
 
+  const isAdmin = false
+
   // Request Body
-  const body = JSON.stringify({ username, email, password });
+  const body = JSON.stringify({ username, email, password, isAdmin });
 
   axios
     .post("http://localhost:3001/newUser", body, config)
