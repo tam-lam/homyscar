@@ -44,7 +44,7 @@ class NavBar extends Component {
                 HOME <span className="sr-only">(current)</span>
               </Link>
 
-              {this.displayAuthLink(this.props.isAuthenticated)}
+              {this.displayAuthLink(this.props.isAuthenticated, this.props.user)}
             </div>
           </div>
         </div>
@@ -55,25 +55,51 @@ class NavBar extends Component {
     this.props.deleteCheckoutCar();
     this.props.logout();
   };
-  displayAuthLink = isAuthenticated => {
+  displayAuthLink = (isAuthenticated, user) => {
     if (isAuthenticated) {
-      return (
-        <React.Fragment>
-          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
-          <Link className="nav-item nav-link active" to="/user">
-            MY ACCOUNT
+      if ( user.isAdmin ){
+        return (
+          <React.Fragment>
+            <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+            <Link className="nav-item nav-link active" to="/user">
+              MANAGE ACCOUNTS
+            </Link>
+            <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+            <Link className="nav-item nav-link active" to="/user">
+              MANAGE CARS
+            </Link>
+            <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+            <Link
+              className="nav-item nav-link active"
+              onClick={this.logoutOnClick}
+              to="/"
+            >
+              {" "}
+              LOGOUT
           </Link>
-          <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
-          <Link
-            className="nav-item nav-link active"
-            onClick={this.logoutOnClick}
-            to="/"
-          >
-            {" "}
-            LOGOUT
+          </React.Fragment>
+        );
+      }
+      else {
+        return (
+          <React.Fragment>
+            <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+            <Link className="nav-item nav-link active" to="/user">
+              MY ACCOUNT
           </Link>
-        </React.Fragment>
-      );
+            <h2 className="d-none d-lg-block my-h2">&nbsp;&nbsp;/&nbsp;&nbsp;</h2>
+            <Link
+              className="nav-item nav-link active"
+              onClick={this.logoutOnClick}
+              to="/"
+            >
+              {" "}
+              LOGOUT
+          </Link>
+          </React.Fragment>
+        );
+      }
+      
     } else {
       return (
         <React.Fragment>
@@ -93,7 +119,8 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user
 });
 export default connect(
   mapStateToProps,
