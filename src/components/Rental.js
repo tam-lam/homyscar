@@ -15,7 +15,7 @@ class Rental extends Component {
   }
   componentDidMount() {
     if (this.props.currentUser) {
-      this.props.onFetchRental(this.props.currentUser._id);
+      this.props.onFetchRental(this.props.currentUser.id);
     }
   }
 
