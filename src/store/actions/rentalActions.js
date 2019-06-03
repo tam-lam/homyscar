@@ -33,14 +33,28 @@ export const fetchRental = user_id => {
   return dispatch => {
     dispatch(requestRental());
 
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    // Request Body
+    const body = JSON.stringify({ user_id: user_id });
+
+    console.log(user_id)
+
+
     axios
-      .get("http://localhost:3001/rental", {
-        params: {
-          user_id: user_id
-        }
-      })
-      .then(res => dispatch(recieveRental(res.data)))
-      .then(error => console.log("error in retrieving rental", error.message));
+      .post("http://localhost:3001/userRentals", body, config)
+      .then(res =>
+        dispatch(recieveRental(res.data))
+      )
+      .catch(error => {
+        console.log("error in retrieving rental", error.message)
+      });
+      
   };
 };
 

@@ -40,6 +40,7 @@ export default function rentalsReducer(state = initialState , action){
                         fetching: true
                 };
                 case RECIEVE_RENTAL:
+                console.log(action.payload)
                 return {
                         ...state,
                         fetching: false,

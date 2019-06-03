@@ -1,5 +1,5 @@
 var { addNewCar,  getCars } = require("../controllers/carController");
-var {addNewRental , getRentals}  = require("../controllers/rentalController");
+var { addNewRental, getRentals, getUserRentals}  = require("../controllers/rentalController");
 var { addNewUser, loginUser } = require("../controllers/userController");
 var  {setUserLocation , getCarsWithDistance }  = require("../controllers/mapController");
 var { payment, success, savePayment, getAllPayments } = require("../controllers/paymentController");
@@ -9,6 +9,10 @@ var {
   deleteConfirmation} = require("../controllers/confirmationController");
       
 const routes = (app) => {
+  
+  app.route('/userRentals')
+    .post(getUserRentals)
+  
   app.route('/success')
   .get(success)
 
