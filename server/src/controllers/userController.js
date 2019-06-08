@@ -33,7 +33,8 @@ const addNewUser = (req, res) => {
                         user: {
                             id: user.id,
                             username: user.username,
-                            email: user.email
+                            email: user.email,
+                            isAdmin: user.isAdmin
                         }
                     })
                 }
@@ -70,7 +71,8 @@ const loginUser = (req, res) => {
                                 user: {
                                     id: user.id,
                                     username: user.username,
-                                    email: user.email
+                                    email: user.email,
+                                    isAdmin: user.isAdmin
                                 }
                             })
                         }
@@ -79,6 +81,26 @@ const loginUser = (req, res) => {
                 })
         })
 };
+
+const updateUser  = (req, res) => {
+    console.log(req.body)
+    User.updateOne({_id: req.body.id}, {$set: {...req.body.data}}, (err, car) => {
+        if (err) {
+            res.send(err);
+        }
+        res.json(car);
+    });
+};
+const delUser = (req, res) => {
+    User.remove({_id: req.body.id}, (err, car) => {
+        console.log(car)
+        if (err) {
+            res.send(err);
+        }
+        res.json(car);
+    });
+};
+
 
 const getUsers = (req, res) => {
     User.find({}, (err, user) => {
@@ -89,4 +111,4 @@ const getUsers = (req, res) => {
     });
 };
 
-module.exports = { addNewUser , loginUser , getUsers};
+module.exports = { addNewUser , loginUser , getUsers,delUser,updateUser};
