@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
+import "react-toastify/dist/ReactToastify.css";
 import { loadUser } from "./store/actions/authActions";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
@@ -13,11 +14,16 @@ import Signup from "./pages/Signup";
 import Return from "./pages/Return";
 import User from "./pages/User";
 import Paypal from "./pages/Paypal";
+import AddCars from "./components/AddCars";
+import AddUser from "./components/AddUser";
+import EditCar from './components/EditCar'
+import EditUser from './components/EditUser'
 
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
   }
+
   render() {
     return (
       <Provider store={store}>
@@ -29,9 +35,12 @@ class App extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/return" component={Return} />
             <Route exact path="/user" component={User} />
             <Route exact path="/paypal" component={Paypal} />
+             <Route exact path="/car/add" component={AddCars} />
+            <Route exact path="/user/add" component={AddUser} />
+            <Route exact path="/car/edit/:id" component={EditCar} />
+            <Route exact path="/user/edit/:id" component={EditUser} />
           </div>
         </Router>
       </Provider>
