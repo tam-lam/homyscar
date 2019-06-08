@@ -7,43 +7,62 @@ const SALT_ROUNDS = 12;
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-
     username: {
+        type: String,
+        required: true,
+        trim: true,
+        createIndex: {unique: true},
+    },
+    licenseNo: {
         type: String,
         required: true,
         trim: true,
         createIndex: {unique: true},
         minlength: 3,
     },
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
         trim: true,
         lowercase: true,
-        createIndex: { unique: true },
+        createIndex: {unique: true},
         validate: {
             validator: emailValidator.validate,
             message: props => `${props.value} is not a valid email address`,
         }
     },
+    dateOfBirth: {
+        type: String,
+        required: true,
+    },
     password: {
         type: String,
         required: true,
-        trim: true
-    }
-},
-    {
-        timestamps: true
-    })
+    },
+    PaymentDetails:{
+        type: String,
+        required: true,
+    },
+}, {
+    timestamps: true
+})
 
-UserSchema.pre( 'save', async function preSave(next) {
+UserSchema.pre('save', async function preSave(next) {
     const user = this;
-    if(!user.isModified('password')) return next();
+    if (!user.isModified('password')) return next();
     try {
         const hash = await bcrypt.hash(user.password, SALT_ROUNDS);
         user.password = hash;
         return next();
-    } catch(err) {
+    } catch (err) {
         return next(err);
     }
 })
