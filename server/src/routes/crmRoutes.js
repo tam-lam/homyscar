@@ -1,6 +1,6 @@
-var { addNewCar,  getCars } = require("../controllers/carController");
-var {addNewRental , getRentals}  = require("../controllers/rentalController");
-var { addNewUser, loginUser } = require("../controllers/userController");
+var { addNewCar,  getCars, updateCar,  delCar} = require("../controllers/carController");
+var { addNewRental, getRentals, getUserRentals}  = require("../controllers/rentalController");
+var { addNewUser, loginUser ,delUser, getUsers,updateUser} = require("../controllers/userController");
 var  {setUserLocation , getCarsWithDistance }  = require("../controllers/mapController");
 var { payment, success, savePayment, getAllPayments } = require("../controllers/paymentController");
 var { 
@@ -9,6 +9,10 @@ var {
   deleteConfirmation} = require("../controllers/confirmationController");
       
 const routes = (app) => {
+  
+  app.route('/userRentals')
+    .post(getUserRentals)
+  
   app.route('/success')
   .get(success)
 
@@ -21,7 +25,19 @@ const routes = (app) => {
 
   app.route('/car')
   .post(addNewCar)
-  .get(getCars);
+  .get(getCars)
+  .put(updateCar);
+
+  app.route('/car/del')
+        .post(delCar)
+
+  app.route('/user')
+        .get(getUsers)
+        .post(addNewUser)
+        .put(updateUser)
+
+  app.route('/user/del')
+        .post(delUser)
       
   app.route('/setlocation')
   .post(setUserLocation); 
