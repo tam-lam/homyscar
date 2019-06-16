@@ -9,10 +9,9 @@ var {
   deleteConfirmation} = require("../controllers/confirmationController");
       
 const routes = (app) => {
-  
-  app.route('/userRentals')
+  app.route('/rentalHistory')
     .post(getUserRentals)
-  
+
   app.route('/success')
   .get(success)
 
