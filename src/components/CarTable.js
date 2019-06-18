@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Table from 'react-bootstrap/Table'
+import {connect} from 'react-redux';
+import {fetchAllCars} from '../store/actions/carActions';
+import {Link} from 'react-router-dom';
 
 class CarTable extends Component{
     constructor() {
@@ -8,85 +11,77 @@ class CarTable extends Component{
           data: [],
         }
       }
-      componentDidMount() {
-        return fetch("http://167.99.227.136:3001/car")
-          .then((response) => response.json())
-          .then((responseJson) => {
-           
-            this.setState({
-              data:responseJson  //数组的名字
-            })
-            console.log(this.state.data)
-          })
-        }
-        render(){
+      componentWillMount() {
+        this.props.getCarsFromServer()
+      }
+
+    render(){  
+      const carTable = this.props.cars.map(car => 
+      (
+        <tr>
+          <td>{car._id}  </td>
+          <td>{car.rego} </td>
+          <td>{car.make} </td>
+          <td>{car.model}</td>
+          <td>{car.year} </td>
+          <td>{car.body} </td>
+          <td>{car.transmission} </td>
+          <td>{car.address} </td>
+          <td>{car.price}</td>
+          <td>{car.availability.toString()}</td>
+          <td>{car.damaged.toString()}</td>
+          <td>
+            <Link to={{ pathname: `/car/edit/${car._id}`, query: {car} }} style={{color: '#007bff'}}>Update</Link>
+            <br/>
+            <span  style={{color: '#ff0000'}} onClick={this.deleteCard}>Delete</span>
+          </td>
+      </tr>
+      )
+      );
 
     return(
         <div className="table">
         <Table striped bordered hover variant="dark">
             <thead>
                 <tr>
-                        <th> car._id
-                        </th>
-                        <th>car.make
-                        </th>
-                        <th> Car_rego
-                        </th>
-                        <th> car.model
-                        </th>
-                        <th>car.year
-                        </th> 
-                        <th>car.body
-                        </th> 
-                        <th>car.transmission
-                        </th>  
-                        <th>car.address
-                        </th>  
-                        <th>car.price
-                        </th>  
-                       
-                    </tr>
-                </thead>
-                <tbody>
+                  <th>ID</th>
+                  <th>Registration </th>
+                  <th>Make </th>
+                  <th>Model </th>
+                  <th>Year</th> 
+                  <th>Body </th> 
+                  <th>Transmission </th>  
+                  <th>Location address </th>  
+                  <th>Price per hour</th>
+                  <th>Availability</th>
+                  <th>Damaged?</th>      
+                </tr>
+            </thead>
 
-      {
-        this.state.data.map( (dynamicData,key)=>
-        
-       <tr>
-         <td> 
-            {dynamicData._id}
-          </td>
-          <td>
-             {dynamicData.make}
-          </td>
-          <td>
-             {dynamicData.rego}
-          </td>
-          <td>{dynamicData.model}
-         </td>
-         <td>{dynamicData.year}
-         </td>
-        <td>{dynamicData.body}
-         </td>
-         <td>{dynamicData.transmission}
-         </td>
-         <td >{dynamicData.address}
-         </td>
-         
-         <td>{dynamicData.price}
-         </td>
-
-
-          </tr>
-      
-        )        
-      }
-
-                    </tbody>
-            </Table>
-            </div>
+            <tbody>
+              {carTable}
+            </tbody>
+      </Table>
+      </div>
 
     );
 
 }
-}export default CarTable;
+}
+
+const mapDispatchToProps = dispatch => {
+
+  return {
+    getCarsFromServer: () => {
+        dispatch(fetchAllCars())
+    }
+  }
+}
+
+function mapStateToProps(state){
+  return {
+    cars: state.cars.allCars
+  }
+}
+
+export default connect(mapStateToProps , mapDispatchToProps) (CarTable);
