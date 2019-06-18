@@ -44,6 +44,14 @@ class RentalItem extends Component {
           >
             Return
           </button>
+
+          <Link to= { 
+              {
+                  pathname:"/return",
+                  returnItem: this.props.rental }
+              } > 
+              Return using link
+              </Link>
         </div>
       </React.Fragment>
     );

@@ -37,4 +37,5 @@ const RentalSchema = new Schema({
   updatedAt: "updated_at"}
 })
 
+mongoose.set('useFindAndModify', false);
 module.exports = mongoose.model('Rental', RentalSchema);

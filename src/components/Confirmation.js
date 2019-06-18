@@ -8,10 +8,6 @@ import { isEmpty } from "../util/validationHelpers";
 class Confirmation extends Component {
   componentDidMount() {
     if (this.props.currentUser) {
-      console.log(
-        "confirmation id from confirmation page",
-        this.props.currentUser._id
-      );
       this.props.getConfirmations(this.props.currentUser._id);
     }
   }

@@ -33,6 +33,7 @@ class App extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/user" component={User} />
             <Route exact path="/paypal" component={Paypal} />
+            <Route exact path="/return" component={Return} />
           </div>
         </Router>
       </Provider>
