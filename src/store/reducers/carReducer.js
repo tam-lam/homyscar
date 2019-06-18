@@ -8,7 +8,8 @@ import {
   RECIEVE_CARS_WITH_DIST,
   REQUEST_CARS,
   RECIEVE_CARS,
-  RECIEVE_CARS_ERROR
+  RECIEVE_CARS_ERROR,
+  UPDATE_CAR
 } from "../actions/types";
 
 const initialState = {
@@ -67,7 +68,9 @@ export default function(state = initialState, action) {
         ...state,
         isFetchingCars: false,
         allCars: action.payload
-      }
+      };
+    case UPDATE_CAR:
+      return state;
     default:
       return state;
   }

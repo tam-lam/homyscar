@@ -8,7 +8,8 @@ import {
   RECIEVE_CARS_WITH_DIST,
   REQUEST_CARS,
   RECIEVE_CARS,
-  RECIEVE_CARS_ERROR
+  RECIEVE_CARS_ERROR,
+  UPDATE_CAR
 } from "./types";
 import axios from 'axios';
 
@@ -76,6 +77,17 @@ export function fetchAllCars(){
   }
 }
 
+export function updateCarDetails(updated_data){
+
+  return dispatch => {
+    dispatch(updateCar())
+
+    console.log('store ' , updated_data)
+    axios.post('http://localhost:3001/updateCar' , {data: updated_data})
+  }
+
+}
+
 export function requestCars(){
   return {
     type: REQUEST_CARS
@@ -96,12 +108,15 @@ export function recieveCarsError(error){
   }
 }
 
-
-
-
 export function recieveCarsWithDist(cars) {
   return {
     type: RECIEVE_CARS_WITH_DIST,
     payload: cars
   };
+}
+
+export function updateCar(){
+  return {
+    type: UPDATE_CAR
+  }
 }

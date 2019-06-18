@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import './AddCars.css'
 
 class EditCar extends Component {
 

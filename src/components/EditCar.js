@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import './AddCars.css'
+import {connect} from 'react-redux';
+import {onUpdateCarDetails, updateCarDetails} from '../store/actions/carActions';
 
 class EditCar extends Component {
 
@@ -25,59 +26,45 @@ class EditCar extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    componentWillMount() {
-        if(this.props.location.query){
+
+    componentDidMount(){
+        if(this.props.location.car_to_be_edited){
+            let car = this.props.location.car_to_be_edited;
             this.setState({
-                ...this.props.location.query
+                ...car
             })
         }
-        //this.getCarsDetails();
     }
 
-    getCarsDetails() {
-        let current_car_id = this.props.match.params.id;
-        axios.get(`http://localhost:3001/getcarbyid`, {
-            params: {
-                car_id: current_car_id
-            }
-        })
-            .then(response => {
-                this.setState({
-                    _id: response.data._id,
-                    make: response.data.make,
-                    rego: response.data.rego,
-                    model: response.data.model,
-                    year: response.data.year,
-                    body: response.data.body,
-                    transmission: response.data.transmission,
-                    address: response.data.address,
-                    price: response.data.price
-                });
-            }).then(() => {
-            console.log(this.state)
-        }).catch(err => console.log(err));
-    }
+    
 
     editCars(data,id) {
+
+        console.log(this.state)
         this.setState({
             disabled:true
         })
-        axios.request({
-            method: 'put',
-            url: `http://localhost:3001/car`,
-            data: {
-                data:data,
-                id:id
-            }
-        })
-            .then(response => {
-                this.props.history.push('/admin');
-            }).catch(err => console.log(err));
+        // axios.request({
+        //     method: 'put',
+        //     url: `http://localhost:3001/car`,
+        //     data: {
+        //         data:data,
+        //         id:id
+        //     }
+        // })
+        //     .then(response => {
+        //         this.props.history.push('/admin');
+        //     }).catch(err => console.log(err));
+
+
+        this.props.onUpdateCarDetails(data)
+        this.props.history.push('/admin');
 
     }
 
     onSubmit(e) {
         const newCars = {
+            _id: this.state._id,
             make: this.refs.make.value,
             rego: this.refs.rego.value,
             model: this.refs.model.value,
@@ -193,37 +180,20 @@ class EditCar extends Component {
                         </Form>
 
 
-                        {/* <div className="input-field">
-         <input type="text" name="_id" ref="_id" value={this.state._id} onChange={this.handleInputChange}/>
-         <label htmlFor="_id" >ID</label>
-         </div>
-         <div className="input-field">
-         <input type="text" name="make" ref="make"value={this.state.make} onChange={this.handleInputChange}/>
-         <label htmlFor="make" >Make</label>
-         </div>
-         <div className="input-field">
-         <input type="text" name="rego" ref="rego"value={this.state.rego} onChange={this.handleInputChange}/>
-         <label htmlFor="rego" >Rego</label>
-         </div>
-         <div className="input-field">
-         <input type="text" name="model" ref="model"value={this.state.model} onChange={this.handleInputChange}/>
-         <label htmlFor="model" >Model</label>
-         </div>
-          <div className="input-field">
-         <input type="text" name="year" ref="year"value={this.state.year} onChange={this.handleInputChange}/>
-         <label htmlFor="year" >Year</label>
-         </div>
-        <div className="input-field">        
-         <input type="text" name="body" ref="body"value={this.state.body} onChange={this.handleInputChange}/>
-         <label htmlFor="body" >Body</label>
-        </div>
-        <input type="sumbmit" value="Save" className="btn"/> */}
-
-
                     </form>
                 </div>
             </div>
         );
     }
 };
-export default EditCar;
+
+const mapDispatchToProps = dispatch => {
+
+    return {
+        onUpdateCarDetails: updated_car_info => {
+            dispatch(updateCarDetails(updated_car_info))
+        }
+    }
+
+}
+export default connect(null , mapDispatchToProps) (EditCar);

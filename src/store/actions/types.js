@@ -9,6 +9,7 @@ export const DELETE_CHECKOUT_CAR = "DELETE_CHECKOUT_CAR";
 export const REQUEST_CARS = "REQUEST_CARS";
 export const RECIEVE_CARS = "RECIEVE_CARS";
 export const RECIEVE_CARS_ERROR = 'RECIEVE_CARS_ERROR'
+export const UPDATE_CAR = 'UPDATE_CAR'
 //Auth actions
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";
