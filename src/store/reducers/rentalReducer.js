@@ -3,7 +3,8 @@ import {
         ADD_RENTAL_FAILURE,
         ADD_RENTAL_STARTED,
         REQUEST_RENTAL,
-        RECIEVE_RENTAL
+        RECIEVE_RENTAL,
+        RETURN_RENTAL
 } from '../actions/types';
 import { stat } from 'fs';
 
@@ -40,13 +41,13 @@ export default function rentalsReducer(state = initialState , action){
                         fetching: true
                 };
                 case RECIEVE_RENTAL:
-                console.log(action.payload)
                 return {
                         ...state,
                         fetching: false,
-                        fetchedRentals: action.payload
-                        
-                }
+                        fetchedRentals: action.payload   
+                };
+                case RETURN_RENTAL:
+                return state;
                 default:
                 return state;
         }

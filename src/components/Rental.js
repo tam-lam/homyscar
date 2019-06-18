@@ -10,14 +10,28 @@ class Rental extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalShow: false
+      modalShow: false,
+      mockItem: {
+        _id: '5d071c48d35a8742704dffb5',
+        booking_date: "23102301",
+        car_rego:"ABC123",
+        user_id:"5d061bf1319857332cba3983",
+        on_rent:true,
+        created_at: "2019-06-17T04:51:20.280+00:00",
+        updated_at: "2019-06-17T04:51:20.280+00:00"
+    }
     };
   }
-  componentDidMount() {
-    if (this.props.currentUser) {
-      this.props.onFetchRental(this.props.currentUser.id);
+
+    componentDidMount() {
+        if (this.props.currentUser) {
+            alert(this.props.currentUser._id)
+          this.props.onFetchRental(this.props.currentUser._id);
+        //  this.props.onFetchRental('5d061bf1319857332cba3983');
+          
+        }
     }
-  }
+    
 
   render() {
     // var rental1 = {
@@ -32,9 +46,7 @@ class Rental extends Component {
     // };
     let modalClose = () => this.setState({ modalShow: false });
     let modalShow = () => {
-      this.setState({
-        modalShow: true
-      });
+      this.setState({ modalShow: true });
     };
     if (this.props.rentals !== null) {
       var rentalItems = this.props.rentals.map(item => (
@@ -46,6 +58,15 @@ class Rental extends Component {
         />
       ));
     }
+
+    //   var rentalItems = 
+    //     <RentalItem
+    //       key={'5d071c48d35a8742704dffb5'}
+    //       rental={this.state.mockItem}
+    //       onReturn={this.props.onReturn}
+    //       onShowDetail={modalShow}
+    //     />
+    
     return (
       <React.Fragment>
         <ReturnModal show={this.state.modalShow} onHide={modalClose} />

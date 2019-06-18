@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Rental = require('../models/rentalModel');
 
 const addNewRental = (req, res) => {
@@ -23,9 +22,11 @@ const getRentals = (req, res) => {
 };
 
 const getUserRentals = (req, res) => {
-  const { user_id } = req.body;
 
-  Rental.find({ user_id }, (err, rental) => {
+  var required_user_id = req.query.user_id
+  console.log('user id is ' , required_user_id)
+
+  Rental.find({ user_id: required_user_id }, (err, rental) => {
     if (err) {
       res.send(err);
     }
@@ -33,4 +34,22 @@ const getUserRentals = (req, res) => {
   });
 };
 
-module.exports = { addNewRental, getRentals, getUserRentals};
+const updateRental = (req , res) => {
+
+    var update_rental_data = req.body.data
+    var rental_id = req.body.data.rental_id
+
+
+
+
+    Rental.findByIdAndUpdate({_id: rental_id}, {$set:update_rental_data} , ( err , confirmation) =>{
+            if (err) {
+                    res.send(err);
+                    
+            }
+            console.log('successful update' , rental_id);
+            res.json(res.status)
+    });
+}
+
+module.exports = { addNewRental, getRentals, getUserRentals , updateRental};

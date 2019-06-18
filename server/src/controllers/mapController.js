@@ -76,7 +76,8 @@ async function getCarsFromDB() {
   var carsArray = [];
   await Car.find({}, (err, car) => {
     if (err) {
-      res.send(err);
+      console.log("error in getCarsFromDB" , err)
+      return;
     }
     for (var i = 0; i < car.length; i++) {
       carsArray.push(car[i]);

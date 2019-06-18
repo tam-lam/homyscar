@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 import { fetchCars } from "../store/actions/carActions";
 import { Spring } from "react-spring/renderprops";
 import CheckoutAlert from "../components/CheckoutAlert";
-import { getRentalHistory } from "../store/actions/rentalHistoryAction";
 
 class Home extends Component {
   constructor(props) {
@@ -20,12 +19,8 @@ class Home extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.callFetchCars();
-    if ( this.props.user ){
-      this.props.callFetchRentals(this.props.user.id);
-    }
-
   }
 
   displayAlert = () => {
@@ -86,15 +81,11 @@ const mapDispatchToProps = dispatch => {
   return {
     callFetchCars: () => {
       dispatch(fetchCars());
-    },
-    callFetchRentals: (user_id) => {
-      dispatch(getRentalHistory(user_id) )
     }
   };
 };
 const mapStateToProps = state => ({
-  checkoutCar: state.cars.checkoutCar,
-  user: state.auth.user
+  checkoutCar: state.cars.checkoutCar
 });
 
 export default connect(
