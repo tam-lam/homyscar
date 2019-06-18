@@ -11,7 +11,7 @@ var {
 const routes = (app) => {
   
   app.route('/userRentals')
-    .post(getUserRentals)
+    .post(getRentals)
   
   app.route('/success')
   .get(success)
