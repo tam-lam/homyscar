@@ -22,4 +22,19 @@ const getCars = (req, res) => {
   });
 };
 
-module.exports =  {addNewCar , getCars};
+const updateCar = (req , res) => {
+  var car_to_be_updated_id = req.body.data._id
+  var updated_data = req.body.data
+
+  Car.findByIdAndUpdate({_id: car_to_be_updated_id} , {$set: updated_data} , (err , car) =>{
+
+    if (err){
+      res.send(err);
+    }
+
+    console.log('successfully updated car with' , car_to_be_updated_id)
+    res.json(res.status)
+  }) 
+}
+
+module.exports =  {addNewCar , getCars , updateCar};
