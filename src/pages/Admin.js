@@ -6,21 +6,18 @@ import AdminMenu from "../components/AdminMenu";
 class Admin extends Component{
 
    
-      render() {
-     
-        return (
+  render() {
 
-<React.Fragment>
-      <NavBar />
-     <AdminMenu />
-
- <Footer />
-
-</React.Fragment>
-
+    return (
+      // render admin page
+      <React.Fragment>
+        <NavBar />
+        <AdminMenu />
+        <Footer />
+      </React.Fragment>
     );
   }      
-    }
+}
     
   
 export default Admin;
