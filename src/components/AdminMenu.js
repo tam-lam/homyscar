@@ -6,9 +6,18 @@ import Col from 'react-bootstrap/Col'
 import CarInfoTable from "../components/Table";
 import CarTable from "../components/CarTable"
 import UserTable from '../components/UserTable';
+import RentalsLogTable from '../components/RentalsLogTable'
+import RentalsTable from '../components/RentalsTable'
 import Image from 'react-bootstrap/Image'
+import {connect} from 'react-redux'
+import {fetchAllRentals} from '../store/actions/rentalActions';
+
 
 class AdminMenu extends Component {
+
+    componentWillMount(){
+        this.props.getAllRentals();
+    }
     render() {
       return (
         <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
@@ -28,16 +37,16 @@ class AdminMenu extends Component {
                             Car List
                         </ListGroup.Item>
                         <ListGroup.Item action variant="dark" href="#link2">
-                            Log Management
+                            Users
                         </ListGroup.Item>
                         <ListGroup.Item action variant="dark" href="#link3">
-                            User Management
+                            Rentals Log
                         </ListGroup.Item>
                         <ListGroup.Item action variant="dark" href="#link4">
-                            Admin Infomation
+                            Active Rentals
                         </ListGroup.Item>
                         <ListGroup.Item action variant="dark" href="#link5">
-                            Link 5
+                            Admin Infomation
                         </ListGroup.Item>
                         <ListGroup.Item action variant="dark" href="#link6">
                             Link 6
@@ -53,9 +62,12 @@ class AdminMenu extends Component {
                             <UserTable />
                         </Tab.Pane>
                         <Tab.Pane eventKey="#link3">
-               
+                            <RentalsLogTable />
                         </Tab.Pane>
-                        <Tab.Pane eventKey="#link4">
+                            <Tab.Pane eventKey="#link4">
+                            <RentalsTable />
+                        </Tab.Pane>.
+                        <Tab.Pane eventKey="#link5">
                             <div className="text-light bg-dark" style={{padding: '10px', borderRadius: '4px'}}>
                                 <br></br><br></br>
                                 <div className="text-dark">
@@ -80,8 +92,6 @@ class AdminMenu extends Component {
                                 </div>
                             </div>
                         </Tab.Pane>
-                        <Tab.Pane eventKey="#link5">
-                        </Tab.Pane>
                         <Tab.Pane eventKey="#link6">
                         </Tab.Pane>
                     </Tab.Content>
@@ -91,4 +101,10 @@ class AdminMenu extends Component {
         );
       }
 }
-export default AdminMenu;
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getAllRentals: () => dispatch(fetchAllRentals())
+    }
+}
+export default connect( null ,mapDispatchToProps) (AdminMenu); 
