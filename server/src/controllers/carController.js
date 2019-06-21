@@ -22,23 +22,6 @@ const getCars = (req, res) => {
   });
 };
 
-<<<<<<< HEAD
-
-const updateCar = (req , res) => {
-
-    var car_to_be_updated_rego = req.body.data.car_rego
-    var update_data = req.body.data
-
-    Car.findOneAndUpdate({rego:car_to_be_updated_rego} , {$set: update_data} , (err, car) => {
-
-        if(err) {
-            res.send(err);
-        }
-
-        console.log('successful car update of car with rego' , car_to_be_updated_rego)
-        res.json(res.status)
-    })
-=======
 const updateCar = (req , res) => {
   var car_to_be_updated_id = req.body.data._id
   var updated_data = req.body.data
@@ -52,7 +35,6 @@ const updateCar = (req , res) => {
     console.log('successfully updated car with' , car_to_be_updated_id)
     res.json(res.status)
   }) 
->>>>>>> feature_admin_functionalities
 }
 
 module.exports =  {addNewCar , getCars , updateCar};

@@ -49,12 +49,11 @@ export default function rentalsReducer(state = initialState , action){
                 return {
                         ...state,
                         fetching: false,
-<<<<<<< HEAD
                         fetchedRentals: action.payload   
                 };
                 case RETURN_RENTAL:
-                return state;
-=======
+                return {
+                        ...state,
                         fetchedRentals: action.payload    
                 }
                 case RECIEVE_ALL_RENTALS:
@@ -70,7 +69,6 @@ export default function rentalsReducer(state = initialState , action){
                     fetching: false,
                     error: action.payload
                 }
->>>>>>> feature_admin_functionalities
                 default:
                 return state;
         }
