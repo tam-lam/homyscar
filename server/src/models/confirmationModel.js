@@ -12,6 +12,10 @@ const ConfirmationSchema = new Schema({
         type: String ,
         required: true,
     },
+    price: {
+        type: Number ,
+        required: true,
+    },
     expireAt: {
         type: Date,
         default: Date.now,

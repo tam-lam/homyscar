@@ -6,6 +6,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Geocode from "react-geocode"
 import {deleteRental} from '../store/actions/rentalActions';
 import {connect } from 'react-redux';
+import DateDiff from 'date-diff';
+import axios from 'axios';
+
 class Return extends Component {
     constructor(props) {
         super(props);
@@ -105,11 +108,32 @@ class Return extends Component {
         }
       }
 
-
-
-  componentDidMount(){
-      alert(this.props.location.returnItem.user_id)
+  calculateTotalPrice(price, mins) {
+    var totalPrice = ( price / 60 ) * mins
+    return totalPrice;
   }
+
+  processPayment(){
+
+    var pricePerHour = this.props.location.returnItem.price
+    var payerId = this.props.location.returnItem.payer_id
+    var paymentId = this.props.location.returnItem.payment_id
+
+    var date1 = new Date();
+    var date2 = new Date(this.props.location.returnItem.booking_date)
+    var diff = new DateDiff(date1, date2);
+
+    var totalPrice = this.calculateTotalPrice(pricePerHour, diff.minutes())
+
+    axios.get('http://localhost:3001/success', {
+      params: {
+        totalPrice: totalPrice,
+        PayerID: payerId,
+        paymentId: paymentId
+      }
+    })
+  }
+
   render() {
     return (
         <Script url="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVT0ufJbPLrh4hbunIDrF3TYDAolrNOlg&libraries=places" onLoad={this.handleScriptLoad}  />,
@@ -131,7 +155,12 @@ class Return extends Component {
           }}
         />
 
-        <button onClick={() => this.returnRental()} > Return  </button>
+        <button onClick={() => {
+          this.returnRental()
+          this.processPayment()
+        }}> 
+          Return  
+        </button>
            </MuiThemeProvider>
     );
   }

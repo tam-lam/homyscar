@@ -19,7 +19,7 @@ class Rental extends Component {
         on_rent:true,
         created_at: "2019-06-17T04:51:20.280+00:00",
         updated_at: "2019-06-17T04:51:20.280+00:00"
-    }
+      }
     };
   }
 

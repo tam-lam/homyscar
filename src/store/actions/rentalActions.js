@@ -10,14 +10,17 @@ import {
 } from "./types";
 import axios from "axios";
 
-export const addRental = ({ car_rego, user_id }) => {
+export const addRental = ({ car_rego, user_id , payment_id , payer_id, price }) => {
   return dispatch => {
     dispatch(addRentalStarted());
 
     axios
       .post("http://localhost:3001/rental", {
         car_rego,
-        user_id
+        user_id,
+        payment_id,
+        payer_id,
+        price
       })
       .then(res => {
         dispatch(addRentalSuccess(res.data));

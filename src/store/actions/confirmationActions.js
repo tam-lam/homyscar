@@ -7,14 +7,15 @@ import {
 } from './types';
 import axios from 'axios';
 
-export const addConfirmation = ({rego , user_id}) => {
+export const addConfirmation = ({rego , user_id, price}) => {
     return dispatch => {
         dispatch(addConfirmationStarted());
         // console.log('rego is ' , carRego);
         // console.log('userid is ' , userId);
         axios.post('http://localhost:3001/addConfirmation' , {
             rego,
-            user_id
+            user_id,
+            price
         })
         .then(res => {
             dispatch(addConfirmationSuccess(res.data));
