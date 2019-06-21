@@ -5,22 +5,15 @@ import {
   FETCH_ERROR_OCCUR,
   SAVE_CHECKOUT_CAR,
   DELETE_CHECKOUT_CAR,
-  REQUEST_CARS_WITH_DIST,
-  RECIEVE_CARS_WITH_DIST
+  RECIEVE_CARS_WITH_DIST,
+  REQUEST_CARS,
+  RECIEVE_CARS,
+  RECIEVE_CARS_ERROR,
+  UPDATE_CAR
 } from "./types";
+import axios from 'axios';
 
-export function requestCarsWithDist() {
-  return {
-    type: REQUEST_CARS_WITH_DIST
-  };
-}
 
-export function recieveCarsWithDist(cars) {
-  return {
-    type: RECIEVE_CARS_WITH_DIST,
-    payload: cars
-  };
-}
 export const fetchCarsWithDist = () => dispatch => {
   fetch("http://localhost:3001/getcarswithdistance")
     .then(res => res.json())
@@ -61,7 +54,7 @@ export const deleteCheckoutCar = () => dispatch => {
 
 export function fetchCars() {
   return function(dispatch) {
-    dispatch(requestCarsWithDist());
+    dispatch(requestCars());
 
     fetch(`http://localhost:3001/getcarswithdistance`)
       .then(
@@ -70,4 +63,60 @@ export function fetchCars() {
       )
       .then(cars => dispatch(recieveCarsWithDist(cars)));
   };
+}
+
+export function fetchAllCars(){
+
+  return dispatch => {
+    dispatch(requestCars())
+    alert('requesting cars')
+
+    axios.get('http://localhost:3001/car')
+    .then(res => dispatch(recieveCars(res.data)))
+    .catch(err => dispatch(recieveCarsError(err)))
+  }
+}
+
+export function updateCarDetails(updated_data){
+
+  return dispatch => {
+    dispatch(updateCar())
+
+    console.log('store ' , updated_data)
+    axios.post('http://localhost:3001/updateCar' , {data: updated_data})
+  }
+
+}
+
+export function requestCars(){
+  return {
+    type: REQUEST_CARS
+  }
+}
+
+export function recieveCars(cars){
+  return {
+    type: RECIEVE_CARS,
+    payload: cars
+  }
+}
+
+export function recieveCarsError(error){
+  return {
+    type: RECIEVE_CARS_ERROR,
+    payload: error
+  }
+}
+
+export function recieveCarsWithDist(cars) {
+  return {
+    type: RECIEVE_CARS_WITH_DIST,
+    payload: cars
+  };
+}
+
+export function updateCar(){
+  return {
+    type: UPDATE_CAR
+  }
 }
