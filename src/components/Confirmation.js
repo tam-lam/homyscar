@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchConfirmations } from "../store/actions/confirmationActions";
 import { addRental } from "../store/actions/rentalActions";
-import { Link } from "react-router-dom";
 import { notifyConfirm } from "../components/ToastContent";
 import { isEmpty } from "../util/validationHelpers";
 class Confirmation extends Component {
@@ -15,21 +14,22 @@ class Confirmation extends Component {
     if (this.props.confirmations !== null) {
       var confirmItems = this.props.confirmations.confirmation.map(item => (
         <div>
-          <Link
-            to={{
-              pathname: "/"
-            }}
-            className="btn btn-light"
-            onClick={() => {
-              this.props.onAddRental({
-                user_id: item.user_id,
-                car_rego: item.rego
-              });
-              notifyConfirm();
-            }}
+
+          <form 
+            action="http://localhost:3001/pay" 
+            method="post"
           >
-            Confirm Booking for {item.rego}
-          </Link>
+            <input type="hidden" name="rego" value={item.rego} />
+            <input type="hidden" name="user_id" value={item.user_id} />
+            <input type="hidden" name="price" value={item.price} />
+            <button
+              className="btn btn-light"
+              type="submit"
+            >
+              Confirm Booking for {item.rego}
+            </button>
+          </form>
+
           <br />
           <br />
         </div>

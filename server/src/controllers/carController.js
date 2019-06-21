@@ -37,4 +37,4 @@ const updateCar = (req , res) => {
   }) 
 }
 
-module.exports =  {addNewCar , getCars , updateCar};
+module.exports = { addNewCar, getCars, updateCar};

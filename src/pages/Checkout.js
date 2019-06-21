@@ -6,13 +6,14 @@ import { connect } from "react-redux";
 import { isEmpty } from "../util/validationHelpers";
 import SummaryContainer from "../components/SummaryContainer";
 import SimplePageTitle from "../components/SimplePageTitle";
-
+import { notifyCheckoutSucceed } from "../components/ToastContent";
 import {
   saveSelectedCarInStore,
   saveSelectedCarDistanceInStore,
-  deleteCheckoutCar
+  deleteCheckoutCar,
+  saveCheckoutCar
 } from "../store/actions/carActions";
-import { saveCheckoutCar } from "../store/actions/carActions";
+import { addConfirmation } from "../store/actions/confirmationActions"
 
 class Checkout extends Component {
   componentWillMount() {
@@ -97,14 +98,18 @@ class Checkout extends Component {
   displayPayPalBtn = () => {
     if (this.props.isUserSignedIn) {
       return (
-        <form action="http://localhost:3001/pay" method="post">
-          <button
-            className="btn btn-primary btn-lg shadow-lg checkout-btn"
-            type="submit"
-          >
-            Check out with PayPal
-          </button>
-        </form>
+        
+        <button 
+          className="btn btn-primary btn-lg shadow-lg checkout-btn"
+          onClick={() => {
+            this.props.addConfirmation({
+              rego: this.props.checkoutCar.rego,
+              user_id: this.props.currentUser.user._id,
+              price: this.props.checkoutCar.price
+            });
+            notifyCheckoutSucceed();
+            this.cancelOnClick();
+        }}> CHECK OUT </button>
       );
     }
   };
@@ -126,14 +131,31 @@ const mapStateToProps = state => ({
   checkoutCar: state.cars.checkoutCar,
   checkoutDistance: state.cars.checkoutDistance,
   distance: state.cars.selectedCarDistance,
-  isUserSignedIn: state.auth.isAuthenticated
+  isUserSignedIn: state.auth.isAuthenticated,
+  currentUser: state.auth
 });
+
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onDeleteCheckoutCar: () => {
+      dispatch(deleteCheckoutCar());
+    },
+    onAddConfirmation: confirmation => {
+      dispatch(addConfirmation(confirmation));
+    }
+  };
+};
+
+
+
 export default connect(
   mapStateToProps,
   {
     saveSelectedCarInStore,
     saveCheckoutCar,
     saveSelectedCarDistanceInStore,
-    deleteCheckoutCar
+    deleteCheckoutCar,
+    addConfirmation
   }
 )(Checkout);

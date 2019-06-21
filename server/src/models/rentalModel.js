@@ -11,6 +11,14 @@ const RentalSchema = new Schema({
     type: String,
     required: true
   },
+  payment_id: {
+    type: String,
+    required: true
+  },
+  payer_id: {
+    type: String,
+    required: true
+  },
   booking_date: {
     type: Date,
     default: Date.now()
@@ -26,6 +34,10 @@ const RentalSchema = new Schema({
   total_price: {
     type: Number,
     required: false
+  },
+  price: {
+    type: Number,
+    required: true
   },
   on_rent: {
     type: Boolean

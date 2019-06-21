@@ -1,4 +1,4 @@
-var { addNewCar,  getCars , updateCar } = require("../controllers/carController");
+var { addNewCar, getCars, updateCar } = require("../controllers/carController");
 var { addNewRental, getRentals, getUserRentals , updateRental}  = require("../controllers/rentalController");
 var { addNewUser, loginUser , getUsers } = require("../controllers/userController");
 var  {setUserLocation , getCarsWithDistance }  = require("../controllers/mapController");

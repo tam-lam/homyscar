@@ -11,12 +11,38 @@ import UserInformation from "../components/UserInformation";
 import Confirmation from "../components/Confirmation";
 import Rental from "../components/Rental";
 import { connect } from "react-redux";
+import queryString from "query-string";
+import { addRental } from "../store/actions/rentalActions";
+import { notifyConfirm } from "../components/ToastContent";
 
 class User extends Component {
   state = {
     userName: "",
     defaultActiveKey: "userInfo"
   };
+
+  componentWillMount() {
+    let url = this.props.location.search;
+    let params = queryString.parse(url);
+
+    const paymentId = params["paymentId"];
+    const payerId = params["PayerID"];
+    const rego = params["rego"];
+    const userId = params["userId"];
+    const price = params["price"];
+
+    if (paymentId && payerId ) {
+      this.props.onAddRental({
+        user_id: userId,
+        car_rego: rego,
+        payment_id: paymentId,
+        payer_id: payerId,
+        price: price
+      });
+      notifyConfirm();
+    }
+  }
+
   componentDidMount() {
     if (this.props.user) {
       this.setState({ username: this.props.user.username });
@@ -80,7 +106,16 @@ function mapPropsToState(state) {
     user: state.auth.user
   };
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddRental: rental => {
+      dispatch(addRental(rental));
+    }
+  };
+};
+
 export default connect(
   mapPropsToState,
-  null
+  mapDispatchToProps
 )(User);

@@ -8,30 +8,31 @@ paypal.configure({
 });
 
 const payment = (req, res) => {
+
   const create_payment_json = {
     "intent": "sale",
     "payer": {
       "payment_method": "paypal"
     },
     "redirect_urls": {
-      "return_url": "http://localhost:3000/paypal",
+      "return_url": `http://localhost:3000/user?rego=${req.body.rego}&userId=${req.body.user_id}&price=${req.body.price}`,
       "cancel_url": "http://localhost:3000/cancel"
     },
     "transactions": [{
-      "item_list": {
-        "items": [{
-          "name": "Red Socks Hat",
-          "sku": "001",
-          "price": "25.00",
-          "currency": "USD",
-          "quantity": 1
-        }]
-      },
+      // "item_list": {
+      //   "items": [{
+      //     "name": "CAR",
+      //     "sku": "001",
+      //     "price": "15.00" ,
+      //     "currency": "AUD",
+      //     "quantity": 2
+      //   }]
+      // },
       "amount": {
-        "currency": "USD",
-        "total": "25.00"
+        "currency": "AUD",
+        "total": "100.00"
       },
-      "description": "Buying a Hat"
+      "description": "Renting a Car"
     }]
   };
 
@@ -49,15 +50,26 @@ const payment = (req, res) => {
 };
 
 const success = (req, res) => {
+  
   const payerId = req.query.PayerID;
   const paymentId = req.query.paymentId;
+  var totalPrice = req.query.totalPrice;
+  var total_hours = 2
+
+  
+  totalPrice = Math.round(totalPrice)
+
+  totalPrice = totalPrice + 20
+
+  console.log("PRICEEEEEEEEE AFTER")
+  console.log(totalPrice)
 
   const execute_payment_json = {
     "payer_id": payerId,
     "transactions": [{
       "amount": {
-        "currency": "USD",
-        "total": "25.00"
+        "currency": "AUD",
+        "total": totalPrice
       }
     }]
   };
