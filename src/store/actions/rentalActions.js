@@ -4,7 +4,9 @@ import {
   ADD_RENTAL_STARTED,
   REQUEST_RENTAL,
   RECIEVE_RENTAL,
-  RETURN_RENTAL
+  RETURN_RENTAL,
+  RECIEVE_ALL_RENTALS,
+  RECIEVE_RENTAL_ERROR
 } from "./types";
 import axios from "axios";
 
@@ -57,9 +59,7 @@ export const fetchRental = user_id => {
       .then(res =>
         dispatch(recieveRental(res.data))
       )
-      .catch(error => {
-        console.log("error in retrieving rental", error.message)
-      });
+      .catch(error => dispatch(receiveRentalError(error)));
       
   };
 };
@@ -98,6 +98,14 @@ export const deleteRental = (return_item , address_info) => {
         } 
 
         
+export const fetchAllRentals = () => {
+    return dispatch => {
+        dispatch(requestRental())
+
+        axios.get('http://localhost:3001/rental')
+        .then(res => dispatch(recieveAllRentals(res.data)))
+        .catch(error => dispatch(receiveRentalError(error.message)))
+    }
 }
 
 
@@ -128,3 +136,15 @@ const recieveRental = rental => ({
 const returnRental = () => ({
     type: RETURN_RENTAL
 })
+const recieveAllRentals = rentals => ({
+    type: RECIEVE_ALL_RENTALS,
+    payload: rentals
+})
+
+const receiveRentalError = error => ({
+    type: RECIEVE_RENTAL_ERROR,
+    payload: error
+})
+
+
+

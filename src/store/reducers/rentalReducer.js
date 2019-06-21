@@ -4,7 +4,9 @@ import {
         ADD_RENTAL_STARTED,
         REQUEST_RENTAL,
         RECIEVE_RENTAL,
-        RETURN_RENTAL
+        RETURN_RENTAL,
+        RECIEVE_ALL_RENTALS,
+        RECIEVE_RENTAL_ERROR
 } from '../actions/types';
 import { stat } from 'fs';
 
@@ -13,7 +15,10 @@ const initialState = {
         rentals: [],
         error: null,
         fetching: false,
-        fetchedRentals: null
+        fetchedRentals: null,
+        inactiveRentals: [],
+        activeRentals: []
+
 }
 
 export default function rentalsReducer(state = initialState , action){
@@ -44,10 +49,28 @@ export default function rentalsReducer(state = initialState , action){
                 return {
                         ...state,
                         fetching: false,
+<<<<<<< HEAD
                         fetchedRentals: action.payload   
                 };
                 case RETURN_RENTAL:
                 return state;
+=======
+                        fetchedRentals: action.payload    
+                }
+                case RECIEVE_ALL_RENTALS:
+                return {
+                        ...state,
+                        fetching: false,
+                        inactiveRentals: action.payload.filter(rental => rental.on_rent === false),
+                        activeRentals: action.payload.filter(rental => rental.on_rent === true)
+                }
+                case RECIEVE_RENTAL_ERROR:
+                return {
+                    ...state,
+                    fetching: false,
+                    error: action.payload
+                }
+>>>>>>> feature_admin_functionalities
                 default:
                 return state;
         }
