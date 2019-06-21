@@ -96,6 +96,7 @@ export const deleteRental = (return_item , address_info) => {
 
 
         } 
+      }
 
         
 export const fetchAllRentals = () => {

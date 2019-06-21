@@ -37,14 +37,11 @@ class App extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/user" component={User} />
             <Route exact path="/paypal" component={Paypal} />
-<<<<<<< HEAD
             <Route exact path="/return" component={Return} />
-=======
             <Route exact path="/addcar" component={AddCars} />
             <Route exact path="/adduser" component={AddUser} />
             <Route exact path="/editcar" component={EditCar} />
             <Route exact path="/edituser" component={EditUser} />
->>>>>>> feature_admin_functionalities
           </div>
         </Router>
       </Provider>
