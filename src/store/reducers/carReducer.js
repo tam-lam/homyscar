@@ -5,12 +5,16 @@ import {
   FETCH_ERROR_OCCUR,
   SAVE_CHECKOUT_CAR,
   DELETE_CHECKOUT_CAR,
-  REQUEST_CARS_WITH_DIST,
-  RECIEVE_CARS_WITH_DIST
+  RECIEVE_CARS_WITH_DIST,
+  REQUEST_CARS,
+  RECIEVE_CARS,
+  RECIEVE_CARS_ERROR,
+  UPDATE_CAR
 } from "../actions/types";
 
 const initialState = {
   items: [],
+  allCars: [],
   selectedCar: {},
   selectedDistance: "",
   doErrorExist: false,
@@ -48,7 +52,7 @@ export default function(state = initialState, action) {
         checkoutCar: JSON.parse(sessionStorage.getItem("checkoutCar")),
         checkoutDistance: sessionStorage.getItem("checkoutDistance")
       };
-    case REQUEST_CARS_WITH_DIST:
+    case REQUEST_CARS:
       return {
         ...state,
         isFetchingCars: true
@@ -59,6 +63,14 @@ export default function(state = initialState, action) {
         isFetchingCars: false,
         items: action.payload
       };
+    case RECIEVE_CARS:
+      return {
+        ...state,
+        isFetchingCars: false,
+        allCars: action.payload
+      };
+    case UPDATE_CAR:
+      return state;
     default:
       return state;
   }

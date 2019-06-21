@@ -32,6 +32,9 @@ const routes = (app) => {
   app.route('/car')
   .post(addNewCar)
   .get(getCars);
+
+  app.route('/updateCar')
+  .post(updateCar)
       
   app.route('/setlocation')
   .post(setUserLocation); 
