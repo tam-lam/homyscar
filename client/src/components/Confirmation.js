@@ -16,7 +16,7 @@ class Confirmation extends Component {
         <div>
 
           <form 
-            action="http://localhost:3001/pay" 
+            action="/pay" 
             method="post"
           >
             <input type="hidden" name="rego" value={item.rego} />
