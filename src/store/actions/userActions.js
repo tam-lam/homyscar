@@ -12,7 +12,7 @@ export const fetchUsers = () =>{
 
         dispatch(requestUsers())
 
-        axios.get('http://localhost:3001/getUsers')
+        axios.get('/getUsers')
         .then(res => dispatch(recieveUsers(res.data)))
         .catch(error => dispatch(recieveUsesError(error)))
 

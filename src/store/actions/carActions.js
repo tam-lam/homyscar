@@ -15,7 +15,7 @@ import axios from 'axios';
 
 
 export const fetchCarsWithDist = () => dispatch => {
-  fetch("http://localhost:3001/getcarswithdistance")
+  fetch("/getcarswithdistance")
     .then(res => res.json())
     .then(cars =>
       dispatch({
@@ -56,7 +56,7 @@ export function fetchCars() {
   return function(dispatch) {
     dispatch(requestCars());
 
-    fetch(`http://localhost:3001/getcarswithdistance`)
+    fetch(`/getcarswithdistance`)
       .then(
         response => response.json(),
         error => console.log("An error occurred.", error)
@@ -71,7 +71,7 @@ export function fetchAllCars(){
     dispatch(requestCars())
     alert('requesting cars')
 
-    axios.get('http://localhost:3001/car')
+    axios.get('/car')
     .then(res => dispatch(recieveCars(res.data)))
     .catch(err => dispatch(recieveCarsError(err)))
   }
@@ -83,7 +83,7 @@ export function updateCarDetails(updated_data){
     dispatch(updateCar())
 
     console.log('store ' , updated_data)
-    axios.post('http://localhost:3001/updateCar' , {data: updated_data})
+    axios.post('/updateCar' , {data: updated_data})
   }
 
 }

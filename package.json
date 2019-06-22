@@ -53,14 +53,14 @@
     "wait-on": "^3.2.0"
   },
   "scripts": {
-    "start": "node server/index.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "nodemon server/index.js",
     "jest": "./node_modules/.bin/jest",
     "test-mocha": "mocha --recursive --timeout 10000",
-    "start-project": "concurrently \"npm run server\" \"wait-on http://localhost:3001/car && npm start\" ",
+    "start-project": "concurrently \"npm run server\" \"npm start\" ",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "eslintConfig": {
@@ -72,6 +72,7 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
