@@ -61,7 +61,7 @@
     "jest": "./node_modules/.bin/jest",
     "test-mocha": "mocha --recursive --timeout 10000",
     "start-project": "concurrently \"npm run server\" \"wait-on http://localhost:3001/car && npm start\" ",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
