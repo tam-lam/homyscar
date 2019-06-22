@@ -53,6 +53,7 @@ app.use(session({
 
 app.use('/getUser', require('./src/routes/getUserDetails'));
 
+routes(app);
 if (process.env.NODE_ENV === 'production'){
   app.use(express.static('../build'));
 
@@ -62,7 +63,7 @@ if (process.env.NODE_ENV === 'production'){
   });
 }
 
-routes(app);
+
 
 
 app.listen(PORT, () =>
