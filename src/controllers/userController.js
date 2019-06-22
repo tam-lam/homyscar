@@ -31,7 +31,7 @@ const addNewUser = (req, res) => {
                     res.json({
                         token,
                         user: {
-                            id: user.id,
+                            _id: user.id,
                             username: user.username,
                             email: user.email,
                             isAdmin: user.isAdmin
@@ -69,7 +69,7 @@ const loginUser = (req, res) => {
                             res.json({
                                 token,
                                 user: {
-                                    id: user.id,
+                                    _id: user.id,
                                     username: user.username,
                                     email: user.email,
                                     isAdmin: user.isAdmin
