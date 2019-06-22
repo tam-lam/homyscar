@@ -53,14 +53,15 @@
     "wait-on": "^3.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "nodemon server/index.js",
     "jest": "./node_modules/.bin/jest",
     "test-mocha": "mocha --recursive --timeout 10000",
-    "start-project": "concurrently \"npm run server\" \"wait-on http://localhost:3001/car && npm start\" "
+    "start-project": "concurrently \"npm run server\" \"wait-on http://localhost:3001/car && npm start\" ",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm build"
   },
   "eslintConfig": {
     "extends": "react-app"
