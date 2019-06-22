@@ -98,11 +98,11 @@ class CarList extends Component {
   }
 }
 
-CarList.propTypes = {
-  fetchCarsWithDist: PropTypes.func.isRequired,
-  cars: PropTypes.array.isRequired,
-  fetchCars: PropTypes.func.isRequired
-};
+// CarList.propTypes = {
+//   fetchCarsWithDist: PropTypes.func.isRequired,
+//   cars: PropTypes.array.isRequired,
+//   fetchCars: PropTypes.func.isRequired
+// };
 
 const mapStateToProps = state => ({
   cars: state.cars.items,

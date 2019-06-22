@@ -97,11 +97,11 @@ class MapContainer extends Component {
   };
 }
 
-MapContainer.propTypes = {
-  //fetchCarsWithDist: PropTypes.func.isRequired,
-  cars: PropTypes.array.isRequired,
-  fetchCars: PropTypes.func.isRequired
-};
+// MapContainer.propTypes = {
+//   //fetchCarsWithDist: PropTypes.func.isRequired,
+//   cars: PropTypes.array.isRequired,
+//   fetchCars: PropTypes.func.isRequired
+// };
 
 const mapStateToProps = state => ({
   cars: state.cars.items,
