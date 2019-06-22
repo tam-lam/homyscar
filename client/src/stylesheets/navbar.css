@@ -1,0 +1,16 @@
+.navbar-branch {
+  color: #333;
+}
+a {
+  color: #aaa;
+  font-weight: bolder;
+}
+.bg-light {
+  /* background-color: #ffffff !important; */
+}
+.my-h2 {
+  color: #aaa !important;
+}
+.navbar-toggler {
+  border: none;
+}
