@@ -56,6 +56,7 @@ app.use('/getUser', require('./src/routes/getUserDetails'));
 if (process.env.NODE_ENV === 'production'){
   app.use(express.static('../build'));
 
+  console.log("running using build");
   app.get('*' , (req , res) => {
       res.sendFile(path.resolve(__dirname , '..' , 'build' , 'index.html'))
   });
