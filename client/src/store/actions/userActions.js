@@ -2,7 +2,7 @@ import {
     REQUEST_USERS,
     RECIEVE_USERS,
     RECIEVE_USERS_ERROR
-} from '../actions/types';
+} from './types';
 import axios from 'axios';
 
 

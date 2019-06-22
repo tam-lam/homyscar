@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UserDetail from "../components/UserDetail";
+import UserDetail from "./UserDetail";
 import { connect } from "react-redux";
 
 class UserInformation extends Component {

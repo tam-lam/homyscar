@@ -3,11 +3,11 @@ import Tab from 'react-bootstrap/Tab'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import CarInfoTable from "../components/Table";
-import CarTable from "../components/CarTable"
-import UserTable from '../components/UserTable';
-import RentalsLogTable from '../components/RentalsLogTable'
-import RentalsTable from '../components/RentalsTable'
+import CarInfoTable from "./Table";
+import CarTable from "./CarTable"
+import UserTable from './UserTable';
+import RentalsLogTable from './RentalsLogTable'
+import RentalsTable from './RentalsTable'
 import Image from 'react-bootstrap/Image'
 import {connect} from 'react-redux'
 import {fetchAllRentals} from '../store/actions/rentalActions';
