@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const {routes} = require('./src/routes/crmRoutes');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const path = require('path');
 
 
 const config = require('config');
@@ -51,6 +52,14 @@ app.use(session({
 }));
 
 app.use('/getUser', require('./src/routes/getUserDetails'));
+
+if (process.env.NODE_ENV === 'production'){
+  app.use(express.static('../build'));
+
+  app.get('*' , (req , res) => {
+      res.sendFile(path.resolve(__dirname , '..' , 'build' , 'index.html'))
+  });
+}
 
 routes(app);
 
