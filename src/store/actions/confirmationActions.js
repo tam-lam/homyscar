@@ -12,7 +12,7 @@ export const addConfirmation = ({rego , user_id, price}) => {
         dispatch(addConfirmationStarted());
         // console.log('rego is ' , carRego);
         // console.log('userid is ' , userId);
-        axios.post('http://localhost:3001/addConfirmation' , {
+        axios.post('/addConfirmation' , {
             rego,
             user_id,
             price
@@ -32,7 +32,7 @@ export const fetchConfirmations = (user_id) => {
         console.log('client user id confirmations is' , user_id)
         dispatch(requestConfirmations(user_id));
 
-        axios.get('http://localhost:3001/getConfirmation' , {
+        axios.get('/getConfirmation' , {
             params: {
                 user_id: user_id
             }

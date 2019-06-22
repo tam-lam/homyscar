@@ -40,7 +40,7 @@ class EditCar extends Component {
         })
         axios.request({
             method: 'put',
-            url: `http://localhost:3001/user`,
+            url: `/user`,
             data: {
                 data:data,
                 id:this.state._id

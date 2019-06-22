@@ -15,7 +15,7 @@ export const addRental = ({ car_rego, user_id , payment_id , payer_id, price }) 
     dispatch(addRentalStarted());
 
     axios
-      .post("http://localhost:3001/rental", {
+      .post("/rental", {
         car_rego,
         user_id,
         payment_id,
@@ -25,7 +25,7 @@ export const addRental = ({ car_rego, user_id , payment_id , payer_id, price }) 
       .then(res => {
         dispatch(addRentalSuccess(res.data));
 
-        axios.delete("http://localhost:3001/deleteConfirmation", {
+        axios.delete("/deleteConfirmation", {
           params: {
             rego: car_rego
           }
@@ -54,7 +54,7 @@ export const fetchRental = user_id => {
 
 
     axios
-      .get("http://localhost:3001/userRentals", {
+      .get("/userRentals", {
           params: {
             user_id: user_id
           }
@@ -93,9 +93,9 @@ export const deleteRental = (return_item , address_info) => {
                 lng: address_info.longitude
             }
 
-            axios.post("http://localhost:3001/updateRental",{ data: update_rental_data});
+            axios.post("/updateRental",{ data: update_rental_data});
 
-            axios.post("http://localhost:3001/updateCar" , { data: update_car_data} )
+            axios.post("/updateCar" , { data: update_car_data} )
 
 
         } 
@@ -106,7 +106,7 @@ export const fetchAllRentals = () => {
     return dispatch => {
         dispatch(requestRental())
 
-        axios.get('http://localhost:3001/rental')
+        axios.get('/rental')
         .then(res => dispatch(recieveAllRentals(res.data)))
         .catch(error => dispatch(receiveRentalError(error.message)))
     }

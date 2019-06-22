@@ -39,7 +39,7 @@ class AddUser extends Component {
             password: this.state.password,
             PaymentDetails:0,
         };
-        axios.post(`http://localhost:3001/user`, data)
+        axios.post(`/user`, data)
             .then(res => {
                 this.setState({
                     disabled:false

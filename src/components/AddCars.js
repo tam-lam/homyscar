@@ -47,7 +47,7 @@ class AddCars extends Component {
         this.setState({
             disabled:true
         })
-        axios.post(`http://localhost:3001/car`, {newCars})
+        axios.post(`/car`, {newCars})
             .then(res => {
                 this.setState({
                     disabled:false

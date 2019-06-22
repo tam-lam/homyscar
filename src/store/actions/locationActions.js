@@ -14,7 +14,7 @@ console.log('location is ' , latitude);
 
 dispatch({ type: SAVE_USER_LOCATION, payload: { lat:latitude , lng: longitude} })
 
-axios.post("http://localhost:3001/setlocation", {
+axios.post("/setlocation", {
          lat:latitude , 
          lng: longitude// data can be `string` or {object}!
       }).then(res => res.json())

@@ -126,7 +126,7 @@ class Return extends Component {
 
     var totalPrice = this.calculateTotalPrice(pricePerHour, diff.minutes())
 
-    axios.get('http://localhost:3001/success', {
+    axios.get('/success', {
       params: {
         totalPrice: totalPrice,
         PayerID: payerId,
