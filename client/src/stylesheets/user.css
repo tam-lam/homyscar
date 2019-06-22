@@ -1,0 +1,46 @@
+.main-container {
+  margin-top: 30px;
+}
+.avatar-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.account-detail-container {
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 20px;
+}
+.username {
+  margin-top: 10px;
+}
+.nav-container {
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.tab-content-container {
+  margin-top: 20px;
+}
+.rental-item-container {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  border-radius: 5px;
+  padding: 1em;
+}
+.tab-content-container {
+  overflow: scroll;
+  max-height: vh;
+}
+.rental-item-container:focus,
+.rental-item-container:hover {
+  /* background-color: rgba(0, 0, 0, 0) !important; */
+  outline-color: transparent;
+  outline-style: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  /* border-color: white; */
+}

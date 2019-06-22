@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render Alert correctly 1`] = `
+<div
+  className="alert alert-light warning-alert text-dark shadow-lg"
+  role="alert"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-1 text-center"
+    >
+      <img
+        alt="warning icon"
+        className="warning-icon "
+        src="warning.png"
+      />
+    </div>
+    <div
+      className="col-10"
+    >
+      Testing alert message
+    </div>
+  </div>
+</div>
+`;
+
+exports[`render Email FormGroup correctly 1`] = `
+<div
+  class="form-group"
+>
+  <label
+    className="font-weight-bold text-light form-label shadow-lg"
+  >
+    Email
+  </label>
+  <input
+    class="form-control form-input text-light form-control-lg"
+    name="email"
+    placeholder="Enter your email"
+    type="email"
+  />
+</div>
+`;
+
+exports[`render Password FormGroup correctly 1`] = `
+<div
+  class="form-group"
+>
+  <label
+    className="font-weight-bold text-light form-label shadow-lg"
+  >
+    Password
+  </label>
+  <input
+    class="form-control form-input text-light form-control-lg"
+    name="password"
+    placeholder="Enter your password"
+    type="password"
+  />
+</div>
+`;
+
+exports[`render Signin page correctly 1`] = `
+<a
+  href="/signin"
+  onClick={[Function]}
+/>
+`;

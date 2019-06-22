@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render DateOfBirth FormGroup correctly 1`] = `
+<div
+  class="form-group"
+>
+  <label
+    className="font-weight-bold text-light form-label shadow-lg"
+  >
+    Date of Birth
+  </label>
+  <input
+    class="form-control form-input text-light form-control-lg"
+    name="dateOfBirth"
+    placeholder="dd/mm/yyyy"
+    type="date"
+  />
+</div>
+`;
+
+exports[`render Signup page correctly 1`] = `
+<a
+  href="/signup"
+  onClick={[Function]}
+/>
+`;
+
+exports[`render SimpleTitle  correctly 1`] = `
+<div
+  className="title-container text-center text-light"
+>
+  <h1
+    className="text-light display-3 checkout-label"
+  >
+    <img
+      alt="thumbnail"
+      className="img-thumbnail"
+      src="icon-white.png"
+    />
+    Homy's car
+  </h1>
+  <p
+    className="display-4 "
+  >
+    Sign up
+  </p>
+</div>
+`;
