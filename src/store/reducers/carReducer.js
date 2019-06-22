@@ -46,6 +46,7 @@ export default function(state = initialState, action) {
         doErrorExist: action.payload
       };
     case DELETE_CHECKOUT_CAR:
+      return state;
     case SAVE_CHECKOUT_CAR:
       return {
         ...state,
