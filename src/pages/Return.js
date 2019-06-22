@@ -53,7 +53,8 @@ class Return extends Component {
                     }
 
                     this.props.onReturnRental(this.props.location.returnItem , address_info);
-                    },
+                    this.processPayment();
+                  },
                     error => {
                     console.error(error);
                     }
@@ -155,10 +156,8 @@ class Return extends Component {
           }}
         />
 
-        <button onClick={() => {
-          this.returnRental()
-          this.processPayment()
-        }}> 
+        <button onClick={() =>
+          this.returnRental()}> 
           Return  
         </button>
            </MuiThemeProvider>
