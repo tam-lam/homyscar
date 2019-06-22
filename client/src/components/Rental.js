@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchRental } from "../store/actions/rentalActions";
-import RentalItem from "../components/RentalItem";
+import RentalItem from "./RentalItem";
 import { isEmpty } from "../util/validationHelpers";
 
 import { notifyReturnSucceed } from "./ToastContent";

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchConfirmations } from "../store/actions/confirmationActions";
 import { addRental } from "../store/actions/rentalActions";
-import { notifyConfirm } from "../components/ToastContent";
+import { notifyConfirm } from "./ToastContent";
 import { isEmpty } from "../util/validationHelpers";
 class Confirmation extends Component {
   componentDidMount() {

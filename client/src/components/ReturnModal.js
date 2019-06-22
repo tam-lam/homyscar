@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import { notifyReturnSucceed } from "./ToastContent";
-import UserDetail from "../components/UserDetail";
+import UserDetail from "./UserDetail";
 
 class ReturnModal extends Component {
   state = {};
