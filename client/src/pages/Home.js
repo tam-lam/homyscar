@@ -56,7 +56,7 @@ class Home extends Component {
         <Jumbotron
           title="Rent now"
           ishomepage={true}
-          subtitle='Homy&apos;s car is one of the easiest and fastest car rental service in the world. Simply click on "Get my location"  and select a vehicle near by and start renting '
+          subtitle="Homy's car is one of the easiest and fastest car rental service in the world. Simply login, select a car nearby and confirm your booking upon arriving at vehicle "
         />
         <DetailModal show={this.state.modalShow} onHide={modalClose} />
         <div className="container-fluid bg-dark">
