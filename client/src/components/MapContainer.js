@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchCarsWithDist , fetchCars } from "../store/actions/carActions";
+import { fetchCarsWithDist, fetchCars } from "../store/actions/carActions";
 import { GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import CurrentLocation from "./Map";
+import userMarker from "../images/userMarker.png";
 import {
   saveSelectedCarDistanceInStore,
   saveSelectedCarInStore
@@ -73,6 +74,7 @@ class MapContainer extends Component {
               lat: lat,
               lng: lng
             }}
+            icon={userMarker}
             onClick={this.onMarkerClick}
             name={"Your location"}
           />
@@ -111,7 +113,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-   // fetchCarsWithDist,
+    // fetchCarsWithDist,
     fetchCars,
     saveSelectedCarDistanceInStore,
     saveSelectedCarInStore,
