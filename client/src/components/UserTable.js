@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import UserItem from './UserItem';
 import Button from 'react-bootstrap/Button'
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {fetchUsers} from '../store/actions/userActions'
+import { fetchUsers} from '../store/actions/userActions'
 
 // import data from './user.json'
 
