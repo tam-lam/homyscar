@@ -18,6 +18,7 @@ import AddCars from "./components/AddCars";
 import AddUser from "./components/AddUser";
 import EditCar from './components/EditCar'
 import EditUser from './components/EditUser'
+import Simulation from './pages/Simulation'
 
 class App extends Component {
   componentDidMount() {
@@ -42,6 +43,7 @@ class App extends Component {
             <Route exact path="/adduser" component={AddUser} />
             <Route exact path="/editcar" component={EditCar} />
             <Route exact path="/edituser" component={EditUser} />
+            <Route exact path="/simulation" component={Simulation} />
           </div>
         </Router>
       </Provider>
