@@ -9,6 +9,7 @@ import {
   RECIEVE_RENTAL_ERROR
 } from "./types";
 import axios from "axios";
+import { notifyConfirm } from "../../components/ToastContent";
 
 export const addRental = ({ car_rego, user_id , payment_id , payer_id, price }) => {
   return dispatch => {
@@ -24,6 +25,8 @@ export const addRental = ({ car_rego, user_id , payment_id , payer_id, price }) 
       })
       .then(res => {
         dispatch(addRentalSuccess(res.data));
+        
+        notifyConfirm();
 
         axios.delete("/deleteConfirmation", {
           params: {
@@ -31,15 +34,15 @@ export const addRental = ({ car_rego, user_id , payment_id , payer_id, price }) 
           }
         });
       })
-      .catch(error => dispatch(addRentalFailure(error)));
+      .catch(error => {
+        dispatch(addRentalFailure(error))
+      });
   };
 };
 
 export const fetchRental = user_id => {
   return dispatch => {
     dispatch(requestRental());
-
-    alert( user_id)
 
     const config = {
       headers: {

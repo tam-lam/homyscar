@@ -15,8 +15,8 @@ class UserInformation extends Component {
 
   componentDidMount() {
     if (this.props.user) {
-      const { id, username, email } = this.props.user;
-      this.setState({ id: id, username: username, email: email });
+      const { _id, username, email } = this.props.user;
+      this.setState({ id: _id, username: username, email: email });
     }
   }
 

@@ -13,7 +13,6 @@ import Rental from "../components/Rental";
 import { connect } from "react-redux";
 import queryString from "query-string";
 import { addRental } from "../store/actions/rentalActions";
-import { notifyConfirm } from "../components/ToastContent";
 
 class User extends Component {
   state = {
@@ -39,8 +38,15 @@ class User extends Component {
         payer_id: payerId,
         price: price
       });
-      notifyConfirm();
+      this.props.history.push("/");
     }
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.user) {
+      this.setState({ username: this.props.user.username });
+    }
+    this.forceUpdate()
   }
 
   componentDidMount() {
