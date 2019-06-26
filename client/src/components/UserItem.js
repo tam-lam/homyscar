@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 import Table from 'react-bootstrap/Table'
-import axios from "axios";
+import { deleteUser } from '../store/actions/userActions'
 
 class UserItem extends Component {
     constructor(props) {
@@ -12,15 +13,9 @@ class UserItem extends Component {
         }
     }
 
-    deleteCard = () => {
-        // this.setState({
-        //     isDeleted: true
-        // })
-        // console.log(this.state)
-        // axios.post(`http://localhost:3001/user/del`, {id: this.state.item._id})
-        //     .then(res => {
-        //         console.log(this)
-        //     });
+    deleteCard = (user_id) => {
+        this.props.deleteOneUser(user_id)
+        this.setState({isDeleted: true})
     }
 
 
@@ -84,7 +79,7 @@ class UserItem extends Component {
                                             }
                                         }} style={{color: '#007bff'}}>Update</Link>
                                         <br/>
-                                        <span style={{color: '#ff0000'}} onClick={this.deleteCard}>Delete</span>
+                                            <button onClick={() => this.deleteCard(this.state.item._id)} >Delete</button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -96,4 +91,12 @@ class UserItem extends Component {
     }
 }
 
-export default UserItem;
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteOneUser: (user_id) => {
+            dispatch(deleteUser(user_id))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(UserItem);
