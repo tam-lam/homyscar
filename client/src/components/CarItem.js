@@ -61,7 +61,6 @@ class CarItem extends Component {
               <br />
               <br />
             </div>
-            {/* <div className="col-sm-1" /> */}
           </div>
         </li>
       </React.Fragment>
@@ -81,13 +80,13 @@ var detailsBtnStyle = {
 
 var minStyles = {
   iconStyle: {
-    maxWidth: 80
+    maxWidth: 70
   },
   iconImgStyle: {
-    maxWidth: 80
+    maxWidth: 70
   },
   list: {
-    marginLeft: 5,
+    marginLeft: 0,
     paddingLeft: 0
   }
 };
@@ -97,8 +96,7 @@ var maxStyles = {
   },
   iconImgStyle: {
     maxWidth: 100
-  },
-  list: {}
+  }
 };
 var styles = function() {
   if (window.innerWidth <= 415) {
