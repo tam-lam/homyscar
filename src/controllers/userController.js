@@ -91,4 +91,17 @@ const getUsers = (req, res) => {
     });
 };
 
-module.exports = { addNewUser , loginUser , getUsers};
+const deleteUser = (req, res) => {
+    user_id = req.query.user_id
+    User.findByIdAndRemove(user_id, (err, response) => {
+        if (response) {
+            res.json(user_id);
+        }
+        else {
+            res.status(404)
+            res.send("User not found");
+        }
+    });
+};
+
+module.exports = { addNewUser, loginUser, getUsers, deleteUser};
