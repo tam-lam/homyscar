@@ -26,13 +26,17 @@ class CarItem extends Component {
   render() {
     return (
       <React.Fragment>
-        <li className="list-group-item bg-dark text-white">
+        <li
+          className="list-group-item bg-dark text-white"
+          style={styles().list}
+        >
           <div className="row">
-            <div className="col float-left" style={iconStyle}>
+            <div className="col float-left" style={styles().iconStyle}>
               <img
                 src={caricon}
                 className="img-thumbnail rounded"
                 alt="car icon"
+                style={styles().iconImgStyle}
               />
             </div>
             <div className="col float-left">
@@ -69,10 +73,36 @@ export default connect(
   null,
   { saveSelectedCarInStore, saveSelectedCarDistanceInStore }
 )(CarItem);
-var iconStyle = {
-  maxWidth: 100
-};
+
 var detailsBtnStyle = {
   marginLeft: 10,
   marginTop: 10
+};
+
+var minStyles = {
+  iconStyle: {
+    maxWidth: 80
+  },
+  iconImgStyle: {
+    maxWidth: 80
+  },
+  list: {
+    marginLeft: 5,
+    paddingLeft: 0
+  }
+};
+var maxStyles = {
+  iconStyle: {
+    maxWidth: 100
+  },
+  iconImgStyle: {
+    maxWidth: 100
+  },
+  list: {}
+};
+var styles = function() {
+  if (window.innerWidth <= 415) {
+    return minStyles;
+  }
+  return maxStyles;
 };
