@@ -3,13 +3,24 @@ const Rental = require('../models/rentalModel');
 const addNewRental = (req, res) => {
   let newRental = new Rental(req.body);
   newRental.on_rent = true;
-  newRental.save((err, Rental) => {
-    if (err) {
-      res.send(err);
+
+  console.log()
+  Rental.findOne({ payment_id: req.body.payment_id}, (err, rental) => {
+    if (!rental){
+      newRental.save((err, Rental) => {
+        if (err) {
+          res.send(err);
+        }
+        res.json(Rental);
+
+      });
     }
-    res.json(Rental);
-    
-  });
+    else {
+      res.status(400)
+      res.send("Rental Exists")
+    }
+  })
+  
 };
 
 const getRentals = (req, res) => {

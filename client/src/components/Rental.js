@@ -25,7 +25,6 @@ class Rental extends Component {
 
     componentDidMount() {
         if (this.props.currentUser) {
-            alert(this.props.currentUser._id)
           this.props.onFetchRental(this.props.currentUser._id);
         //  this.props.onFetchRental('5d061bf1319857332cba3983');
           
