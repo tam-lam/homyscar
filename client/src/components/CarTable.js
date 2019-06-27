@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table'
 import {connect} from 'react-redux';
 import {fetchAllCars} from '../store/actions/carActions';
 import {Link} from 'react-router-dom';
+import { Button } from 'reactstrap';
 
 class CarTable extends Component{
     constructor() {
@@ -41,6 +42,10 @@ class CarTable extends Component{
 
     return(
         <div className="table">
+        <a href="/addcar">
+          <Button color="primary" size="lg">Add Car</Button>
+        </a>
+        
         <Table striped bordered hover variant="dark">
             <thead>
                 <tr>

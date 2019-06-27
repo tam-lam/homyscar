@@ -3,8 +3,7 @@ const Rental = require('../models/rentalModel');
 const addNewRental = (req, res) => {
   let newRental = new Rental(req.body);
   newRental.on_rent = true;
-
-  console.log()
+  
   Rental.findOne({ payment_id: req.body.payment_id}, (err, rental) => {
     if (!rental){
       newRental.save((err, Rental) => {

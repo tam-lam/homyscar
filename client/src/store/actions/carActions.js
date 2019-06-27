@@ -12,6 +12,9 @@ import {
   UPDATE_CAR
 } from "./types";
 import axios from 'axios';
+import { notifyAddCarSucceeded, notifyAddCarFailed } from "../../components/ToastContent";
+
+
 
 
 export const fetchCarsWithDist = () => dispatch => {
@@ -69,7 +72,6 @@ export function fetchAllCars(){
 
   return dispatch => {
     dispatch(requestCars())
-    alert('requesting cars')
 
     axios.get('/car')
     .then(res => dispatch(recieveCars(res.data)))
@@ -119,4 +121,16 @@ export function updateCar(){
   return {
     type: UPDATE_CAR
   }
+}
+
+export const addCar = (car) => (dispatch) => {
+
+  axios
+    .post("/car", car)
+    .then( res => {
+      notifyAddCarSucceeded();
+    })
+    .catch( err => {
+      notifyAddCarFailed();
+    })
 }
