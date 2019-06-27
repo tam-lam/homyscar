@@ -1,4 +1,4 @@
-var { addNewCar, getCars, updateCar } = require("../controllers/carController");
+var { addNewCar, getCars, updateCar , deleteCar} = require("../controllers/carController");
 var { addNewRental, getRentals, getUserRentals , updateRental}  = require("../controllers/rentalController");
 var { addNewUser, loginUser , getUsers } = require("../controllers/userController");
 var  {setUserLocation , getCarsWithDistance }  = require("../controllers/mapController");
@@ -66,6 +66,9 @@ const routes = (app) => {
 
   app.route('/deleteConfirmation')
   .delete(deleteConfirmation)
+
+  app.route('/deleteCar')
+  .delete(deleteCar)
 }
       
 module.exports ={routes};

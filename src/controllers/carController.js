@@ -37,4 +37,17 @@ const updateCar = (req , res) => {
   }) 
 }
 
-module.exports =  {addNewCar , getCars , updateCar};
+
+const deleteCar = (req , res) => {
+  var id = req.query.car_id
+
+  Car.findOneAndDelete({_id: id} , ( err , car) =>{
+          if (err) {
+                  res.send(err);
+          }
+          console.log('deleting car with id' , id);
+          res.json(res.status)
+  });
+}
+
+module.exports =  {addNewCar , getCars , updateCar , deleteCar};

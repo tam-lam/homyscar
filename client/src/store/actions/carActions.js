@@ -9,7 +9,8 @@ import {
   REQUEST_CARS,
   RECIEVE_CARS,
   RECIEVE_CARS_ERROR,
-  UPDATE_CAR
+  UPDATE_CAR,
+  DELETE_CAR
 } from "./types";
 import axios from 'axios';
 
@@ -85,8 +86,20 @@ export function updateCarDetails(updated_data){
     console.log('store ' , updated_data)
     axios.post('/updateCar' , {data: updated_data})
   }
-
 }
+
+export function deleteCar(car_id){
+  return dispatch => {
+    dispatch(removeCar())
+
+
+    axios.delete('/deleteCar' , {params: {
+      car_id: car_id
+    } })
+  }
+}
+
+
 
 export function requestCars(){
   return {
@@ -118,5 +131,11 @@ export function recieveCarsWithDist(cars) {
 export function updateCar(){
   return {
     type: UPDATE_CAR
+  }
+}
+
+export function removeCar(){
+  return {
+    type: DELETE_CAR
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Table from 'react-bootstrap/Table'
 import {connect} from 'react-redux';
-import {fetchAllCars} from '../store/actions/carActions';
+import {fetchAllCars , deleteCar} from '../store/actions/carActions';
 import {Link} from 'react-router-dom';
 
 class CarTable extends Component{
@@ -9,13 +9,19 @@ class CarTable extends Component{
         super()
         this.state = {
           data: [],
+          isDeleted: false,
         }
       }
       componentWillMount() {
         this.props.getCarsFromServer()
       }
 
-    render(){  
+      deleteCard = (car_id) => {
+        this.props.onDeleteCar(car_id)
+    }
+
+    render(){ 
+      const {isDeleted} = this.state
       const carTable = this.props.cars.map(car => 
       (
         <tr>
@@ -33,13 +39,14 @@ class CarTable extends Component{
           <td>
             <Link to={{ pathname: '/editcarform', car_to_be_edited: car }} style={{color: '#007bff'}}>Update</Link>
             <br/>
-            <span  style={{color: '#ff0000'}} onClick={this.deleteCard}>Delete</span>
+            <button  style={{color: '#ff0000'}} onClick={() => this.deleteCard(car._id)}>Delete Car</button>
           </td>
       </tr>
       )
       );
 
     return(
+      
         <div className="table">
         <Table striped bordered hover variant="dark">
             <thead>
@@ -74,6 +81,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getCarsFromServer: () => {
         dispatch(fetchAllCars())
+    },
+    onDeleteCar: (car_id) => {
+      dispatch(deleteCar(car_id))
     }
   }
 }
