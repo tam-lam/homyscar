@@ -17,6 +17,7 @@ import Paypal from "./pages/Paypal";
 import AddCars from "./components/AddCars";
 import AddUser from "./components/AddUser";
 import EditCar from './components/EditCar'
+import EditCarForm from './components/EditCarForm'
 import EditUser from './components/EditUser'
 
 class App extends Component {
@@ -41,6 +42,7 @@ class App extends Component {
             <Route exact path="/addcar" component={AddCars} />
             <Route exact path="/adduser" component={AddUser} />
             <Route exact path="/editcar" component={EditCar} />
+            <Route exact path="/editcarform" component={EditCarForm} />
             <Route exact path="/edituser" component={EditUser} />
           </div>
         </Router>

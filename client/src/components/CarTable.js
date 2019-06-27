@@ -31,7 +31,7 @@ class CarTable extends Component{
           <td>{car.availability.toString()}</td>
           <td>{car.damaged.toString()}</td>
           <td>
-            <Link to={{ pathname: '/editcar', car_to_be_edited: car }} style={{color: '#007bff'}}>Update</Link>
+            <Link to={{ pathname: '/editcarform', car_to_be_edited: car }} style={{color: '#007bff'}}>Update</Link>
             <br/>
             <span  style={{color: '#ff0000'}} onClick={this.deleteCard}>Delete</span>
           </td>

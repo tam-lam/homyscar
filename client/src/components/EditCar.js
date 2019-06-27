@@ -21,7 +21,9 @@ class EditCar extends Component {
             transmission: '',
             address: '',
             price: '',
-            disabled:false
+            availability: '',
+            disabled:false,
+            selectedAvailability: null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -31,7 +33,7 @@ class EditCar extends Component {
         if(this.props.location.car_to_be_edited){
             let car = this.props.location.car_to_be_edited;
             this.setState({
-                ...car
+                ...car,selectedAvailability: car.availability
             })
         }
     }
@@ -44,17 +46,6 @@ class EditCar extends Component {
         this.setState({
             disabled:true
         })
-        // axios.request({
-        //     method: 'put',
-        //     url: `http://localhost:3001/car`,
-        //     data: {
-        //         data:data,
-        //         id:id
-        //     }
-        // })
-        //     .then(response => {
-        //         this.props.history.push('/admin');
-        //     }).catch(err => console.log(err));
 
 
         this.props.onUpdateCarDetails(data)
@@ -73,6 +64,7 @@ class EditCar extends Component {
             transmission: this.refs.transmission.value,
             address: this.refs.address.value,
             price: this.refs.price.value,
+            availability: this.refs.availability.value
 
         }
         this.editCars(newCars,this.refs._id.value);
@@ -87,6 +79,12 @@ class EditCar extends Component {
             [make]: value
         });
     }
+
+    handleAvailabilityChange = changeEvent => {
+        this.setState({
+            selectedAvailability: changeEvent.target.value
+        })
+    } 
 
 
     render() {
@@ -170,6 +168,20 @@ class EditCar extends Component {
                                 <Col sm={6}>
                                     <Form.Control type="text" name="price" ref="price" value={this.state.price}
                                                   onChange={this.handleInputChange}/>
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group>
+                            <Form.Label Col sm={3}>Car availability</Form.Label>
+                            <Col sm={6}>
+                                    <label>
+                                    <input type="radio" value="true" checked={this.state.selectedAvailability === "true"} onChange={this.handleAvailabilityChange} />
+                                     True
+                                    </label>
+                                    <label>
+                                    <input type="radio" value="false" checked={this.state.selectedAvailability === "false"} onChange={this.handleAvailabilityChange} />
+                                     False
+                                    </label> 
                                 </Col>
                             </Form.Group>
 
