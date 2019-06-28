@@ -16,6 +16,8 @@ class Signup extends Component {
     password: "",
     dateOfBirth: "",
     licenseNo: "",
+    firstName: "",
+    lastName: "",
     msg: null
   };
 
@@ -32,13 +34,17 @@ class Signup extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { username, email, password } = this.state;
+    const { username, email, password, dateOfBirth, licenseNo, firstName, lastName } = this.state;
 
     // Create a user object
     const newUser = {
       username,
       email,
-      password
+      password,
+      dateOfBirth,
+      licenseNo,
+      firstName,
+      lastName
     };
 
     this.props.register(newUser);
@@ -83,13 +89,25 @@ class Signup extends Component {
               <div className="row">
                 <div className="col-md-5 signup-auth-form">
                   <label className="font-weight-bold text-light form-label shadow-lg">
-                    Name
+                    Username
                   </label>
                   <input
                     type="text"
                     name="username"
                     id="username"
                     placeholder="Name"
+                    className="mb-3"
+                    onChange={this.onChange}
+                    className="form-control form-input text-light form-control-lg"
+                  />
+                  <label className="font-weight-bold text-light form-label shadow-lg">
+                    First Name
+                  </label>
+                  <input
+                    type="test"
+                    name="firstName"
+                    id="firstName"
+                    placeholder="First Name"
                     className="mb-3"
                     onChange={this.onChange}
                     className="form-control form-input text-light form-control-lg"
@@ -122,24 +140,50 @@ class Signup extends Component {
                         onChange={this.onChange}
                         className="form-control form-input text-light form-control-lg"
                       />
+                      <label className="font-weight-bold text-light form-label shadow-lg">
+                        Last Name
+                      </label>
+                      <input
+                        type="test"
+                        name="lastName"
+                        id="lastName"
+                        placeholder="Last Name"
+                        className="mb-3"
+                        onChange={this.onChange}
+                        className="form-control form-input text-light form-control-lg"
+                      />
+                      <label className="font-weight-bold text-light form-label shadow-lg">
+                        License Number
+                      </label>
+                      <input
+                        type="number"
+                        name="licenseNo"
+                        id="licenseNo"
+                        placeholder="License Number"
+                        className="mb-3"
+                        onChange={this.onChange}
+                        className="form-control form-input text-light form-control-lg"
+                      />
                     </div>
                   </div>
-                  {/* <FormGroup
-                    inputType="date"
-                    label="Date of Birth"
-                    name="dateOfBirth"
-                    id="dateOfBirth"
-                    placeholder="dd/mm/yyyy"
-                    onChange={this.onChange}
-                  />
-                  <FormGroup
-                    inputType="number"
-                    label="License Number"
-                    name="licenseNo"
-                    id="licenseNo"
-                    placeholder="Enter your License number"
-                    onChange={this.onChange}
-                  /> */}
+                </div>
+                <div className="col-md-7 signup-detail-form">
+                  <div className="row">
+                    <div className="col-12">
+                      <label className="font-weight-bold text-light form-label shadow-lg">
+                        Date Of Birth
+                      </label>
+                      <input
+                        type="date"
+                        name="dateOfBirth"
+                        id="dateOfBirth"
+                        placeholder="Date Of Birth"
+                        className="mb-3"
+                        onChange={this.onChange}
+                        className="form-control form-input text-light form-control-lg"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <RightArrowBtn />
