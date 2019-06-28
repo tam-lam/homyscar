@@ -20,8 +20,8 @@ class AdminMenu extends Component {
     }
     render() {
       return (
-        <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
-        <div className="text-light bg-black" style={{minHeight: '100vh'}}>
+        <Tab.Container id="list-group-tabs-example" testid="adminMenu" defaultActiveKey="#link1">
+        <div className="text-light bg-black" testid="adminMenu" style={{minHeight: '100vh'}}>
             <Row style={{padding: '10px'}}>
                 <Col sm={2}>
                     {/* <div className="text-light bg-dark"> */}
