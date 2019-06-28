@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const Car = require('../models/carModel');
-const Confirmations = require('../models/confirmationModel')
-const Rentals = require('../models/rentalModel');
+const mongoose = require("mongoose");
+const Car = require("../models/carModel");
+const Confirmations = require("../models/confirmationModel");
+const Rentals = require("../models/rentalModel");
 
 var { promisify } = require("util");
 
@@ -24,9 +24,7 @@ const setUserLocation = (req, res) => {
   console.log("origin value is" + userLocation);
 };
 
-const  getCarsWithDistance = (req, res) => {
-  
-
+const getCarsWithDistance = (req, res) => {
   // initialise arrays
   var carsFromDB = [];
   var confirmationsFromDB = [];
@@ -38,8 +36,11 @@ const  getCarsWithDistance = (req, res) => {
     confirmationsFromDB = await getConfirmationsFromDB();
     rentalsFromDB = await getRentalsFromDB();
 
-    availableCars = await getOnlyAvailableCars(carsFromDB , rentalsFromDB , confirmationsFromDB);
-
+    availableCars = await getOnlyAvailableCars(
+      carsFromDB,
+      rentalsFromDB,
+      confirmationsFromDB
+    );
 
     var destinations = getDestinations(availableCars);
     distance.matrix(origins, destinations, function(err, distances) {
@@ -70,13 +71,13 @@ const  getCarsWithDistance = (req, res) => {
       console.log(err.message);
       return;
     });
-}
+};
 
 async function getCarsFromDB() {
   var carsArray = [];
   await Car.find({}, (err, car) => {
     if (err) {
-      console.log("error in getCarsFromDB" , err)
+      console.log("error in getCarsFromDB", err);
       return;
     }
     for (var i = 0; i < car.length; i++) {
@@ -86,58 +87,61 @@ async function getCarsFromDB() {
   return carsArray;
 }
 
-async function getConfirmationsFromDB(){
+async function getConfirmationsFromDB() {
   var confirmationsArray = [];
 
-  await Confirmations.find({} , (err , confirmation) => {
+  await Confirmations.find({}, (err, confirmation) => {
     if (err) {
       res.send(err);
     }
-    for (var i = 0 ;  i < confirmation.length ; i++ ){
+    for (var i = 0; i < confirmation.length; i++) {
       confirmationsArray.push(confirmation[i]);
     }
   });
   return confirmationsArray;
 }
 
-async function getRentalsFromDB(){
+async function getRentalsFromDB() {
   var rentalsArray = [];
 
-  await Rentals.find({} , (err , rental) => {
+  await Rentals.find({}, (err, rental) => {
     if (err) {
       res.send(err);
     }
-    for (var i = 0 ;  i < rental.length ; i++ ){
+    for (var i = 0; i < rental.length; i++) {
       rentalsArray.push(rental[i]);
     }
   });
   return rentalsArray;
 }
 
-async function getOnlyAvailableCars(carsArray , rentalsArray ,  confirmationsArray){
-
-  var unavailableCars = []
-  for ( var x = 0 ; x < confirmationsArray.length; x++){
-      console.log('confirmation unavailble is ' , confirmationsArray)
-      unavailableCars.push(confirmationsArray[x].rego);
+async function getOnlyAvailableCars(
+  carsArray,
+  rentalsArray,
+  confirmationsArray
+) {
+  var unavailableCars = [];
+  for (var x = 0; x < confirmationsArray.length; x++) {
+    console.log("confirmation unavailble is ", confirmationsArray);
+    unavailableCars.push(confirmationsArray[x].rego);
   }
 
-  for ( x = 0 ; x < rentalsArray.length; x++){
-      console.log('rental unavailable for  ' , rentalsArray[x].car_rego)
-      unavailableCars.push(rentalsArray[x].car_rego);
+  for (x = 0; x < rentalsArray.length; x++) {
+    console.log("rental unavailable for  ", rentalsArray[x].car_rego);
+    unavailableCars.push(rentalsArray[x].car_rego);
   }
 
-  console.log('unavailable cars are ' , unavailableCars);
-  var availableCars = []
+  console.log("unavailable cars are ", unavailableCars);
+  var availableCars = [];
   for (var i = 0; i < carsArray.length; i++) {
     var isAvailable = false;
-    for ( var j = 0 ; j < unavailableCars.length ; j++){
-      if (carsArray[i].rego === unavailableCars[j]){
+    for (var j = 0; j < unavailableCars.length; j++) {
+      if (carsArray[i].rego === unavailableCars[j]) {
         isAvailable = true;
       }
     }
-    
-    if (isAvailable == false){
+
+    if (isAvailable == false) {
       availableCars.push(carsArray[i]);
     }
   }
@@ -172,4 +176,4 @@ function calcDistBetweenCarsAndUser(carsFromDB, distances) {
   return carAndDistArray;
 }
 
-module.exports = { setUserLocation , getCarsWithDistance   };
+module.exports = { setUserLocation, getCarsWithDistance };

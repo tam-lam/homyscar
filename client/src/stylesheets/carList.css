@@ -1,6 +1,6 @@
 .img-thumbnail {
-  max-width: 100px !important;
-  max-height: 100px !important;
+  max-width: 100px;
+  max-height: 100px;
   background-color: transparent !important;
   border: none !important;
   padding-right: 20px;
@@ -12,6 +12,7 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
 .loading-spinner {
   width: 100px !important;
   height: 100px !important;
