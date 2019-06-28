@@ -97,3 +97,59 @@ export const mockUserRentals = [
         total_price: 56
       }
 ]
+
+export const mockConfirmation = [
+  {
+    _id: '5d158a4248915135c4f30043',
+    rego: 'ABC127',
+    user_id: '5d061bf1319857332cba3983',
+    price: 20,
+    expireAt: '2019-06-28T03:32:18.393Z',
+    createdAt: '2019-06-28T03:32:18.401Z',
+    updatedAt: '2019-06-28T03:32:18.401Z',
+    __v: 0
+  },
+  {
+    _id: '5d158a4248915135c4f30043',
+    rego: 'XXX123',
+    user_id: '5d061bf1319857332cba3983',
+    price: 45,
+    expireAt: '2019-06-28T03:32:18.393Z',
+    createdAt: '2019-06-28T03:32:18.401Z',
+    updatedAt: '2019-06-28T03:32:18.401Z',
+    __v: 0
+  }
+]
+
+export const mockUsers= [
+  {
+    _id: '5cf4a37109b4276439facb55',
+    username: 'Abdo',
+    email: 'wtv2@gmail.com',
+    password: '$2b$12$0NN8Tu9XpC.kUrfuiIe5G.4/7sDdSRIKKX4cteYc6I1xG.Udmo1AK',
+    isAdmin: false,
+    createdAt: '2019-06-03T04:34:57.978Z',
+    updatedAt: '2019-06-03T04:34:57.978Z',
+    __v: 0
+  },
+  {
+    _id: '5cf4a44f1c9d4400004914a9',
+    username: 'Abdo',
+    email: 'admin@gmail.com',
+    password: '$2b$12$0NN8Tu9XpC.kUrfuiIe5G.4/7sDdSRIKKX4cteYc6I1xG.Udmo1AK',
+    isAdmin: true,
+    createdAt: '2019-06-03T04:34:57.978Z',
+    updatedAt: '2019-06-03T04:34:57.978Z',
+    __v: 0
+  },
+  {
+    _id: '5d01b7869fafc5101d096ceb',
+    username: 'test',
+    email: 'test@test.com',
+    password: '$2b$12$m6grhweU9ILn6v9u9gWvGu6ZrJkGYkuofW8entKdcX7dDkuevMElu',
+    isAdmin: false,
+    createdAt: '2019-06-13T02:40:06.546Z',
+    updatedAt: '2019-06-13T02:40:06.546Z',
+    __v: 0
+  }
+]
