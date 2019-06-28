@@ -31,11 +31,17 @@ exports[`render SimpleTitle  correctly 1`] = `
 >
   <h1
     className="text-light display-3 checkout-label"
+    style={Object {}}
   >
     <img
       alt="thumbnail"
       className="img-thumbnail"
       src="icon-white.png"
+      style={
+        Object {
+          "maxWidth": 100,
+        }
+      }
     />
     Homy's car
   </h1>

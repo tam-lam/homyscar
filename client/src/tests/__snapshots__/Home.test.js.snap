@@ -24,12 +24,6 @@ exports[`render correctly Jumbotron component 1`] = `
     >
       Homy's car is one of the easiest and fastest car rental service in the world. Simply click on "Get my location"  and select a vehicle near by and start renting 
     </p>
-    <button
-      className="btn btn-success shadow-lg"
-      type="button"
-    >
-      Get my location
-    </button>
   </div>
 </div>
 `;
