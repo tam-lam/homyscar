@@ -56,6 +56,7 @@ class Return extends Component {
             address_info
           );
           this.processPayment();
+          this.props.history.push('/');
         },
         error => {
           console.error(error);
@@ -84,14 +85,14 @@ class Return extends Component {
       document.getElementById("autocomplete"),
       options
     );
-    // Fire Event when a suggested name is selected
+    //Fire Event when a suggested name is selected
     this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
   }
 
   handlePlaceSelect() {
     // Extract City From Address Object
     let addressObject = this.autocomplete.getPlace();
-    let address = addressObject.address_components;
+    let address = document.getElementById("autocomplete").value;
 
     // Check if address is valid
     if (address) {
