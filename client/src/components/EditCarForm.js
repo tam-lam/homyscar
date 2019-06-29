@@ -20,9 +20,6 @@ const EditCarSchema = yup.object().shape({
     rego: yup.string().required('car rego is required'),
     model: yup.string().required('car model is required'),
     body: yup.string().required("body type is required").matches(/^(sedan|convertible|suv|hatchback)$/ , "body must be either hatchback , sedan , convertible , suv , case sensitive"),
-
-
-
 })
 
 

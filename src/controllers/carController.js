@@ -5,12 +5,23 @@ const Car = require('../models/carModel');
 const addNewCar = (req, res) => {
   let newCar = new Car(req.body);
 
-  newCar.save((err, car) => {
-    if (err) {
-      res.send(err);
+  console.log(newCar)
+  
+  Car.findOne({ rego: req.body.rego }, (err, car) => {
+    if (!car) {
+      newCar.save((err, car) => {
+        if (err) {
+          res.send(err);
+        }
+        res.json(car);
+
+      });
     }
-    res.json(car);
-  });
+    else {
+      res.status(400)
+      res.send("Car Exists")
+    }
+  })
 };
 
 const getCars = (req, res) => {

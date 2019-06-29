@@ -7,9 +7,9 @@ const jwt = require('jsonwebtoken');
 
 
 const addNewUser = (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, dateOfBirth, licenseNo, firstName, lastName } = req.body;
 
-    if (!username || !email || !password) {
+    if (!username || !email || !password || !dateOfBirth || !licenseNo || !firstName || !lastName) {
         return res.status(400).json({ msg: 'Please enter all fields' })
     }
 
@@ -34,7 +34,11 @@ const addNewUser = (req, res) => {
                             _id: user.id,
                             username: user.username,
                             email: user.email,
-                            isAdmin: user.isAdmin
+                            isAdmin: user.isAdmin,
+                            dateOfBirth: user.dateOfBirth,
+                            licenseNo: user.licenseNo,
+                            firstName: user.firstName,
+                            lastName: user.lastName
                         }
                     })
                 }
@@ -72,7 +76,11 @@ const loginUser = (req, res) => {
                                     _id: user.id,
                                     username: user.username,
                                     email: user.email,
-                                    isAdmin: user.isAdmin
+                                    isAdmin: user.isAdmin,
+                                    dateOfBirth: user.dateOfBirth,
+                                    licenseNo: user.licenseNo,
+                                    firstName: user.firstName,
+                                    lastName: user.lastName
                                 }
                             })
                         }
