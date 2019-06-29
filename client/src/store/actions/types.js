@@ -1,8 +1,5 @@
 //Car actions
-<<<<<<< HEAD
 export const DELETE_CAR = "DELETE_CAR"
-=======
->>>>>>> feature_add_car
 export const FETCH_CARS_WITH_DIST = "FETCH_CARS_WITH_DIST";
 export const RECIEVE_CARS_WITH_DIST = "RECIEVE_CARS_WITH_DIST";
 export const SAVE_SELECTED_CAR_IN_STORE = "SAVE_SELECTED_CAR_IN_STORE";
@@ -12,13 +9,8 @@ export const FETCH_ERROR_OCCUR = "FETCH_ERROR_OCCUR";
 export const DELETE_CHECKOUT_CAR = "DELETE_CHECKOUT_CAR";
 export const REQUEST_CARS = "REQUEST_CARS";
 export const RECIEVE_CARS = "RECIEVE_CARS";
-<<<<<<< HEAD
 export const RECIEVE_CARS_ERROR = 'RECIEVE_CARS_ERROR';
 export const UPDATE_CAR = 'UPDATE_CAR';
-=======
-export const RECIEVE_CARS_ERROR = 'RECIEVE_CARS_ERROR'
-export const UPDATE_CAR = 'UPDATE_CAR'
->>>>>>> feature_add_car
 //Auth actions
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";

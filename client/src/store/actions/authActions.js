@@ -38,11 +38,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 // Register User
-<<<<<<< HEAD
-export const register = ({ username, email, password }) => dispatch => {
-=======
 export const register = ({ username, email, password, dateOfBirth, licenseNo, firstName, lastName }) => dispatch => {
->>>>>>> feature_add_car
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -52,11 +48,7 @@ export const register = ({ username, email, password, dateOfBirth, licenseNo, fi
   const isAdmin = false
 
   // Request Body
-<<<<<<< HEAD
-  const body = JSON.stringify({ username, email, password, isAdmin });
-=======
   const body = JSON.stringify({ username, email, password, dateOfBirth, licenseNo, isAdmin, firstName, lastName });
->>>>>>> feature_add_car
 
   axios
     .post("/newUser", body, config)
