@@ -46,14 +46,6 @@ const ConfirmSucceedContent = () => {
   return "You have confirmed a booking!";
 };
 const PaymentSucceedContent = () => {
-  return (
-    <div>
-      Confirm booking in{" "}
-      <a className="text-light" href="user">
-        My Account
-      </a>{" "}
-      when arrive at vehicle
-    </div>
-  );
+  return <div>Confirm booking in My Account when arrive at vehicle</div>;
 };
 export default ToastContent;

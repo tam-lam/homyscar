@@ -51,8 +51,6 @@ class Home extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        {this.displayAlert()}
-
         <Jumbotron
           title="Rent now"
           ishomepage={true}
