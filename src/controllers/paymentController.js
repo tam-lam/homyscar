@@ -15,8 +15,8 @@ const payment = (req, res) => {
       "payment_method": "paypal"
     },
     "redirect_urls": {
-      "return_url": `http://localhost:3000/user?rego=${req.body.rego}&userId=${req.body.user_id}&price=${req.body.price}`,
-      "cancel_url": "http://localhost:3000/cancel"
+      "return_url": `/user?rego=${req.body.rego}&userId=${req.body.user_id}&price=${req.body.price}`,
+      "cancel_url": "/cancel"
     },
     "transactions": [{
       // "item_list": {
