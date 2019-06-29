@@ -11,7 +11,7 @@ exports[`render correctly Footer Component 1`] = `
       className="text-muted"
     >
       <a
-        href="https://github.com/Abdosalah/ProgProject2019Sem2"
+        href="https://github.com/rmit-s3607212-mohammed-alsharifi/ProgProject2019Sem2"
       >
          
         Team 0
