@@ -14,7 +14,12 @@ describe('Creating users', () => {
         //assertion is not included in mocha so 
         //require assert which was installed along with mocha
         
-        const user = new User({ username: 'testUser2' , email: "testing2@example.com" , password: "uniquepassword123"});
+        const user = new User({ 
+          username: 'testUser2',
+          email: "testing2@example.com",
+          password: "uniquepassword123",
+          isAdmin: false
+        });
         user.save(function(err) {
                 if (err) done(err);
                 else done();
@@ -36,7 +41,18 @@ describe('Creating users', () => {
     });
 
     it('Creates a rental' , (done) => {
-        const rental = new Rental({ rental_id: "iduniq" , user_id: "2334" , car_rego: "XYZ123" , booking_date: "12/06/2018" , return_date:"12/09/2019" , return_location: "location" , total_price: "2312"})
+        const rental = new Rental({ 
+          rental_id: "iduniq",
+          user_id: "2334",
+          car_rego: "XYZ123",
+          booking_date: "12/06/2018",
+          return_date:"12/09/2019",
+          return_location: "location",
+          total_price: "2312",
+          payment_id: "123",
+          payer_id: "12345",
+          price: 10
+        })
         rental.save()
         .then( () => {
                 assert(!rental.isNew);
@@ -94,7 +110,8 @@ describe('Creating users', () => {
 
         var correctConfirmation = Confirmation({
           rego: 'ABC123',
-          user_id: '12345'
+          user_id: '12345',
+          price: 10
         });
 
         correctConfirmation.save()
