@@ -5,18 +5,17 @@ import { connect } from "react-redux";
 class UserInformation extends Component {
   state = {
     username: "",
-    id: "",
+    _id: "",
     email: "",
     firstName: "",
     lastName: "",
-    license: "",
+    licenseNo: "",
     dateOfBirth: ""
   };
 
   componentDidMount() {
     if (this.props.user) {
-      const { _id, username, email } = this.props.user;
-      this.setState({ id: _id, username: username, email: email });
+      this.setState({...this.props.user})
     }
   }
 
@@ -26,7 +25,7 @@ class UserInformation extends Component {
         <div className="row">
           <div className="account-detail-container shadow-lg bg-dark col-md-6">
             <h1>Account Details</h1>
-            <UserDetail title="User ID" content={this.state.id} />
+            <UserDetail title="User ID" content={this.state._id} />
             <UserDetail title="Username" content={this.state.username} />
             <UserDetail title="Email" content={this.state.email} />
           </div>
@@ -39,7 +38,7 @@ class UserInformation extends Component {
         <div className="row">
           <div className="account-detail-container shadow-lg bg-dark col-md-5">
             <h1>License Details</h1>
-            <UserDetail title="License number" content={this.state.license} />
+            <UserDetail title="License number" content={this.state.licenseNo} />
             <UserDetail
               title="Date of birth"
               content={this.state.dateOfBirth}

@@ -9,8 +9,12 @@ import {
   REQUEST_CARS,
   RECIEVE_CARS,
   RECIEVE_CARS_ERROR,
+<<<<<<< HEAD
   UPDATE_CAR,
   DELETE_CAR
+=======
+  UPDATE_CAR
+>>>>>>> feature_add_car
 } from "../actions/types";
 
 const initialState = {
@@ -71,8 +75,11 @@ export default function(state = initialState, action) {
         isFetchingCars: false,
         allCars: action.payload
       };
+<<<<<<< HEAD
     case DELETE_CAR:
       return state;
+=======
+>>>>>>> feature_add_car
     case UPDATE_CAR:
       return state;
     default:

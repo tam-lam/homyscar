@@ -9,10 +9,19 @@ import {
   REQUEST_CARS,
   RECIEVE_CARS,
   RECIEVE_CARS_ERROR,
+<<<<<<< HEAD
   UPDATE_CAR,
   DELETE_CAR
 } from "./types";
 import axios from 'axios';
+=======
+  UPDATE_CAR
+} from "./types";
+import axios from 'axios';
+import { notifyAddCarSucceeded, notifyAddCarFailed } from "../../components/ToastContent";
+
+
+>>>>>>> feature_add_car
 
 
 export const fetchCarsWithDist = () => dispatch => {
@@ -70,7 +79,10 @@ export function fetchAllCars(){
 
   return dispatch => {
     dispatch(requestCars())
+<<<<<<< HEAD
     alert('requesting cars')
+=======
+>>>>>>> feature_add_car
 
     axios.get('/car')
     .then(res => dispatch(recieveCars(res.data)))
@@ -86,6 +98,7 @@ export function updateCarDetails(updated_data){
     console.log('store ' , updated_data)
     axios.post('/updateCar' , {data: updated_data})
   }
+<<<<<<< HEAD
 }
 
 export function deleteCar(car_id){
@@ -101,6 +114,11 @@ export function deleteCar(car_id){
 
 
 
+=======
+
+}
+
+>>>>>>> feature_add_car
 export function requestCars(){
   return {
     type: REQUEST_CARS
@@ -134,8 +152,21 @@ export function updateCar(){
   }
 }
 
+<<<<<<< HEAD
 export function removeCar(){
   return {
     type: DELETE_CAR
   }
+=======
+export const addCar = (car) => (dispatch) => {
+
+  axios
+    .post("/car", car)
+    .then( res => {
+      notifyAddCarSucceeded();
+    })
+    .catch( err => {
+      notifyAddCarFailed();
+    })
+>>>>>>> feature_add_car
 }

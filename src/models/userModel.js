@@ -34,6 +34,22 @@ const UserSchema = new Schema({
     isAdmin: {
         type: Boolean,
         required: true
+    },
+    licenseNo: {
+        type: String,
+        required: true
+    },
+    dateOfBirth: {
+        type: Date,
+        required: true
+    },
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
     }
 },
     {

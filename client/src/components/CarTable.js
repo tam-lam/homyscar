@@ -3,6 +3,9 @@ import Table from 'react-bootstrap/Table'
 import {connect} from 'react-redux';
 import {fetchAllCars , deleteCar} from '../store/actions/carActions';
 import {Link} from 'react-router-dom';
+import {fetchAllCars} from '../store/actions/carActions';
+import {Link} from 'react-router-dom';
+import { Button } from 'reactstrap';
 
 class CarTable extends Component{
     constructor() {
