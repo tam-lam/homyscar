@@ -15,8 +15,8 @@ const payment = (req, res) => {
       "payment_method": "paypal"
     },
     "redirect_urls": {
-      "return_url": `/user?rego=${req.body.rego}&userId=${req.body.user_id}&price=${req.body.price}`,
-      "cancel_url": "/cancel"
+      "return_url": `https://damp-wildwood-73011.herokuapp.com/user?rego=${req.body.rego}&userId=${req.body.user_id}&price=${req.body.price}`,
+      "cancel_url": "https://damp-wildwood-73011.herokuapp.com/cancel"
     },
     "transactions": [{
       // "item_list": {
