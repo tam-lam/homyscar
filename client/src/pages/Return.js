@@ -93,7 +93,6 @@ class Return extends Component {
     let addressObject = this.autocomplete.getPlace();
     let address = addressObject.address_components;
 
-    alert(address);
     // Check if address is valid
     if (address) {
       // Set State

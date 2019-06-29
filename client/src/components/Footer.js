@@ -7,7 +7,7 @@ class Footer extends Component {
       <footer className="footer">
         <div className="container">
           <span className="text-muted">
-            <a href="https://github.com/Abdosalah/ProgProject2019Sem2">
+            <a href="https://github.com/rmit-s3607212-mohammed-alsharifi/ProgProject2019Sem2">
               {" "}
               Team 0
             </a>{" "}
